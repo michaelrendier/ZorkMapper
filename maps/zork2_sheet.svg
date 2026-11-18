@@ -51,14 +51,8 @@
 <text x="345" y="684.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">U to 25</text>
 <line x1="345" y1="705" x2="345" y2="676.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
 <text x="345" y="672.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">U from 20</text>
-<line x1="345" y1="705" x2="316.5" y2="705" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
-<text x="316.5" y="716" font-size="8.5" fill="#2a4a8a" text-anchor="middle">U to 30</text>
-<line x1="285" y1="705" x2="313.5" y2="705" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
-<text x="313.5" y="716" font-size="8.5" fill="#2a4a8a" text-anchor="middle">U from 25</text>
-<line x1="345" y1="705" x2="365.153" y2="725.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
-<text x="365.153" y="736.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 16</text>
-<line x1="405" y1="765" x2="384.847" y2="744.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
-<text x="384.847" y="740.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 25</text>
+<line x1="405" y1="765" x2="345" y2="705" stroke="#1d1d1d" stroke-width="2"/>
+<text x="378" y="732" font-size="9" font-style="italic" fill="#b3360b">U</text>
 <line x1="405" y1="765" x2="465" y2="705" stroke="#1d1d1d" stroke-width="2"/>
 <line x1="405" y1="765" x2="345" y2="825" stroke="#1d1d1d" stroke-width="2"/>
 <line x1="405" y1="705" x2="465" y2="705" stroke="#1d1d1d" stroke-width="2"/>
@@ -66,10 +60,7 @@
 <line x1="465" y1="765" x2="405" y2="825" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
 <line x1="465" y1="765" x2="465" y2="825" stroke="#1d1d1d" stroke-width="2"/>
 <line x1="585" y1="225" x2="645" y2="225" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
-<line x1="645" y1="225" x2="645" y2="196.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
-<text x="645" y="192.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 51</text>
-<line x1="645" y1="165" x2="645" y2="193.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
-<text x="645" y="204.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 50</text>
+<line x1="645" y1="225" x2="645" y2="165" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
 <line x1="645" y1="165" x2="624.847" y2="144.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
 <circle cx="624.847" cy="144.847" r="2.2" fill="#1d1d1d"/>
 <text x="624.847" y="140.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 52</text>
@@ -101,6 +92,7 @@
 <line x1="165" y1="585" x2="225" y2="585" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
 <polygon points="202,585 190,590 190,580" fill="#1d1d1d"/>
 <line x1="165" y1="585" x2="165" y2="645" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="285" y1="705" x2="345" y2="705" stroke="#1d1d1d" stroke-width="2"/>
 <line x1="225" y1="525" x2="225" y2="553.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
 <circle cx="225" cy="553.5" r="2.2" fill="#1d1d1d"/>
 <text x="225" y="564.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 54</text>

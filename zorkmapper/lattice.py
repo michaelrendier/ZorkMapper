@@ -102,7 +102,7 @@ def build(rooms: Dict[str, Room], start: str, excluded=None, word=lambda n: "Maz
                         t = (cp[0] + k*v[0], cp[1] + k*v[1])
                         if t not in occ and _clear(occ, cp, v, k): place(m, t); q.append(m); placed = True; break
                     if placed: break
-    links: List[Link] = []; drawn = {}; stubs = []; loops = []; per = []; redundant = 0
+    links: List[Link] = []; drawn = {}; stubs = []; loops = []; per = []; redundant = 0; pending: List[Link] = []
     for r in keep.values():
         for d, e in r.exits.items():
             if e.kind == "per": per.append((r.name, d)); continue
@@ -113,7 +113,7 @@ def build(rooms: Dict[str, Room], start: str, excluded=None, word=lambda n: "Maz
             if e.dest == r.name: loops.append(r.name); continue
             a, b = pos[r.name], pos[e.dest]; dx, dy = b[0] - a[0], b[1] - a[1]
             key = frozenset((r.name, e.dest))
-            if key in drawn: redundant += 1; continue
+            if key in drawn and drawn[key].mode == "straight": redundant += 1; continue
             fit = None
             for v, tag in _options(d):
                 for k in range(1, 12):
@@ -123,5 +123,9 @@ def build(rooms: Dict[str, Room], start: str, excluded=None, word=lambda n: "Maz
             one_way = not back
             if fit: l = Link(r.name, e.dest, d, e.kind, "straight", fit[0], fit[1], one_way, e.condition or "", fit[2])
             else: l = Link(r.name, e.dest, d, e.kind, "connector", (0, 0), 0, one_way, e.condition or "", "U" if d == "UP" else "D" if d == "DOWN" else "")
-            links.append(l); drawn[key] = l
+            if fit:
+                if key in drawn: links.remove(drawn[key]); redundant += 1       # a straight link replaces an earlier connector for the same pair
+                links.append(l); drawn[key] = l
+            elif key in drawn: redundant += 1
+            else: links.append(l); drawn[key] = l
     return Sheet(pos=pos, order=order, links=links, stubs=stubs, loops=loops, per=per, redundant=redundant, far=far)
