@@ -48,21 +48,11 @@ def view_origin(room_row: int, room_col: int, vh: int, vw: int) -> Tuple[int, in
 
 
 def neighbour(data: dict, cur: int, direction: str) -> Optional[int]:
-    """the room reached by going `direction`: the map's own exit first (it follows long runs and connectors), else the nearest room that way on the sheet"""
+    """the room reached by going `direction` along the map's own exits (it follows long runs and connectors); None if there is no such exit"""
     r = data["rooms"][str(cur)]
     for e in r["exits"]:
         if e["dir"] == direction and e["dest"] and e["kind"] in ("to", "cond"): return e["dest"]
-    if direction not in DIRS: return None
-    dx, dy = DIRS[direction]; best, bd = None, 1e9
-    for k, o in data["rooms"].items():
-        k = int(k)
-        if k == cur: continue
-        ox, oy = (o["col"] - r["col"])/4.0, (o["row"] - r["row"])/2.0
-        along = ox*dx + oy*dy; across = abs(ox*dy - oy*dx)
-        if along > 0.5 and across <= along*0.6 + 0.3:
-            d = along + across*2
-            if d < bd: best, bd = k, d
-    return best
+    return None                                                    # no exit that way: refuse (the caller beeps); never guess a nearby room
 
 
 def vertical(data: dict, cur: int, direction: str, side: str) -> Optional[int]:
@@ -149,7 +139,7 @@ def style_for_bg(code):
 class State:
     def __init__(self, data: Optional[dict] = None, path: str = ""):
         self.data, self.path = data, path; self.cur = 1; self.left = self.right = self.bottom = True; self.msg = "Open a map with F5, or map a game with F6."
-        self.help = False; self.layer = False
+        self.help = False; self.layer = False; self.flash = None
 
 
 def draw(screen, st: State):
@@ -171,13 +161,19 @@ def draw(screen, st: State):
         if my <= y < my + mh and mx <= x < mx + mw - 1:
             cur = sp["n"] == st.cur
             lab = d["canvas"][sp["row"]][sp["col"]:sp["col"] + 2]
+            if cur:                                                  # the selected room: an outline in blue, its number left to the sidebar
+                screen.put(y, x - 1, "[", (12, -1, "b")); screen.put(y, x, "  ", (12, -1, "b")); screen.put(y, x + 2, "]", (12, -1, "b")); continue
             if st.layer and sp["z"] != room["level"]: screen.put(y, x, "\u00b7\u00b7", (8, -1, "d")); continue         # another layer: a faint placeholder
-            screen.put(y, x, lab, style_for_bg(sp["bg"]) if not cur else (0 if levels.black_text(sp["bg"]) else 15, sp["bg"], "br"))
-            if cur:
-                screen.put(y, x - 1, ">", (11, -1, "b")); screen.put(y, x + 2, "<", (11, -1, "b"))
+            screen.put(y, x, lab, style_for_bg(sp["bg"]))              # the whole square in its elevation colour: black on bright, white on dark
     if lay["left"][3]: draw_legend(screen, st, lay["left"])
     if lay["right"][3]: draw_right(screen, st, lay["right"])
-    draw_bottom(screen, st, lay)
+    draw_bottom(screen, st, lay); draw_banner(screen, st)
+
+
+def draw_banner(screen, st):
+    if st.flash and st.data:
+        h, w = screen.size(); lay = panel_layout(h, w, st.left, st.right, st.bottom); my, mx, mh, mw = lay["map"]; t = "  %s  " % st.flash
+        screen.put(my + mh//2, mx + (mw - len(t))//2, t, (15, 196, "b"))
 
 
 def draw_legend(screen, st, rect):
@@ -242,15 +238,15 @@ def handle_key(st: State, key: str) -> Optional[str]:
     elif key in ARROWS:
         n = neighbour(st.data, st.cur, ARROWS[key])
         if n: st.cur = n; st.msg = ""
-        else: st.msg = "No way %s from here." % ARROWS[key].lower()
+        else: st.flash = "INVALID DIRECTION"
     elif key in SHIFTED:
         n = vertical(st.data, st.cur, *SHIFTED[key])
         if n: st.cur = n; st.msg = ""
-        else: st.msg = "No way %s from here." % SHIFTED[key][0].lower()
+        else: st.flash = "INVALID DIRECTION"
     elif key in ("KEY_PPAGE", "KEY_NPAGE"):
         n = level_jump(st.data, st.cur, 1 if key == "KEY_PPAGE" else -1)
         if n: st.cur = n; st.msg = ""
-        else: st.msg = "No room on that level."
+        else: st.flash = "NO ROOM ON THAT LEVEL"
     elif key in ("KEY_F(7)", "l"): st.layer = not st.layer; st.msg = "Layer view: only this elevation layer in colour; PgUp / PgDn change layer." if st.layer else "Layer view off."
     return None
 
@@ -307,7 +303,9 @@ def run(scr, path: Optional[str] = None):
             ch = prompt(screen_, scr, "Open a map (ASCIIArt/)", maps)
             if ch: load_into(st, ch)
     while True:
-        draw(screen_, st); screen_.refresh(); cmd = handle_key(st, read_key(scr))
+        draw(screen_, st); screen_.refresh()
+        if st.flash: curses.beep(); curses.napms(550); curses.flushinp(); st.flash = None; continue
+        cmd = handle_key(st, read_key(scr))
         if cmd == "quit": return
         if cmd == "open":
             maps = list_maps(); ch = prompt(screen_, scr, "Open a map (ASCIIArt/)", maps) if maps else None

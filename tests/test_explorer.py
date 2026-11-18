@@ -20,8 +20,9 @@ def test_current_room_is_centred():
     oy, ox = E.view_origin(40, 60, 21, 51); assert (40 - oy, 61 - ox) == (10, 25)
 
 
-def test_neighbour_follows_exits_then_geometry():
+def test_neighbour_follows_exits_and_refuses_otherwise():
     d = mapfile.load(MAP); assert E.neighbour(d, 1, "NORTH") == 2 and E.neighbour(d, 1, "WEST") == 4
+    assert E.neighbour(d, 1, "EAST") is None                     # West of House: the east door is boarded, so no exit: refused, not guessed
     assert E.step_number(d, len(d["rooms"]), 1) == 1 and E.step_number(d, 1, -1) == len(d["rooms"])
 
 
@@ -55,3 +56,15 @@ def test_shifted_arrows_and_level_jump_and_layer_view():
     E.handle_key(st, "KEY_PPAGE"); assert d["rooms"][str(st.cur)]["level"] == 0
     E.handle_key(st, "l"); assert st.layer is True
     scr = E.FakeScreen(40, 140); E.draw(scr, st); t = "\n".join(scr.text()); assert "LAYER VIEW" in t and "\u00b7\u00b7" in t
+
+
+def test_invalid_direction_is_refused_with_a_banner_and_the_selected_room_is_an_outline():
+    d = mapfile.load(MAP); st = E.State(d, MAP)
+    E.handle_key(st, "KEY_RIGHT"); assert st.cur == 1 and st.flash == "INVALID DIRECTION"
+    scr = E.FakeScreen(40, 140); E.draw(scr, st); assert "INVALID DIRECTION" in "\n".join(scr.text())     # the banner sits across the centre point
+    st.flash = None; scr = E.FakeScreen(40, 140); E.draw(scr, st); t = "\n".join(scr.text()); assert "[" in t and "]" in t and "INVALID" not in t   # the selected room: an outline
+    E.handle_key(st, "KEY_UP"); assert st.cur == 2 and st.flash is None
+    # the selected room shows no number; another room's square carries its elevation colour (black text on bright, white on dark)
+    scr = E.FakeScreen(40, 140); E.draw(scr, st)
+    styles = {s for row in scr.cells for _, s in row if s and s[1] not in (-1, 4, 6)}
+    assert any(s[0] == 0 for s in styles) or any(s[0] == 15 for s in styles)

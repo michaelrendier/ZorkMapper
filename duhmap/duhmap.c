@@ -146,12 +146,8 @@ static int go_compass(const char *d)
 {
   Room *r = &rooms[cur]; int i, k, best = 0; double bd = 1e9; int dx = vdx(d), dy = vdy(d);
   for (i = 0; i < r->nex; i++) if (!strcmp(r->ex[i].dir, d) && r->ex[i].dest > 0 && (!strcmp(r->ex[i].kind, "to") || !strcmp(r->ex[i].kind, "cond"))) return r->ex[i].dest;     /* a real exit: positive */
-  for (k = 1; k <= nrooms; k++) {
-    double ox, oy, along, across, dist; if (k == cur || !rooms[k].name[0]) continue;
-    ox = (rooms[k].col - r->col) / 4.0; oy = (rooms[k].row - r->row) / 2.0; along = ox * dx + oy * dy; across = ox * dy - oy * dx; if (across < 0) across = -across;
-    if (along > 0.5 && across <= along * 0.6 + 0.3) { dist = along + across * 2; if (dist < bd) { bd = dist; best = k; } }
-  }
-  return -best;                                                 /* no exit that way: the nearest room on the sheet, as a negative number */
+  (void)k; (void)best; (void)bd; (void)dx; (void)dy;                 /* no exit that way: refuse (the caller beeps), never guess a nearby room */
+  return 0;
 }
 
 /* UP and DOWN are drawn as diagonals: side 'W' or 'E' prefers the exit whose room lies on that side; otherwise any exit of that kind */
@@ -176,15 +172,17 @@ static int go_level(int dz)
   return best;
 }
 
+static void show_banner(const char *msg);
 static void move_to(int n, const char *what)
 {
+  (void)what;
   if (n > 0) { cur = n; status[0] = 0; }
-  else if (n < 0) { cur = -n; snprintf(status, sizeof status, "No exit %s: moved to the nearest room that way on the sheet.", what); }
-  else snprintf(status, sizeof status, "No way %s from here.", what);
+  else show_banner(strstr(what, "level") ? "NO ROOM ON THAT LEVEL" : "INVALID DIRECTION");                                           /* no such exit: beep and say so across the centre of the map */
 }
 
 /* ------------------------------------------------------------------ drawing */
 typedef struct { int y, x, h, w; } Rect;
+static Rect last_map;                                                         /* the map viewport of the last draw, for the banner */
 static void layout(int h, int w, Rect *title_, Rect *left, Rect *map, Rect *right, Rect *bottom)
 {
   int lw = show_left ? (w * PCT_LEFT / 100 > 20 ? w * PCT_LEFT / 100 : 20) : 0, rw = show_right ? (w * PCT_RIGHT / 100 > 30 ? w * PCT_RIGHT / 100 : 30) : 0;
@@ -206,6 +204,7 @@ static void wrap_put(int y0, int x0, int ymax, int w, const char *s, int attr)
 
 static void draw_map(Rect m)
 {
+  last_map = m;
   Room *r = &rooms[cur]; int oy = r->row - m.h / 2, ox = r->col + 1 - m.w / 2, y, k;
   for (y = 0; y < m.h; y++) {
     int cy = oy + y, x0, n; if (cy < 0 || cy >= crows) continue;
@@ -217,8 +216,10 @@ static void draw_map(Rect m)
     if (!q->name[0] || y2 < m.y || y2 >= m.y + m.h || x2 < m.x || x2 >= m.x + m.w - 1) continue;
     lab[0] = canvas[q->row][q->col]; lab[1] = canvas[q->row][q->col + 1]; lab[2] = 0;
     if (layer_view && (q->has_level != r->has_level || q->level != r->level)) { attron(A_DIM); mvaddnwstr(y2, x2, L"\u00b7\u00b7", 2); attroff(A_DIM); continue; }   /* another layer: a faint placeholder */
-    attron(COLOR_PAIR(pr) | (k == cur ? A_REVERSE | A_BOLD : 0)); mvaddnwstr(y2, x2, lab, 2); attroff(COLOR_PAIR(pr) | A_REVERSE | A_BOLD);
-    if (k == cur) { put(y2, x2 - 1, ">", COLOR_PAIR(1) | A_BOLD); put(y2, x2 + 2, "<", COLOR_PAIR(1) | A_BOLD); }
+    if (k == cur) {                                                           /* the selected room: an outline in blue, its number left to the sidebar */
+      init_pair(3, 12, -1); attron(COLOR_PAIR(3) | A_BOLD); mvaddstr(y2, x2 - 1, "[  ]"); attroff(COLOR_PAIR(3) | A_BOLD); continue;
+    }
+    attron(COLOR_PAIR(pr)); mvaddnwstr(y2, x2, lab, 2); attroff(COLOR_PAIR(pr));    /* the whole square in its elevation colour: black text on bright, white on dark */
   }
 }
 
@@ -273,6 +274,14 @@ static void draw_all(void)
     } else wrap_put(B.y + 1, 1, B.y + B.h - 1, w - 2, status, 0);
     put(B.y + B.h - 1, 0, " F1 Help  F2 Legend  F3 Sidebar  F4 Status  Alt-O Open  Alt-M Map a game  Home Start  Tab Next  Alt-X Quit ", COLOR_PAIR(pair_for(6)));
   }
+}
+
+static void show_banner(const char *msg)
+{
+  int len = (int)strlen(msg) + 4, y = last_map.y + last_map.h / 2, x = last_map.x + (last_map.w - len) / 2;
+  char b[80]; beep(); snprintf(b, sizeof b, "  %s  ", msg); if (x < 0) x = 0;
+  init_pair(2, 15, 196); attron(COLOR_PAIR(2) | A_BOLD); mvaddstr(y, x, b); attroff(COLOR_PAIR(2) | A_BOLD); refresh();
+  napms(550); flushinp();                                                     /* a quick flash; keys typed meanwhile are dropped */
 }
 
 /* ------------------------------------------------------------------ dialogs */
