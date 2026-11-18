@@ -93,9 +93,23 @@ def render(rooms: Dict[str, Room], sh: Sheet, title: str, start: str, color: boo
     for i, n in enumerate(sh.order, 1):
         put(cells[n], label(i), bg(zl.get(n)), force=True)
     out = [title, ""]
-    for row in grid:
-        if not color: out.append("".join(s + " " for s, _ in row).rstrip())
-        else: out.append("".join((("\x1b[48;5;%dm\x1b[%sm%s\x1b[0m" % (b, "30" if b in (231, 229, 195, 159, 123) else "97;1", s)) if b else s) + " " for s, b in row).rstrip())
+    def horiz(t): return t in ("==", "=>", "<=", "++")
+    def vert(t): return t in ("||", "^^", "vv", "++")
+    def paint(t, b):
+        if not color or not b: return t
+        return "\x1b[48;5;%dm\x1b[%sm%s\x1b[0m" % (b, "30" if b in (231, 229, 195, 159, 123) else "97;1", t)
+    for y, row in enumerate(grid):
+        line = ""
+        for x, (t, b) in enumerate(row):
+            line += paint(t, b)
+            if x + 1 < W: line += "==" if (horiz(t) and horiz(row[x + 1][0])) else "  "
+        out.append(line.rstrip())
+        if y + 1 < H:                                                    # the buffer row: join passages that continue, leave rooms clear
+            sp = ""
+            for x in range(W):
+                sp += "||" if (vert(grid[y][x][0]) and vert(grid[y + 1][x][0])) else "  "
+                if x + 1 < W: sp += "  "
+            out.append(sp.rstrip())
     out += ["", "Rooms (number, name, level above the start room: + up, - down)"]
     names = ["%s  %s  [%+d]" % (label(i), (rooms[n].desc or n.title())[:34], zl.get(n, 0)) for i, n in enumerate(sh.order, 1)]
     half = (len(names) + 1)//2
