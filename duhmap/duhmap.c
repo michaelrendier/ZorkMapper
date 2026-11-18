@@ -21,6 +21,7 @@
 #include <ncursesw/curses.h>
 #include <locale.h>
 #include <wchar.h>
+#include <wctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -173,27 +174,65 @@ static void draw_box(int y, int x, int h, int w, const char *title, int pair, in
 }
 
 /* ------------------------------------------------------------------ navigation */
-static int vdx(const char *d) { return !strcmp(d, "EAST") || !strcmp(d, "NE") || !strcmp(d, "SE") ? 1 : !strcmp(d, "WEST") || !strcmp(d, "NW") || !strcmp(d, "SW") ? -1 : 0; }
-static int vdy(const char *d) { return !strcmp(d, "SOUTH") || !strcmp(d, "SE") || !strcmp(d, "SW") ? 1 : !strcmp(d, "NORTH") || !strcmp(d, "NE") || !strcmp(d, "NW") ? -1 : 0; }
-
-static int go_compass(const char *d)
+/* Navigation follows the DRAWN map, cell by cell, exactly as the eye does: from the room's square, step in the pressed direction along the passage
+   glyphs (== || // \\); a room at the end is the destination; a superscript label (²³) at the end names the destination; a one-way arrow pointing
+   against you, a blank square, a wrong kind of glyph, or a maze word ends it: INVALID.  Nothing is guessed from the game's exit table. */
+static int sup_digit(wchar_t c)
 {
-  Room *r = &rooms[cur]; int i, k, best = 0; double bd = 1e9; int dx = vdx(d), dy = vdy(d);
-  for (i = 0; i < r->nex; i++) if (!strcmp(r->ex[i].dir, d) && r->ex[i].dest > 0 && (!strcmp(r->ex[i].kind, "to") || !strcmp(r->ex[i].kind, "cond"))) return r->ex[i].dest;     /* a real exit: positive */
-  (void)k; (void)best; (void)bd; (void)dx; (void)dy;                 /* no exit that way: refuse (the caller beeps), never guess a nearby room */
+  switch (c) { case 0x2070: return 0; case 0xB9: return 1; case 0xB2: return 2; case 0xB3: return 3;
+    case 0x2074: return 4; case 0x2075: return 5; case 0x2076: return 6; case 0x2077: return 7; case 0x2078: return 8; case 0x2079: return 9; }
+  return -1;
+}
+static void cellch(int cx, int cy, wchar_t *a, wchar_t *b)
+{
+  int r = 2 * cy, c = 4 * cx; *a = *b = L' ';
+  if (cx < 0 || cy < 0 || r >= crows || c + 1 >= ccols) return;
+  *a = canvas[r][c]; *b = canvas[r][c + 1];
+}
+static int room_at(int cx, int cy)
+{
+  int k; for (k = 1; k <= nrooms; k++) if (rooms[k].name[0] && rooms[k].row == 2 * cy && rooms[k].col == 4 * cx) return k;
   return 0;
 }
-
-/* UP and DOWN are drawn as diagonals: side 'W' or 'E' prefers the exit whose room lies on that side; otherwise any exit of that kind */
-static int go_vertical(const char *d, char side)
+static int is_pass(wchar_t a, wchar_t b, int dx, int dy)       /* does this two-character square carry a passage running the pressed way? */
 {
-  Room *r = &rooms[cur]; int i, any = 0;
-  for (i = 0; i < r->nex; i++) {
-    Exit *e = &r->ex[i]; if (strcmp(e->dir, d) || e->dest <= 0 || (strcmp(e->kind, "to") && strcmp(e->kind, "cond"))) continue;
-    if (!any) any = e->dest;
-    if ((side == 'W' && rooms[e->dest].col < r->col) || (side == 'E' && rooms[e->dest].col > r->col)) return e->dest;
+  if (a == L'X' || b == L'X' || (a == L'+' && b == L'+')) return 1;                      /* crossings, also one carrying a U / D marker (UX) */
+  if (dy == 0) return a == L'=' || b == L'=';                                            /* == => <= */
+  if (dx == 0) return a == L'|' || a == L'^' || a == L'v';                               /* || ^^ vv */
+  if (dx * dy < 0) return b == L'/';                                                     /* // U/ D/ and the arrows with a slash */
+  return b == L'\\';                                                                     /* \\ U\ D\ */
+}
+static int arrow_allows(wchar_t a, wchar_t b, int dx, int dy)     /* a one-way arrow may only be walked the way it points */
+{
+  (void)b;
+  if (a == L'=' && b == L'>') return dx == 1;      if (a == L'<' && b == L'=') return dx == -1;
+  if (a == L'^') return dy == -1;                  if (a == L'v') return dy == 1;
+  if (a == 0x2197) return dx == 1 && dy == -1;     if (a == 0x2199) return dx == -1 && dy == 1;
+  if (a == 0x2196) return dx == -1 && dy == -1;    if (a == 0x2198) return dx == 1 && dy == 1;
+  return 1;
+}
+static int go_geo(int dx, int dy, char vertical)     /* vertical: 0 for a compass key, 'U' or 'D' for the shifted keys; returns a room, 0 (invalid) or -2 (a maze) */
+{
+  Room *r = &rooms[cur]; int cx = r->col / 4, cy = r->row / 2, j, dest = 0, marker = 0, i, first_marker = 0;
+  for (j = 1; j < 80; j++) {
+    int x = cx + j * dx, y = cy + j * dy, rm, n, any; wchar_t a, b; cellch(x, y, &a, &b);
+    if ((rm = room_at(x, y))) { dest = rm; break; }
+    if (j > 1 && (sup_digit(a) >= 0 || sup_digit(b) >= 0)) {                              /* a link label: "to room N" */
+      n = 0; any = 0; if (sup_digit(a) >= 0) { n = sup_digit(a); any = 1; } if (sup_digit(b) >= 0) { n = n * 10 + sup_digit(b); any = 1; }
+      if (any && n >= 1 && n <= nrooms) { dest = n; break; } return 0;
+    }
+    if (j > 1 && iswalpha(a) && iswalpha(b)) return -2;                                   /* a maze or puzzle, left out of the map */
+    if (!is_pass(a, b, dx, dy) || !arrow_allows(a, b, dx, dy)) return 0;
+    if ((a == L'U' || a == L'D') && (b == L'/' || b == L'\\')) { marker = (int)a; if (j == 1) first_marker = (int)a; }   /* a marker on a crossing (UX) belongs to the other link */
   }
-  return any;
+  if (!dest) return 0;
+  if (marker) {                                                                          /* a vertical link: decide UP or DOWN from the game's own exits, else the marker */
+    char type = 0;
+    for (i = 0; i < r->nex; i++) if (r->ex[i].dest == dest) { if (!strcmp(r->ex[i].dir, "UP")) { type = 'U'; break; } if (!strcmp(r->ex[i].dir, "DOWN")) type = 'D'; }
+    if (!type) type = first_marker ? (char)first_marker : (marker == 'U' ? 'D' : 'U');
+    if (vertical != type) return 0;
+  } else if (vertical) return 0;                                                        /* shifted keys climb or descend only along a marked link */
+  return dest;
 }
 
 static int go_level(int dz)
@@ -211,6 +250,7 @@ static void move_to(int n, const char *what)
 {
   (void)what;
   if (n > 0) { cur = n; status[0] = 0; }
+  else if (n == -2) show_banner("MAZE: NOT MAPPED");
   else show_banner(strstr(what, "level") ? "NO ROOM ON THAT LEVEL" : "INVALID DIRECTION");                                           /* no such exit: beep and say so across the centre of the map */
 }
 
@@ -491,16 +531,16 @@ int main(int argc, char *argv[])
     if (c == ERR || c == KEY_RESIZE) continue;                   /* a timeout (so a resize is noticed within half a second) or the resize itself: just redraw */
     if (getenv("DUHMAP_TRACE")) { FILE *t = fopen(getenv("DUHMAP_TRACE"), "a"); if (t) { fprintf(t, "key %d at room %d\n", c, cur); fclose(t); } }   /* test hook: what key arrived, and where we were */
     switch (c) {
-    case KEY_UP: move_to(go_compass("NORTH"), "north"); break;
-    case KEY_DOWN: move_to(go_compass("SOUTH"), "south"); break;
-    case KEY_LEFT: move_to(go_compass("WEST"), "west"); break;
-    case KEY_RIGHT: move_to(go_compass("EAST"), "east"); break;
-    case KEY_SR: move_to(go_vertical("UP", 'W'), "up (west)"); break;        /* Shift-Up    UPW */
-    case KEY_SF: move_to(go_vertical("UP", 'E'), "up (east)"); break;        /* Shift-Down  UPE */
-    case KEY_SLEFT: move_to(go_vertical("DOWN", 'W'), "down (west)"); break; /* Shift-Left  DW  */
-    case KEY_SRIGHT: move_to(go_vertical("DOWN", 'E'), "down (east)"); break; /* Shift-Right DE  */
-    case 'y': move_to(go_compass("NW"), "northwest"); break; case 'u': move_to(go_compass("NE"), "northeast"); break;
-    case 'b': move_to(go_compass("SW"), "southwest"); break; case 'n': move_to(go_compass("SE"), "southeast"); break;
+    case KEY_UP: move_to(go_geo(0, -1, 0), "north"); break;
+    case KEY_DOWN: move_to(go_geo(0, 1, 0), "south"); break;
+    case KEY_LEFT: move_to(go_geo(-1, 0, 0), "west"); break;
+    case KEY_RIGHT: move_to(go_geo(1, 0, 0), "east"); break;
+    case KEY_SR: move_to(go_geo(-1, -1, 'U'), "up (west)"); break;        /* Shift-Up    UPW */
+    case KEY_SF: move_to(go_geo(1, -1, 'U'), "up (east)"); break;        /* Shift-Down  UPE */
+    case KEY_SLEFT: move_to(go_geo(-1, 1, 'D'), "down (west)"); break; /* Shift-Left  DW  */
+    case KEY_SRIGHT: move_to(go_geo(1, 1, 'D'), "down (east)"); break; /* Shift-Right DE  */
+    case 'y': move_to(go_geo(-1, -1, 0), "northwest"); break; case 'u': move_to(go_geo(1, -1, 0), "northeast"); break;
+    case 'b': move_to(go_geo(-1, 1, 0), "southwest"); break; case 'n': move_to(go_geo(1, 1, 0), "southeast"); break;
     case '\t': if (nrooms) cur = cur % nrooms + 1; break; case KEY_BTAB: if (nrooms) cur = (cur + nrooms - 2) % nrooms + 1; break;
     case KEY_HOME: cur = start_room; break; case KEY_END: if (nrooms) cur = nrooms; break;
     case KEY_PPAGE: move_to(go_level(1), "up a level"); break; case KEY_NPAGE: move_to(go_level(-1), "down a level"); break;

@@ -11,12 +11,12 @@ WORDS = {"zork1": "Maze", "zork2": "Maze", "zork3": "Puzzle"}
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="zorkmapper"); ap.add_argument("source", nargs="?"); ap.add_argument("--svg"); ap.add_argument("--start", default=None); ap.add_argument("--sheet", action="store_true", help="graph-paper lattice map (3x3 blocks) instead of the 3-D grid flattening"); ap.add_argument("--exclude", default=None); ap.add_argument("--seed", action="store_true", help="copy the example maps and images from the repo into ~/.zorkmapper"); ap.add_argument("--config", action="store_true", help="show the config and data directory"); ap.add_argument("--map", default=None, metavar="SRC", help="map a Z-machine story file (.dat/.z3/.z5) or a ZIL folder into ASCIIArt/ (json, txt, ans, svg)"); ap.add_argument("--ascii", default=None, help="write PREFIX.txt (plain Unicode) and PREFIX.ans (ANSI colour)"); ap.add_argument("--descriptions", default=None, help="write a plain-text file of room names and descriptions")
+    ap = argparse.ArgumentParser(prog="zorkmapper"); ap.add_argument("source", nargs="?"); ap.add_argument("--svg"); ap.add_argument("--start", default=None); ap.add_argument("--sheet", action="store_true", help="graph-paper lattice map (3x3 blocks) instead of the 3-D grid flattening"); ap.add_argument("--exclude", default=None); ap.add_argument("--force", action="store_true", help="with --seed: overwrite existing files"); ap.add_argument("--seed", action="store_true", help="copy the example maps and images from the repo into ~/.zorkmapper"); ap.add_argument("--config", action="store_true", help="show the config and data directory"); ap.add_argument("--map", default=None, metavar="SRC", help="map a Z-machine story file (.dat/.z3/.z5) or a ZIL folder into ASCIIArt/ (json, txt, ans, svg)"); ap.add_argument("--ascii", default=None, help="write PREFIX.txt (plain Unicode) and PREFIX.ans (ANSI colour)"); ap.add_argument("--descriptions", default=None, help="write a plain-text file of room names and descriptions")
     a = ap.parse_args(argv)
     if a.config or a.seed:
         from . import config
         cfg = config.ensure()
-        if a.seed: print("seeded %d files" % len(config.seed(cfg)))
+        if a.seed: print("seeded %d files" % len(config.seed(cfg, a.force)))
         print("root %s" % config.root()); [print("%s = %s" % kv) for kv in sorted(cfg.items())]; return
     if a.map:
         from . import mapper

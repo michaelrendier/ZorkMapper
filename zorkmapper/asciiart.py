@@ -66,28 +66,42 @@ def render(rooms: Dict[str, Room], sh: Sheet, title: str, start: str, color: boo
         if l.one_way: x, y = at(mid); grid[y][x] = (arrows[v], 0)
         if l.vertical:
             c1 = (a[0] + v[0], a[1] + v[1]); x, y = at(c1); s = grid[y][x][0]; grid[y][x] = (l.vertical + s[1], 0)
-    def neighbour_cells(c): return [(c[0] + dx, c[1] + dy) for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, -1), (-1, -1), (1, 1), (-1, 1))]
+    for i, n in enumerate(sh.order, 1):                                         # rooms first, so no label is ever written on a room
+        put(cells[n], label(i), bg(zl.get(n)), force=True)
+    ALL = [(1, 0), (-1, 0), (0, 1), (0, -1), (1, -1), (-1, -1), (1, 1), (-1, 1)]
+    OPP = {"NORTH": "SOUTH", "SOUTH": "NORTH", "EAST": "WEST", "WEST": "EAST", "NE": "SW", "SW": "NE", "NW": "SE", "SE": "NW", "UP": "DOWN", "DOWN": "UP"}
+    def prefs(direction):
+        if direction in VEC: first = [VEC[direction]]
+        elif direction == "UP": first = [(1, -1), (-1, -1)]
+        elif direction == "DOWN": first = [(-1, 1), (1, 1)]
+        else: first = []
+        return first + [v for v in ALL if v not in first]
+    def stub(c, direction, labels, one_way=False, vertical=""):
+        """a pathway cell in the exit's direction ( / \\ | = only, an arrow when one-way) and the label in the cell beyond it; pathways are never replaced by labels"""
+        for need in (len(labels),):                                             # only where the whole label fits beyond the line: a bare line would look like a passage into the next room
+            for v in prefs(direction):
+                p1 = (c[0] + v[0], c[1] + v[1])
+                if not free(p1): continue
+                spots = [(c[0] + (k + 2)*v[0], c[1] + (k + 2)*v[1]) for k in range(need)]
+                if not all(free(q) for q in spots): continue
+                g = arrows[v] if one_way else glyph[v]
+                if vertical: g = vertical + g[1]
+                put(p1, g)
+                for q, t in zip(spots, labels): put(q, t)
+                return True
+        return False
     for l in sh.links:
         if l.mode != "connector": continue
-        for n, m, out_ in ((l.a, l.b, True), (l.b, l.a, False)):
-            if not out_ and l.one_way: continue
-            c = cells[n]; v = VEC.get(l.direction if out_ else {"NORTH": "SOUTH", "SOUTH": "NORTH", "EAST": "WEST", "WEST": "EAST", "NE": "SW", "SW": "NE", "NW": "SE", "SE": "NW"}.get(l.direction, ""), None)
-            want = (c[0] + v[0], c[1] + v[1]) if v else None
-            spot = want if want and free(want) else next((p for p in neighbour_cells(c) if free(p)), None)
-            if spot: put(spot, label(sh.order.index(m) + 1).translate(SUP))
-    for n, v, word in sh.stubs:
-        c = cells[n]; p1 = (c[0] + v[0], c[1] + v[1]); p2 = (c[0] + 2*v[0], c[1] + 2*v[1]); w = word[:4]
-        if free(p1): 
-            if free(p2) and v[0] >= 0 and len(w) > 2: put(p1, w[:2]); put(p2, w[2:4].ljust(2))
-            else: put(p1, w[:2])
+        stub(cells[l.a], l.direction, [label(sh.order.index(l.b) + 1).translate(SUP)], l.one_way, l.vertical)
+        if not l.one_way: stub(cells[l.b], OPP.get(l.direction, ""), [label(sh.order.index(l.a) + 1).translate(SUP)], False, {"U": "D", "D": "U"}.get(l.vertical, ""))
+    for n, v, word in sh.stubs:                                                 # a maze or puzzle: the pathway points off into the blank space and says so
+        d = next((k for k, vv in VEC.items() if vv == tuple(v)), "")
+        w = word[:4]; stub(cells[n], d, [w[:2]] + ([w[2:4].ljust(2)] if len(w) > 2 else []))
     for n in sh.loops:
-        c = cells[n]; p = next((q for q in neighbour_cells(c)[4:] if free(q)), None)
+        c = cells[n]; p = next((q for q in [(c[0] + dx, c[1] + dy) for dx, dy in ALL[4:]] if free(q)), None)
         if p: put(p, "⟲ ")
-    for n, d in sh.per:
-        c = cells[n]; v = VEC.get(d); p = (c[0] + v[0], c[1] + v[1]) if v else None
-        if p and free(p): put(p, "?" + d[0])
-    for i, n in enumerate(sh.order, 1):
-        put(cells[n], label(i), bg(zl.get(n)), force=True)
+    for n, d in sh.per:                                                         # a routine decides this exit: the pathway, then "?" and the direction
+        stub(cells[n], d, ["?" + d[0]])
     def horiz(t): return t in ("==", "=>", "<=", "++")
     def vert(t): return t in ("||", "^^", "vv", "++")
     lines = []

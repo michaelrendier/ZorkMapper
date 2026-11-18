@@ -68,3 +68,17 @@ def test_invalid_direction_is_refused_with_a_banner_and_the_selected_room_is_an_
     scr = E.FakeScreen(40, 140); E.draw(scr, st)
     styles = {s for row in scr.cells for _, s in row if s and s[1] not in (-1, 4, 6)}
     assert any(s[0] == 0 for s in styles) or any(s[0] == 15 for s in styles)
+
+
+def test_pathways_are_only_slashes_pipes_equals_and_labels_never_touch_a_room():
+    SUP = set("⁰¹²³⁴⁵⁶⁷⁸⁹")
+    for g in ("zork1", "zork2", "zork3"):
+        p = os.path.join(os.path.dirname(MAP), g + ".map.json")
+        if not os.path.exists(p): continue
+        d = mapfile.load(p); cv = d["canvas"]
+        for s in d["spans"]:
+            cy, cx = s["row"]//2, s["col"]//4
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, 1), (1, -1), (-1, -1)):
+                y, x = cy + dy, cx + dx
+                if 0 <= 2*y < len(cv) and 4*x + 2 <= len(cv[2*y]):
+                    assert not any(c in SUP for c in cv[2*y][4*x:4*x + 2]), (g, s["n"], dx, dy)       # a label directly beside a room would hide a pathway

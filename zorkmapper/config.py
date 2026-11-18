@@ -47,11 +47,11 @@ def ensure() -> dict:
     return cfg
 
 
-def seed(cfg: dict = None) -> list:
+def seed(cfg: dict = None, force: bool = False) -> list:
     """copy the example maps and images shipped in the repo (ASCIIArt/, images/) into the data directory, without overwriting anything"""
     cfg = cfg or ensure(); copied = []
     for pat, dst in ((os.path.join(REPO, "ASCIIArt", "*.*"), cfg["maps_dir"]), (os.path.join(REPO, "images", "*.*"), cfg["images_dir"])):
         for f in glob.glob(pat):
             t = os.path.join(dst, os.path.basename(f))
-            if not os.path.exists(t): shutil.copy2(f, t); copied.append(t)
+            if force or not os.path.exists(t): shutil.copy2(f, t); copied.append(t)
     return copied
