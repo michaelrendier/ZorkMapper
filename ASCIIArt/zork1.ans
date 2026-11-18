@@ -1,0 +1,93 @@
+Zork1: graph-paper map as text, a square is two characters wide
+
+
+
+                      [48;5;229m[30m12[0m
+                  ⁰⁹U╱¹⁰
+          [48;5;231m[30m91[0m    ⁰⁴[48;5;231m[30m07[0m──[48;5;231m[30m11[0m──[48;5;231m[30m15[0m
+        ╱╱        │   ²²  ¹¹                        ⟲
+      [48;5;231m[30m90[0m¹¹[48;5;231m[30m09[0m⁰⁷[48;5;229m[30m23[0m  [48;5;231m[30m02[0m──[48;5;231m[30m06[0m──[48;5;231m[30m10[0m¹³    [48;5;229m[30m28[0m  [48;5;24m[97;1m42[0m          [48;5;54m[97;1m52[0m
+      ²¹U╱│     U╳    ⁰³  ⁰⁸Ma  U╱    │ D╲  ⟲   ╱╱  ╲╲  ⟲
+      [48;5;240m[97;1m14[0m⁰⁷[48;5;231m[30m04[0m←─[48;5;231m[30m01[0m⁰⁶[48;5;231m[30m22[0m──[48;5;231m[30m25[0m──[48;5;231m[30m26[0m──[48;5;231m[30m27[0m  [48;5;24m[97;1m38[0m──[48;5;24m[97;1m40[0m  [48;5;54m[97;1m44[0m──[48;5;54m[97;1m47[0m      [48;5;54m[97;1m58[0m
+    Ma    ⁰⁸╱╱⁹⁰╲╲  D╲  U╲⁶¹      │             ⟲   ╱╱
+          [48;5;231m[30m05[0m  [48;5;231m[30m21[0m  [48;5;231m[30m03[0m⁰⁶[48;5;24m[97;1m24[0m  [48;5;24m[97;1m29[0m  [48;5;24m[97;1m33[0m──[48;5;24m[97;1m35[0m              [48;5;54m[97;1m63[0m
+              │   │   ⁸⁶  │ D╲│                 U╱
+          [48;5;231m[30m19[0m──[48;5;231m[30m20[0m⁰⁴[48;5;231m[30m08[0m←─[48;5;231m[30m13[0m¹⁰[48;5;24m[97;1m30[0m⁸⁶[48;5;24m[97;1m31[0m──[48;5;24m[97;1m32[0m          [48;5;94m[97;1m67[0m
+            U╲    ¹⁰U╱²⁴          │         D╱
+              [48;5;24m[97;1m18[0m  [48;5;231m[30m16[0m³⁰[48;5;24m[97;1m86[0m    ³⁷[48;5;24m[97;1m36[0m──[48;5;24m[97;1m34[0m──[48;5;24m[97;1m37[0m³⁶[48;5;22m[97;1m71[0m──[48;5;22m[97;1m77[0m──[48;5;22m[97;1m82[0m
+              │ U╱                  D╱    │       │
+              [48;5;24m[97;1m17[0m                  [48;5;54m[97;1m39[0m      [48;5;22m[97;1m76[0m      [48;5;22m[97;1m85[0m
+                                  │
+                                  [48;5;54m[97;1m41[0m  [48;5;24m[97;1m46[0m⁵¹
+                                  │ U╱
+                                  [48;5;54m[97;1m43[0m  [48;5;54m[97;1m57[0m──[48;5;54m[97;1m62[0m
+                                  │   │
+                              [48;5;54m[97;1m51[0m──[48;5;54m[97;1m45[0m──[48;5;54m[97;1m50[0m
+                                ╱╱  D╳│
+                              [48;5;54m[97;1m49[0m  [48;5;94m[97;1m56[0m  [48;5;231m[30m48[0m
+                            D╱⁵³  ⁴⁹╱╱  D╲
+                    Ma[48;5;24m[97;1m61[0m──[48;5;24m[97;1m55[0m⁵⁹[48;5;240m[97;1m87[0m⁵⁶[48;5;24m[97;1m53[0m    ⁵⁹[48;5;24m[97;1m54[0m──[48;5;24m[97;1m60[0m──[48;5;24m[97;1m66[0m
+                      ²⁹    D╱    │               │
+                          [48;5;240m[97;1m88[0m    ⁵⁵[48;5;24m[97;1m59[0m⁵⁴      ⁹⁰[48;5;240m[97;1m75[0m─→[48;5;24m[97;1m70[0m
+                        D╱        │ ╲╲          D╲
+                    ⁶⁶[48;5;240m[97;1m89[0m⁷⁵        [48;5;24m[97;1m64[0m  [48;5;24m[97;1m65[0m──[48;5;24m[97;1m69[0m      [48;5;240m[97;1m81[0m²¹
+                                  │         D╲
+                            ⁷³[48;5;24m[97;1m72[0m──[48;5;24m[97;1m68[0m──[48;5;24m[97;1m73[0m⁷²    [48;5;54m[97;1m74[0m
+                                    D╱  D╲⁸⁰  │
+                                  [48;5;54m[97;1m78[0m      [48;5;54m[97;1m79[0m  [48;5;54m[97;1m80[0m
+                                  │         U╱⁷⁹
+                                  [48;5;54m[97;1m83[0m      [48;5;94m[97;1m84[0m
+
+
+
+Rooms (number, name, level above the start room: + up, - down)
+01  West of House  [+0]                         47  Coal Mine  [-2]
+02  North of House  [+0]                        48  Deep Canyon  [+0]
+03  South of House  [+0]                        49  Chasm  [-2]
+04  Forest  [+0]                                50  Dam  [-2]
+05  Stone Barrow  [+0]                          51  Stream View  [-2]
+06  Behind House  [+0]                          52  Coal Mine  [-2]
+07  Forest Path  [+0]                           53  North-South Passage  [-1]
+08  Forest  [+0]                                54  Loud Room  [-1]
+09  Clearing  [+0]                              55  East-West Passage  [-1]
+10  Clearing  [+0]                              56  Dam Base  [-3]
+11  Forest  [+0]                                57  Dam Lobby  [-2]
+12  Up a Tree  [+1]                             58  Coal Mine  [-2]
+13  Canyon View  [+0]                           59  Round Room  [-1]
+14  Grating Room  [+0]                          60  Damp Cave  [-1]
+15  Forest  [+0]                                61  The Troll Room  [-1]
+16  Rocky Ledge  [+0]                           62  Maintenance Room  [-2]
+17  Canyon Bottom  [-1]                         63  Coal Mine  [-2]
+18  End of Rainbow  [-1]                        64  Narrow Passage  [-1]
+19  On the Rainbow  [+0]                        65  Engravings Cave  [-1]
+20  Aragain Falls  [+0]                         66  White Cliffs Beach  [-1]
+21  Shore  [+0]                                 67  Ladder Top  [-3]
+22  Kitchen  [+0]                               68  Mirror Room  [-1]
+23  Attic  [+1]                                 69  Dome Room  [-1]
+24  Studio  [-1]                                70  White Cliffs Beach  [-1]
+25  Living Room  [+0]                           71  Ladder Bottom  [-4]
+26  Strange Passage  [+0]                       72  Winding Passage  [-1]
+27  Cyclops Room  [+0]                          73  Cave  [-1]
+28  Treasure Room  [+1]                         74  Torch Room  [-2]
+29  Cellar  [-1]                                75  Frigid River  [+0]
+30  East of Chasm  [-1]                         76  Dead End  [-4]
+31  Slide Room  [-1]                            77  Timber Room  [-4]
+32  Cold Passage  [-1]                          78  Entrance to Hades  [-2]
+33  Mine Entrance  [-1]                         79  Altar  [-2]
+34  Mirror Room  [-1]                           80  Temple  [-2]
+35  Squeaky Room  [-1]                          81  Frigid River  [+0]
+36  Twisting Passage  [-1]                      82  Drafty Room  [-4]
+37  Cave  [-1]                                  83  Land of the Dead  [-2]
+38  Bat Room  [-1]                              84  Egyptian Room  [-3]
+39  Atlantis Room  [-2]                         85  Machine Room  [-4]
+40  Shaft Room  [-1]                            86  Gallery  [-1]
+41  Reservoir North  [-2]                       87  Frigid River  [+0]
+42  Smelly Room  [-1]                           88  Frigid River  [+0]
+43  Reservoir  [-2]                             89  Frigid River  [+0]
+44  Gas Room  [-2]                              90  Sandy Beach  [+0]
+45  Reservoir South  [-2]                       91  Sandy Cave  [+0]
+46  Stream  [-1]                                
+
+Key: ── │ ╱╱ ╲╲ passages; → ← ↑ ↓ ↗ ↖ ↘ ↙ one-way; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
+     Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.
+     Background colour = level: white = start level (surface); lighter colours up, darker colours underground.

@@ -1,0 +1,80 @@
+Zork2: graph-paper map as text, a square is two characters wide
+
+
+
+                                      [48;5;240m[97;1m52[0m
+
+                                  [48;5;240m[97;1m66[0m  [48;5;240m[97;1m73[0m  [48;5;240m[97;1m51[0m⁵²
+                            ⁶³          Ma│
+                              [48;5;240m[97;1m68[0m──[48;5;240m[97;1m67[0m  [48;5;240m[97;1m49[0m──[48;5;240m[97;1m50[0m  [48;5;240m[97;1m60[0m⁶¹
+                                            ?N?N?N
+                              [48;5;240m[97;1m71[0m──[48;5;240m[97;1m70[0m  [48;5;240m[97;1m58[0m  [48;5;231m[30m01[0m?W[48;5;240m[97;1m63[0m?E
+                                          │ ?S?S?S
+                                  [48;5;240m[97;1m72[0m  [48;5;240m[97;1m59[0m  [48;5;231m[30m02[0m⁶³[48;5;240m[97;1m64[0m
+                                          │   │
+                      [48;5;231m[30m44[0m³⁷        [48;5;229m[30m36[0m⁷⁵[48;5;240m[97;1m74[0m  [48;5;231m[30m03[0m  [48;5;240m[97;1m65[0m
+              ⁴²      ↑           │       │
+        ?W[48;5;231m[30m45[0m←─[48;5;231m[30m41[0m  [48;5;231m[30m42[0m  [48;5;231m[30m40[0m⁴⁵[48;5;231m[30m33[0m²⁷[48;5;231m[30m48[0m²⁶[48;5;229m[30m31[0m⁷⁶[48;5;240m[97;1m75[0m  [48;5;231m[30m04[0m
+          │     ╲╲↓ ╱╱    │ ⁴⁸  U╱      ╱╱
+          [48;5;231m[30m46[0m⁵⁴[48;5;240m[97;1m61[0m⁶²[48;5;231m[30m37[0m──[48;5;231m[30m32[0m──[48;5;231m[30m27[0m⁴⁸[48;5;231m[30m26[0m⁷⁷[48;5;240m[97;1m76[0m  [48;5;231m[30m05[0m
+              ²⁸  ⁶¹      │   │       │
+      [48;5;240m[97;1m57[0m─→[48;5;240m[97;1m55[0m─→[48;5;231m[30m54[0m  [48;5;240m[97;1m62[0m      [48;5;231m[30m19[0m  [48;5;231m[30m18[0m  [48;5;240m[97;1m77[0m  [48;5;231m[30m06[0m
+          │               │   │     ╱╱  ╲╲
+          [48;5;240m[97;1m56[0m      [48;5;231m[30m28[0m──[48;5;231m[30m20[0m──[48;5;231m[30m13[0m  [48;5;231m[30m11[0m──[48;5;231m[30m08[0m⁰⁹[48;5;231m[30m47[0m⁰⁷[48;5;231m[30m07[0m⁴⁷
+                  ⁵⁴  ²⁵    ╲╲│ ╱╱        │
+                  [48;5;229m[30m30[0m──[48;5;231m[30m25[0m²⁰[48;5;231m[30m17[0m──[48;5;231m[30m10[0m¹²[48;5;231m[30m69[0m²¹  ⁰⁸[48;5;231m[30m09[0m
+                        U╲  ╱╱│ ╲╲        │
+                          [48;5;231m[30m16[0m  [48;5;231m[30m15[0m  [48;5;231m[30m14[0m──[48;5;231m[30m21[0m¹⁰[48;5;231m[30m12[0m
+                        ╱╱  ╱╱│       ⁶⁹
+          [48;5;231m[30m53[0m³⁹        [48;5;231m[30m24[0m  [48;5;231m[30m23[0m  [48;5;231m[30m22[0m
+                      │     Ma
+            ⁵³[48;5;231m[30m39[0m──[48;5;231m[30m35[0m──[48;5;231m[30m29[0m
+              │   │   │
+              [48;5;231m[30m43[0m  [48;5;231m[30m38[0m  [48;5;231m[30m34[0m
+
+
+
+Rooms (number, name, level above the start room: + up, - down)
+01  Inside the Barrow  [+0]                     40  East Teller's Room  [+0]
+02  Narrow Tunnel  [+0]                         41  West Teller's Room  [+0]
+03  Foot Bridge  [+0]                           42  West Viewing Room  [+0]
+04  Great Cavern  [+0]                          43  Wizard's Quarters  [+0]
+05  Shallow Ford  [+0]                          44  East Viewing Room  [+0]
+06  Dark Tunnel  [+0]                           45  Safety Depository  [+0]
+07  North End of Garden  [+0]                   46  Chairman's Office  [+0]
+08  Path Near Stream  [+0]                      47  Gazebo  [+0]
+09  Formal Garden  [+0]                         48  End of Ledge  [+0]
+10  Carousel Room  [+0]                         49  Cerberus Room  [+0]
+11  Marble Hall  [+0]                           50  Crypt Anteroom  [+0]
+12  Topiary  [+0]                               51  Crypt  [+0]
+13  Cool Room  [+0]                             52  Landing  [+0]
+14  Riddle Room  [+0]                           53  Murky Room  [+0]
+15  Menhir Room  [+0]                           54  Volcano Bottom  [+0]
+16  Cobwebby Corridor  [+0]                     55  Narrow Ledge  [+0]
+17  Room 8  [+0]                                56  Library  [+0]
+18  Deep Ford  [+0]                             57  Volcano Near Small Ledge  [+0]
+19  Stone Bridge  [+0]                          58  Volcano Core  [+0]
+20  Ice Room  [+0]                              59  Volcano by Viewing Ledge  [+0]
+21  Pearl Room  [+0]                            60  Volcano Near Wide Ledge  [+0]
+22  Stairway  [+0]                              61  Wide Ledge  [+0]
+23  Kennel  [+0]                                62  Dusty Room  [+0]
+24  Guarded Room  [+0]                          63  Low Room  [+0]
+25  Lava Tube  [+0]                             64  Machine Room  [+0]
+26  Ledge in Ravine  [+0]                       65  Dingy Closet  [+0]
+27  Dragon Room  [+0]                           66  Cage  [+0]
+28  Lava Room  [+0]                             67  Top of Well  [+0]
+29  Wizard's Workshop  [+0]                     68  Tea Room  [+0]
+30  Volcano View  [+1]                          69  Circular Room  [+0]
+31  Tiny Room  [+1]                             70  Posts Room  [+0]
+32  Fresco Room  [+0]                           71  Pool Room  [+0]
+33  Dragon's Lair  [+0]                         72  Small Room  [+0]
+34  Trophy Room  [+0]                           73  Vault  [+0]
+35  Wizard's Workroom  [+0]                     74  Room of Red Mist  [+0]
+36  Dreary Room  [+1]                           75  Room of Blue Mist  [+0]
+37  Bank Entrance  [+0]                         76  Room of White Mist  [+0]
+38  Pentagram Room  [+0]                        77  Room of Black Mist  [+0]
+39  Aquarium Room  [+0]                         
+
+Key: ── │ ╱╱ ╲╲ passages; → ← ↑ ↓ ↗ ↖ ↘ ↙ one-way; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
+     Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.
+     Background colour = level: white = start level (surface); lighter colours up, darker colours underground.

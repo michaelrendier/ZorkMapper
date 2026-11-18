@@ -6,11 +6,12 @@ from . import layout, svgmap, lattice, sheetsvg
 import re
 
 PROFILES = {"zork1": r"^(MAZE-\d+|DEAD-END-[1-4])$", "zork2": r"DESC:^Oddly-angled Room$", "zork3": r"^CP$"}
+STARTS = {"zork1": "WEST-OF-HOUSE", "zork2": "INSIDE-BARROW", "zork3": "ZORK2-STAIR"}
 WORDS = {"zork1": "Maze", "zork2": "Maze", "zork3": "Puzzle"}
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(prog="zorkmapper"); ap.add_argument("source"); ap.add_argument("--svg"); ap.add_argument("--start", default="WEST-OF-HOUSE"); ap.add_argument("--sheet", action="store_true", help="graph-paper lattice map (3x3 blocks) instead of the 3-D grid flattening"); ap.add_argument("--exclude", default=None); ap.add_argument("--descriptions", default=None, help="write a plain-text file of room names and descriptions")
+    ap = argparse.ArgumentParser(prog="zorkmapper"); ap.add_argument("source"); ap.add_argument("--svg"); ap.add_argument("--start", default=None); ap.add_argument("--sheet", action="store_true", help="graph-paper lattice map (3x3 blocks) instead of the 3-D grid flattening"); ap.add_argument("--exclude", default=None); ap.add_argument("--ascii", default=None, help="write PREFIX.txt (plain Unicode) and PREFIX.ans (ANSI colour)"); ap.add_argument("--descriptions", default=None, help="write a plain-text file of room names and descriptions")
     a = ap.parse_args(argv); rooms, objs = {}, {}
     for f in sorted(glob.glob(os.path.join(a.source, "*.zil"))):
         r, o = parse_game(open(f, errors="replace").read(), os.path.basename(f)); rooms.update(r); objs.update(o)
@@ -22,14 +23,19 @@ def main(argv=None):
         for f in sorted(glob.glob(os.path.join(a.source, "*.zil"))): rts.update(describe.routines(open(f, errors="replace").read()))
         empty = describe.write_descriptions(rooms, rts, a.descriptions, os.path.basename(os.path.normpath(a.source)).title())
         print("wrote %s: %d rooms, %d without a fixed description" % (a.descriptions, len(rooms), empty))
-    game = os.path.basename(os.path.normpath(a.source)); pat = a.exclude or PROFILES.get(game, "")
+    game = os.path.basename(os.path.normpath(a.source)); a.start = a.start or STARTS.get(game, "WEST-OF-HOUSE"); pat = a.exclude or PROFILES.get(game, "")
     if a.sheet:
         ex = {n for n, r in rooms.items() if pat and (re.search(pat[5:], r.desc) if pat.startswith("DESC:") else re.search(pat, n))}
         sh = lattice.build(rooms, a.start, ex, word=lambda n: WORDS.get(game, "Maze"))
         print("%d rooms (%d left out as %s), %d placed on the lattice: %d straight, %d connectors, %d stubs, %d loops, %d redundant, %d set apart" % (
             len(rooms), len(ex), WORDS.get(game, "maze"), len(sh.pos), sum(l.mode == "straight" for l in sh.links), sum(l.mode == "connector" for l in sh.links), len(sh.stubs), len(sh.loops), sh.redundant, len(sh.far)))
+        if a.ascii:
+            from . import asciiart
+            t = "%s: graph-paper map as text, a square is two characters wide" % game.title()
+            open(a.ascii + ".txt", "w").write(asciiart.render(rooms, sh, t, a.start, False)); open(a.ascii + ".ans", "w").write(asciiart.render(rooms, sh, t, a.start, True)); print("wrote", a.ascii + ".txt/.ans")
         if a.svg: open(a.svg, "w").write(sheetsvg.render(rooms, sh, "%s: rooms on a graph-paper lattice (3x3 per room)" % game.title())); print("wrote", a.svg)
         return
+    a.start = a.start or STARTS.get(os.path.basename(os.path.normpath(a.source)), "WEST-OF-HOUSE")
     lay = layout.build(rooms, a.start)
     for i, n in enumerate(lay.order, 1): rooms[n].number = i
     print("%d rooms, %d objects, %d edges (%d one-way, %d irregular, %d portals); %d rooms nudged; %d islands" % (

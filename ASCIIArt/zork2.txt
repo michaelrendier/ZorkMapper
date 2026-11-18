@@ -1,0 +1,80 @@
+Zork2: graph-paper map as text, a square is two characters wide
+
+
+
+                                      52
+
+                                  66  73  51⁵²
+                            ⁶³          Ma│
+                              68──67  49──50  60⁶¹
+                                            ?N?N?N
+                              71──70  58  01?W63?E
+                                          │ ?S?S?S
+                                  72  59  02⁶³64
+                                          │   │
+                      44³⁷        36⁷⁵74  03  65
+              ⁴²      ↑           │       │
+        ?W45←─41  42  40⁴⁵33²⁷48²⁶31⁷⁶75  04
+          │     ╲╲↓ ╱╱    │ ⁴⁸  U╱      ╱╱
+          46⁵⁴61⁶²37──32──27⁴⁸26⁷⁷76  05
+              ²⁸  ⁶¹      │   │       │
+      57─→55─→54  62      19  18  77  06
+          │               │   │     ╱╱  ╲╲
+          56      28──20──13  11──08⁰⁹47⁰⁷07⁴⁷
+                  ⁵⁴  ²⁵    ╲╲│ ╱╱        │
+                  30──25²⁰17──10¹²69²¹  ⁰⁸09
+                        U╲  ╱╱│ ╲╲        │
+                          16  15  14──21¹⁰12
+                        ╱╱  ╱╱│       ⁶⁹
+          53³⁹        24  23  22
+                      │     Ma
+            ⁵³39──35──29
+              │   │   │
+              43  38  34
+
+
+
+Rooms (number, name, level above the start room: + up, - down)
+01  Inside the Barrow  [+0]                     40  East Teller's Room  [+0]
+02  Narrow Tunnel  [+0]                         41  West Teller's Room  [+0]
+03  Foot Bridge  [+0]                           42  West Viewing Room  [+0]
+04  Great Cavern  [+0]                          43  Wizard's Quarters  [+0]
+05  Shallow Ford  [+0]                          44  East Viewing Room  [+0]
+06  Dark Tunnel  [+0]                           45  Safety Depository  [+0]
+07  North End of Garden  [+0]                   46  Chairman's Office  [+0]
+08  Path Near Stream  [+0]                      47  Gazebo  [+0]
+09  Formal Garden  [+0]                         48  End of Ledge  [+0]
+10  Carousel Room  [+0]                         49  Cerberus Room  [+0]
+11  Marble Hall  [+0]                           50  Crypt Anteroom  [+0]
+12  Topiary  [+0]                               51  Crypt  [+0]
+13  Cool Room  [+0]                             52  Landing  [+0]
+14  Riddle Room  [+0]                           53  Murky Room  [+0]
+15  Menhir Room  [+0]                           54  Volcano Bottom  [+0]
+16  Cobwebby Corridor  [+0]                     55  Narrow Ledge  [+0]
+17  Room 8  [+0]                                56  Library  [+0]
+18  Deep Ford  [+0]                             57  Volcano Near Small Ledge  [+0]
+19  Stone Bridge  [+0]                          58  Volcano Core  [+0]
+20  Ice Room  [+0]                              59  Volcano by Viewing Ledge  [+0]
+21  Pearl Room  [+0]                            60  Volcano Near Wide Ledge  [+0]
+22  Stairway  [+0]                              61  Wide Ledge  [+0]
+23  Kennel  [+0]                                62  Dusty Room  [+0]
+24  Guarded Room  [+0]                          63  Low Room  [+0]
+25  Lava Tube  [+0]                             64  Machine Room  [+0]
+26  Ledge in Ravine  [+0]                       65  Dingy Closet  [+0]
+27  Dragon Room  [+0]                           66  Cage  [+0]
+28  Lava Room  [+0]                             67  Top of Well  [+0]
+29  Wizard's Workshop  [+0]                     68  Tea Room  [+0]
+30  Volcano View  [+1]                          69  Circular Room  [+0]
+31  Tiny Room  [+1]                             70  Posts Room  [+0]
+32  Fresco Room  [+0]                           71  Pool Room  [+0]
+33  Dragon's Lair  [+0]                         72  Small Room  [+0]
+34  Trophy Room  [+0]                           73  Vault  [+0]
+35  Wizard's Workroom  [+0]                     74  Room of Red Mist  [+0]
+36  Dreary Room  [+1]                           75  Room of Blue Mist  [+0]
+37  Bank Entrance  [+0]                         76  Room of White Mist  [+0]
+38  Pentagram Room  [+0]                        77  Room of Black Mist  [+0]
+39  Aquarium Room  [+0]                         
+
+Key: ── │ ╱╱ ╲╲ passages; → ← ↑ ↓ ↗ ↖ ↘ ↙ one-way; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
+     Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.
+     Background colour = level: white = start level (surface); lighter colours up, darker colours underground.
