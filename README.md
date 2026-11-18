@@ -8,7 +8,11 @@ Reads the **ZIL** source of Infocom games, builds each room as a dataclass, and 
 - `zorkmapper/layout.py`: places rooms on a 3-D integer grid by walking the exits (N, S, E, W, the four diagonals, UP, DOWN); IN / OUT / LAND are portals (lines, no placement). A taken cell sends the room to the nearest free one (recorded).
 - `zorkmapper/svgmap.py` and `python -m zorkmapper sources/zork1 --svg zork1_map.svg`: numbered squares, straight lines, an arrow in the middle of a one-way line, dashed conditional exits, a legend of room names.
 
-## Flat view
+## Maps (the graph-paper lattice, `--sheet`)
+`images/zork1_sheet.svg`, `zork2_sheet.svg`, `zork3_sheet.svg` (and PNG renders): one sheet of graph paper, a room per square numbered with a legend of names; each room owns a 3 x 3 block (its eight neighbours are pathway squares, so rooms sit on a sub-grid lattice, one path square apart); N/S/E/W through the whole next square, diagonals corner to corner, U and D drawn as diagonals; long runs skip lattice spots; links that cannot be drawn straight are dotted `to N` connectors; mazes and the puzzle are left out and point into blank space. Room names with descriptions (from the ZIL): `descriptions/zork1_rooms.txt`, `zork2_rooms.txt`, `zork3_rooms.txt`.
+Regenerate: `./fetch_sources.sh; python3 -m zorkmapper sources/zork1 --sheet --svg images/zork1_sheet.svg --descriptions descriptions/zork1_rooms.txt`.
+
+## Flat view (the earlier 3-D flattening)
 Each level is offset half a cell right and up (up is diagonal up, down is diagonal down); in 3-D the same grid is one cube per room.
 
 ## Next
