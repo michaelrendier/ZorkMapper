@@ -64,3 +64,30 @@ def test_zork1_counts():
     lay = layout.build(rooms, "WEST-OF-HOUSE")
     assert len(lay.pos) == 110 and len(set(lay.pos.values())) == 110
     assert rooms["EAST-OF-HOUSE"].exits["IN"].kind == "cond" and rooms["EAST-OF-HOUSE"].exits["IN"].dest == "KITCHEN"
+
+
+from zorkmapper import lattice, sheetsvg
+
+
+def test_lattice_puts_rooms_two_squares_apart_with_one_path_square_between():
+    rooms, _ = parse_game(MINI); sh = lattice.build(rooms, "A")
+    assert sh.pos["A"] == (0, 0) and sh.pos["B"] == (0, -1)                 # lattice units: a room cell is (2a, 2b); one path square between
+    assert sh.cell("B") == (0, -2)
+    assert len(set(sh.pos.values())) == len(sh.pos)
+
+
+def test_excluded_rooms_become_stubs_not_squares():
+    rooms, _ = parse_game(MINI); sh = lattice.build(rooms, "A", excluded={"C"}, word=lambda n: "Maze")
+    assert "C" not in sh.pos and any(w == "Maze" for _, _, w in sh.stubs)
+
+
+def test_up_and_down_use_diagonals_and_carry_u_d():
+    rooms, _ = parse_game(MINI); sh = lattice.build(rooms, "A"); up = [l for l in sh.links if l.direction == "UP"]
+    assert up and up[0].vertical == "U" and (abs(up[0].vec[0]) == 1 and abs(up[0].vec[1]) == 1 or up[0].mode == "connector")
+
+
+def test_sheet_svg_and_descriptions():
+    from zorkmapper import describe
+    rooms, _ = parse_game(MINI); sh = lattice.build(rooms, "A"); s = sheetsvg.render(rooms, sh, "mini")
+    assert s.startswith("<svg") and "Room A" in s and 'font-weight="700"' in s
+    assert describe.clean("A  b|c\n d") == "A b c d"

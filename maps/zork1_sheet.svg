@@ -1,0 +1,545 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="1230" viewBox="0 0 1460 1230" font-family="DejaVu Sans, sans-serif">
+<rect width="1460" height="1230" fill="#fbfaf4"/>
+<defs><pattern id="g" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M 30 0 L 0 0 0 30" fill="none" stroke="#b9d3c4" stroke-width="0.8"/></pattern></defs>
+<rect width="930" height="1230" fill="url(#g)"/>
+<text x="12" y="22" font-size="16" font-weight="700" fill="#1d1d1d">Zork1: rooms on a graph-paper lattice (3x3 per room)</text>
+<line x1="225" y1="285" x2="245.153" y2="264.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="245.153" y="260.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 2</text>
+<line x1="285" y1="225" x2="264.847" y2="245.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="264.847" y="256.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 1</text>
+<line x1="225" y1="285" x2="245.153" y2="305.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="245.153" y="316.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 3</text>
+<line x1="285" y1="345" x2="264.847" y2="324.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="264.847" y="320.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 1</text>
+<line x1="225" y1="285" x2="165" y2="285" stroke="#1d1d1d" stroke-width="2"/>
+<polygon points="188,285 200,280 200,290" fill="#1d1d1d"/>
+<line x1="225" y1="285" x2="165" y2="345" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="285" y1="225" x2="313.5" y2="225" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="313.5" y="236" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 6</text>
+<line x1="345" y1="225" x2="316.5" y2="225" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="316.5" y="236" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 2</text>
+<line x1="285" y1="225" x2="285" y2="165" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="285" y1="345" x2="297.746" y2="319.509" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="297.746" y="315.509" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 6</text>
+<line x1="345" y1="225" x2="332.254" y2="250.491" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="332.254" y="261.491" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 3</text>
+<line x1="285" y1="345" x2="285" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="345" y1="225" x2="405" y2="225" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="345" y1="225" x2="324.847" y2="245.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="324.847" y="256.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 22</text>
+<line x1="285" y1="285" x2="305.153" y2="264.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="305.153" y="260.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 6</text>
+<line x1="165" y1="285" x2="165" y2="225" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="165" y1="285" x2="185.153" y2="264.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="185.153" y="260.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 7</text>
+<line x1="285" y1="165" x2="264.847" y2="185.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="264.847" y="196.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 4</text>
+<line x1="165" y1="285" x2="185.153" y2="305.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="185.153" y="316.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 8</text>
+<line x1="285" y1="405" x2="264.847" y2="384.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="264.847" y="380.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 4</text>
+<line x1="345" y1="165" x2="405" y2="165" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="345" y1="165" x2="365.153" y2="185.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="365.153" y="196.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 10</text>
+<line x1="405" y1="225" x2="384.847" y2="204.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="384.847" y="200.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 11</text>
+<line x1="345" y1="165" x2="285" y2="165" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="285" y1="405" x2="300.809" y2="381.287" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="300.809" y="377.287" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 10</text>
+<line x1="405" y1="225" x2="389.191" y2="248.713" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="389.191" y="259.713" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 8</text>
+<line x1="285" y1="165" x2="345" y2="105" stroke="#1d1d1d" stroke-width="2"/>
+<text x="318" y="132" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="285" y1="165" x2="259.509" y2="177.746" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="259.509" y="188.746" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 9</text>
+<line x1="165" y1="225" x2="190.491" y2="212.254" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="190.491" y="208.254" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 7</text>
+<line x1="165" y1="225" x2="192.037" y2="215.988" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<circle cx="192.037" cy="215.988" r="2.2" fill="#1d1d1d"/>
+<text x="192.037" y="211.988" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 11</text>
+<line x1="405" y1="225" x2="395.988" y2="252.037" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="395.988" y="263.037" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 13</text>
+<line x1="345" y1="405" x2="354.012" y2="377.963" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="354.012" y="373.963" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 10</text>
+<line x1="285" y1="285" x2="345" y2="285" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="285" y1="285" x2="225" y2="225" stroke="#1d1d1d" stroke-width="2"/>
+<text x="258" y="252" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="285" y1="285" x2="345" y2="345" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<polygon points="319.95,319.95 307.929,315 315,307.929" fill="#1d1d1d"/>
+<text x="318" y="312" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="345" y1="285" x2="405" y2="285" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="405" y1="345" x2="401.465" y2="373.28" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="401.465" y="384.28" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 61</text>
+<line x1="345" y1="825" x2="348.535" y2="796.72" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="348.535" y="792.72" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 29</text>
+<line x1="405" y1="345" x2="405" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="405" y1="345" x2="345" y2="285" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<polygon points="370.05,310.05 382.071,315 375,322.071" fill="#1d1d1d"/>
+<text x="378" y="312" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="345" y1="825" x2="405" y2="825" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="405" y1="405" x2="384.847" y2="425.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="384.847" y="436.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 86</text>
+<line x1="345" y1="465" x2="365.153" y2="444.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="365.153" y="440.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 30</text>
+<line x1="345" y1="465" x2="345" y2="436.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="345" y="432.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 24</text>
+<line x1="345" y1="345" x2="345" y2="373.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="345" y="384.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 86</text>
+<line x1="105" y1="285" x2="165" y2="225" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<polygon points="139.95,250.05 135,262.071 127.929,255" fill="#1d1d1d"/>
+<text x="138" y="252" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="465" y1="285" x2="405" y2="285" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="465" y1="285" x2="525" y2="225" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="498" y="252" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="525" y1="705" x2="585" y2="765" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="705" x2="465" y2="765" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="705" x2="585" y2="705" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="705" x2="465" y2="705" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="705" x2="525" y2="645" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="525" y1="645" x2="525" y2="585" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="645" x2="585" y2="585" stroke="#1d1d1d" stroke-width="2"/>
+<text x="558" y="612" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="525" y1="585" x2="525" y2="525" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="585" y1="585" x2="564.847" y2="605.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<circle cx="564.847" cy="605.153" r="2.2" fill="#1d1d1d"/>
+<text x="564.847" y="616.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 51</text>
+<line x1="525" y1="465" x2="525" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="465" x2="465" y2="465" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="465" x2="585" y2="465" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="1005" x2="465" y2="1005" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="1005" x2="525" y2="945" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="1005" x2="585" y2="1005" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="585" y1="465" x2="525" y2="525" stroke="#1d1d1d" stroke-width="2"/>
+<text x="558" y="492" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="585" y1="465" x2="556.5" y2="465" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="556.5" y="476" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 36</text>
+<line x1="465" y1="465" x2="493.5" y2="465" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="493.5" y="476" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 37</text>
+<line x1="585" y1="1005" x2="556.5" y2="1005" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="556.5" y="1016" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 72</text>
+<line x1="465" y1="1005" x2="493.5" y2="1005" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="493.5" y="1016" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 73</text>
+<line x1="585" y1="1005" x2="525" y2="1065" stroke="#1d1d1d" stroke-width="2"/>
+<text x="558" y="1032" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="525" y1="405" x2="465" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="945" x2="525" y2="885" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="405" y1="825" x2="430.491" y2="837.746" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="430.491" y="848.746" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 59</text>
+<line x1="525" y1="885" x2="499.509" y2="872.254" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="499.509" y="868.254" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 55</text>
+<line x1="405" y1="825" x2="465" y2="765" stroke="#1d1d1d" stroke-width="2"/>
+<text x="438" y="792" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="525" y1="885" x2="550.491" y2="872.254" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="550.491" y="868.254" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 54</text>
+<line x1="645" y1="825" x2="619.509" y2="837.746" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="619.509" y="848.746" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 59</text>
+<line x1="525" y1="885" x2="525" y2="825" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="885" x2="585" y2="945" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="585" y1="765" x2="585" y2="736.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="585" y="732.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 50</text>
+<line x1="585" y1="705" x2="585" y2="733.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="585" y="744.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 48</text>
+<line x1="585" y1="765" x2="525" y2="825" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="585" y1="765" x2="645" y2="825" stroke="#1d1d1d" stroke-width="2"/>
+<text x="618" y="792" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="705" y1="825" x2="645" y2="825" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="705" y1="825" x2="765" y2="825" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="825" x2="504.847" y2="804.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="504.847" y="800.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 49</text>
+<line x1="465" y1="765" x2="485.153" y2="785.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="485.153" y="796.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 53</text>
+<line x1="525" y1="1065" x2="525" y2="1093.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="525" y="1104.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 83</text>
+<line x1="525" y1="1125" x2="525" y2="1096.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="525" y="1092.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 78</text>
+<line x1="585" y1="945" x2="645" y2="945" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="645" y1="1125" x2="665.153" y2="1104.85" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="665.153" y="1100.85" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 80</text>
+<line x1="705" y1="1065" x2="684.847" y2="1085.15" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="684.847" y="1096.15" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 84</text>
+<line x1="645" y1="945" x2="705" y2="1005" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<polygon points="679.95,979.95 667.929,975 675,967.929" fill="#1d1d1d"/>
+<text x="678" y="972" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="705" y1="1005" x2="705" y2="1065" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="705" y1="1065" x2="676.5" y2="1065" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="676.5" y="1076" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 79</text>
+<line x1="645" y1="1065" x2="673.5" y2="1065" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="673.5" y="1076" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 80</text>
+<line x1="645" y1="1065" x2="585" y2="1005" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<polygon points="610.05,1030.05 622.071,1035 615,1042.07" fill="#1d1d1d"/>
+<text x="618" y="1032" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="585" y1="705" x2="525" y2="765" stroke="#1d1d1d" stroke-width="2"/>
+<text x="558" y="732" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="585" y1="705" x2="585" y2="645" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="585" y1="645" x2="613.5" y2="645" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="613.5" y="656" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 62</text>
+<line x1="645" y1="645" x2="616.5" y2="645" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="616.5" y="656" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 57</text>
+<line x1="465" y1="825" x2="485.153" y2="804.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<circle cx="485.153" cy="804.847" r="2.2" fill="#1d1d1d"/>
+<text x="485.153" y="800.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 56</text>
+<line x1="465" y1="825" x2="405" y2="885" stroke="#1d1d1d" stroke-width="2"/>
+<polygon points="430.05,859.95 435,847.929 442.071,855" fill="#1d1d1d"/>
+<text x="438" y="852" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="405" y1="885" x2="345" y2="945" stroke="#1d1d1d" stroke-width="2"/>
+<polygon points="370.05,919.95 375,907.929 382.071,915" fill="#1d1d1d"/>
+<text x="378" y="912" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="345" y1="945" x2="373.112" y2="940.315" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<circle cx="373.112" cy="940.315" r="2.2" fill="#1d1d1d"/>
+<text x="373.112" y="936.315" font-size="8.5" fill="#2a4a8a" text-anchor="middle">D to 75</text>
+<line x1="345" y1="945" x2="372.403" y2="937.17" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<circle cx="372.403" cy="937.17" r="2.2" fill="#1d1d1d"/>
+<text x="372.403" y="933.17" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 66</text>
+<line x1="765" y1="825" x2="765" y2="885" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="705" y1="885" x2="765" y2="945" stroke="#1d1d1d" stroke-width="2"/>
+<polygon points="739.95,919.95 727.929,915 735,907.929" fill="#1d1d1d"/>
+<text x="738" y="912" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="705" y1="885" x2="765" y2="885" stroke="#1d1d1d" stroke-width="2"/>
+<polygon points="742,885 730,890 730,880" fill="#1d1d1d"/>
+<line x1="705" y1="885" x2="685.829" y2="863.912" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<circle cx="685.829" cy="863.912" r="2.2" fill="#1d1d1d"/>
+<text x="685.829" y="859.912" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 90</text>
+<line x1="765" y1="945" x2="745.935" y2="923.816" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<circle cx="745.935" cy="923.816" r="2.2" fill="#1d1d1d"/>
+<text x="745.935" y="919.816" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 21</text>
+<line x1="225" y1="345" x2="204.847" y2="324.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="204.847" y="320.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 90</text>
+<line x1="105" y1="225" x2="125.153" y2="245.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="125.153" y="256.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 21</text>
+<line x1="225" y1="345" x2="225" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="105" y1="225" x2="165" y2="165" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="225" y1="405" x2="165" y2="405" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="165" y1="405" x2="185.153" y2="425.153" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="185.153" y="436.153" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 18</text>
+<line x1="225" y1="465" x2="204.847" y2="444.847" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="204.847" y="440.847" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 19</text>
+<line x1="225" y1="465" x2="225" y2="493.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="225" y="504.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 17</text>
+<line x1="225" y1="525" x2="225" y2="496.5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="225" y="492.5" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 18</text>
+<line x1="225" y1="525" x2="285" y2="465" stroke="#1d1d1d" stroke-width="2"/>
+<text x="258" y="492" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="285" y1="465" x2="345" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<text x="318" y="432" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="345" y1="405" x2="285" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<polygon points="308,405 320,400 320,410" fill="#1d1d1d"/>
+<line x1="465" y1="345" x2="465" y2="405" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="465" y1="345" x2="493.5" y2="345" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="493.5" y="356" font-size="8.5" fill="#2a4a8a" text-anchor="middle">to 35</text>
+<line x1="525" y1="345" x2="496.5" y2="345" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="2 3"/>
+<text x="496.5" y="356" font-size="8.5" fill="#2a4a8a" text-anchor="middle">from 33</text>
+<line x1="525" y1="345" x2="525" y2="285" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="525" y1="285" x2="585" y2="285" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="585" y1="285" x2="585" y2="225" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="585" y1="225" x2="645" y2="285" stroke="#1d1d1d" stroke-width="2"/>
+<text x="618" y="252" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="645" y1="285" x2="705" y2="285" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="705" y1="405" x2="645" y2="465" stroke="#1d1d1d" stroke-width="2"/>
+<text x="678" y="432" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="705" y1="405" x2="765" y2="345" stroke="#1d1d1d" stroke-width="2"/>
+<text x="738" y="372" font-size="9" font-style="italic" fill="#b3360b">U</text>
+<line x1="645" y1="465" x2="645" y2="525" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="645" y1="465" x2="705" y2="465" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="705" y1="465" x2="765" y2="465" stroke="#1d1d1d" stroke-width="2" stroke-dasharray="5 4"/>
+<line x1="765" y1="465" x2="765" y2="525" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="705" y1="285" x2="765" y2="225" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="765" y1="225" x2="825" y2="285" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="825" y1="285" x2="765" y2="345" stroke="#1d1d1d" stroke-width="2"/>
+<line x1="465" y1="405" x2="405" y2="345" stroke="#1d1d1d" stroke-width="2"/>
+<polygon points="430.05,370.05 442.071,375 435,382.071" fill="#1d1d1d"/>
+<text x="438" y="372" font-size="9" font-style="italic" fill="#b3360b">D</text>
+<line x1="345" y1="825" x2="312" y2="825" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="1 4"/><text x="302" y="828" font-size="9.5" font-style="italic" fill="#7a2a2a" text-anchor="middle">Maze</text>
+<line x1="105" y1="285" x2="72" y2="318" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="1 4"/><text x="62" y="325" font-size="9.5" font-style="italic" fill="#7a2a2a" text-anchor="middle">Maze</text>
+<line x1="465" y1="285" x2="432" y2="252" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="1 4"/><text x="422" y="251" font-size="9.5" font-style="italic" fill="#7a2a2a" text-anchor="middle">Maze</text>
+<circle cx="718" cy="272" r="9" fill="none" stroke="#1d1d1d" stroke-width="1.5"/>
+<circle cx="778" cy="212" r="9" fill="none" stroke="#1d1d1d" stroke-width="1.5"/>
+<circle cx="838" cy="272" r="9" fill="none" stroke="#1d1d1d" stroke-width="1.5"/>
+<circle cx="778" cy="332" r="9" fill="none" stroke="#1d1d1d" stroke-width="1.5"/>
+<text x="154" y="245" font-size="8" fill="#a0306a" font-weight="700">DO?</text>
+<text x="334" y="305" font-size="8" fill="#a0306a" font-weight="700">DO?</text>
+<text x="334" y="365" font-size="8" fill="#a0306a" font-weight="700">UP?</text>
+<rect x="214" y="274" width="22" height="22" fill="#fffdf5" stroke="#b3360b" stroke-width="2.4"/>
+<text x="225" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">1</text>
+<rect x="274" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="285" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">2</text>
+<rect x="274" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="285" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">3</text>
+<rect x="154" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="165" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">4</text>
+<rect x="154" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="165" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">5</text>
+<rect x="334" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">6</text>
+<rect x="274" y="154" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="285" y="169" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">7</text>
+<rect x="274" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="285" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">8</text>
+<rect x="154" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="165" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">9</text>
+<rect x="394" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="405" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">10</text>
+<rect x="334" y="154" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="169" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">11</text>
+<rect x="334" y="94" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="109" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">12</text>
+<rect x="334" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">13</text>
+<rect x="94" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="105" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">14</text>
+<rect x="394" y="154" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="405" y="169" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">15</text>
+<rect x="274" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="285" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">16</text>
+<rect x="214" y="514" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="225" y="529" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">17</text>
+<rect x="214" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="225" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">18</text>
+<rect x="154" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="165" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">19</text>
+<rect x="214" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="225" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">20</text>
+<rect x="214" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="225" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">21</text>
+<rect x="274" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="3 2"/>
+<text x="285" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">22</text>
+<rect x="214" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="225" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">23</text>
+<rect x="334" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">24</text>
+<rect x="334" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">25</text>
+<rect x="394" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="405" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">26</text>
+<rect x="454" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="465" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">27</text>
+<rect x="514" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">28</text>
+<rect x="394" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="3 2"/>
+<text x="405" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">29</text>
+<rect x="394" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="405" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">30</text>
+<rect x="454" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="465" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">31</text>
+<rect x="514" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">32</text>
+<rect x="454" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="465" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">33</text>
+<rect x="514" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">34</text>
+<rect x="514" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">35</text>
+<rect x="454" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="465" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">36</text>
+<rect x="574" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">37</text>
+<rect x="514" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">38</text>
+<rect x="514" y="514" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="529" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">39</text>
+<rect x="574" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">40</text>
+<rect x="514" y="574" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="589" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">41</text>
+<rect x="574" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">42</text>
+<rect x="514" y="634" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="649" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">43</text>
+<rect x="634" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">44</text>
+<rect x="514" y="694" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="709" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">45</text>
+<rect x="574" y="574" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="589" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">46</text>
+<rect x="694" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="705" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">47</text>
+<rect x="574" y="754" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="769" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">48</text>
+<rect x="454" y="754" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="465" y="769" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">49</text>
+<rect x="574" y="694" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="709" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">50</text>
+<rect x="454" y="694" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="465" y="709" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">51</text>
+<rect x="754" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="765" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">52</text>
+<rect x="514" y="814" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="829" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">53</text>
+<rect x="634" y="814" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="829" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">54</text>
+<rect x="394" y="814" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="405" y="829" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">55</text>
+<rect x="514" y="754" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="769" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">56</text>
+<rect x="574" y="634" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="649" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">57</text>
+<rect x="814" y="274" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="825" y="289" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">58</text>
+<rect x="514" y="874" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="889" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">59</text>
+<rect x="694" y="814" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="705" y="829" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">60</text>
+<rect x="334" y="814" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="829" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">61</text>
+<rect x="634" y="634" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="649" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">62</text>
+<rect x="754" y="334" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="765" y="349" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">63</text>
+<rect x="514" y="934" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="949" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">64</text>
+<rect x="574" y="934" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="949" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">65</text>
+<rect x="754" y="814" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="765" y="829" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">66</text>
+<rect x="694" y="394" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="705" y="409" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">67</text>
+<rect x="514" y="994" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="1009" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">68</text>
+<rect x="634" y="934" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="949" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">69</text>
+<rect x="754" y="874" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="765" y="889" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">70</text>
+<rect x="634" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">71</text>
+<rect x="454" y="994" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="465" y="1009" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">72</text>
+<rect x="574" y="994" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="585" y="1009" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">73</text>
+<rect x="694" y="994" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="705" y="1009" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">74</text>
+<rect x="694" y="874" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="705" y="889" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">75</text>
+<rect x="634" y="514" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="529" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">76</text>
+<rect x="694" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="705" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">77</text>
+<rect x="514" y="1054" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="1069" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">78</text>
+<rect x="634" y="1054" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="1069" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">79</text>
+<rect x="694" y="1054" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="705" y="1069" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">80</text>
+<rect x="754" y="934" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="765" y="949" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">81</text>
+<rect x="754" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="765" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">82</text>
+<rect x="514" y="1114" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="525" y="1129" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">83</text>
+<rect x="634" y="1114" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="645" y="1129" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">84</text>
+<rect x="754" y="514" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="765" y="529" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">85</text>
+<rect x="334" y="454" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="3 2"/>
+<text x="345" y="469" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">86</text>
+<rect x="454" y="814" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="3 2"/>
+<text x="465" y="829" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">87</text>
+<rect x="394" y="874" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="405" y="889" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">88</text>
+<rect x="334" y="934" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="345" y="949" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">89</text>
+<rect x="94" y="214" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6" stroke-dasharray="3 2"/>
+<text x="105" y="229" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">90</text>
+<rect x="154" y="154" width="22" height="22" fill="#fffdf5" stroke="#1d1d1d" stroke-width="1.6"/>
+<text x="165" y="169" font-size="11" font-weight="700" text-anchor="middle" fill="#1d1d1d">91</text>
+<text x="946" y="30" font-size="13" font-weight="700" fill="#b3360b">Rooms</text>
+<text x="946" y="44" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">1</tspan>  West of House</text>
+<text x="946" y="59" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">2</tspan>  North of House</text>
+<text x="946" y="74" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">3</tspan>  South of House</text>
+<text x="946" y="89" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">4</tspan>  Forest</text>
+<text x="946" y="104" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">5</tspan>  Stone Barrow</text>
+<text x="946" y="119" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">6</tspan>  Behind House</text>
+<text x="946" y="134" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">7</tspan>  Forest Path</text>
+<text x="946" y="149" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">8</tspan>  Forest</text>
+<text x="946" y="164" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">9</tspan>  Clearing</text>
+<text x="946" y="179" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">10</tspan>  Clearing</text>
+<text x="946" y="194" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">11</tspan>  Forest</text>
+<text x="946" y="209" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">12</tspan>  Up a Tree</text>
+<text x="946" y="224" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">13</tspan>  Canyon View</text>
+<text x="946" y="239" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">14</tspan>  Grating Room</text>
+<text x="946" y="254" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">15</tspan>  Forest</text>
+<text x="946" y="269" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">16</tspan>  Rocky Ledge</text>
+<text x="946" y="284" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">17</tspan>  Canyon Bottom</text>
+<text x="946" y="299" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">18</tspan>  End of Rainbow</text>
+<text x="946" y="314" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">19</tspan>  On the Rainbow</text>
+<text x="946" y="329" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">20</tspan>  Aragain Falls</text>
+<text x="946" y="344" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">21</tspan>  Shore</text>
+<text x="946" y="359" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">22</tspan>  Kitchen</text>
+<text x="946" y="374" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">23</tspan>  Attic</text>
+<text x="946" y="389" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">24</tspan>  Studio</text>
+<text x="946" y="404" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">25</tspan>  Living Room</text>
+<text x="946" y="419" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">26</tspan>  Strange Passage</text>
+<text x="946" y="434" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">27</tspan>  Cyclops Room</text>
+<text x="946" y="449" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">28</tspan>  Treasure Room</text>
+<text x="946" y="464" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">29</tspan>  Cellar</text>
+<text x="946" y="479" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">30</tspan>  East of Chasm</text>
+<text x="946" y="494" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">31</tspan>  Slide Room</text>
+<text x="946" y="509" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">32</tspan>  Cold Passage</text>
+<text x="946" y="524" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">33</tspan>  Mine Entrance</text>
+<text x="946" y="539" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">34</tspan>  Mirror Room</text>
+<text x="946" y="554" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">35</tspan>  Squeaky Room</text>
+<text x="946" y="569" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">36</tspan>  Twisting Passage</text>
+<text x="946" y="584" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">37</tspan>  Cave</text>
+<text x="946" y="599" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">38</tspan>  Bat Room</text>
+<text x="946" y="614" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">39</tspan>  Atlantis Room</text>
+<text x="946" y="629" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">40</tspan>  Shaft Room</text>
+<text x="946" y="644" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">41</tspan>  Reservoir North</text>
+<text x="946" y="659" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">42</tspan>  Smelly Room</text>
+<text x="946" y="674" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">43</tspan>  Reservoir</text>
+<text x="946" y="689" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">44</tspan>  Gas Room</text>
+<text x="946" y="704" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">45</tspan>  Reservoir South</text>
+<text x="946" y="719" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">46</tspan>  Stream</text>
+<text x="946" y="734" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">47</tspan>  Coal Mine</text>
+<text x="946" y="749" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">48</tspan>  Deep Canyon</text>
+<text x="946" y="764" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">49</tspan>  Chasm</text>
+<text x="946" y="779" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">50</tspan>  Dam</text>
+<text x="1196" y="44" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">51</tspan>  Stream View</text>
+<text x="1196" y="59" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">52</tspan>  Coal Mine</text>
+<text x="1196" y="74" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">53</tspan>  North-South Passage</text>
+<text x="1196" y="89" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">54</tspan>  Loud Room</text>
+<text x="1196" y="104" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">55</tspan>  East-West Passage</text>
+<text x="1196" y="119" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">56</tspan>  Dam Base</text>
+<text x="1196" y="134" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">57</tspan>  Dam Lobby</text>
+<text x="1196" y="149" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">58</tspan>  Coal Mine</text>
+<text x="1196" y="164" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">59</tspan>  Round Room</text>
+<text x="1196" y="179" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">60</tspan>  Damp Cave</text>
+<text x="1196" y="194" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">61</tspan>  The Troll Room</text>
+<text x="1196" y="209" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">62</tspan>  Maintenance Room</text>
+<text x="1196" y="224" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">63</tspan>  Coal Mine</text>
+<text x="1196" y="239" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">64</tspan>  Narrow Passage</text>
+<text x="1196" y="254" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">65</tspan>  Engravings Cave</text>
+<text x="1196" y="269" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">66</tspan>  White Cliffs Beach</text>
+<text x="1196" y="284" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">67</tspan>  Ladder Top</text>
+<text x="1196" y="299" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">68</tspan>  Mirror Room</text>
+<text x="1196" y="314" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">69</tspan>  Dome Room</text>
+<text x="1196" y="329" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">70</tspan>  White Cliffs Beach</text>
+<text x="1196" y="344" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">71</tspan>  Ladder Bottom</text>
+<text x="1196" y="359" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">72</tspan>  Winding Passage</text>
+<text x="1196" y="374" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">73</tspan>  Cave</text>
+<text x="1196" y="389" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">74</tspan>  Torch Room</text>
+<text x="1196" y="404" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">75</tspan>  Frigid River</text>
+<text x="1196" y="419" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">76</tspan>  Dead End</text>
+<text x="1196" y="434" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">77</tspan>  Timber Room</text>
+<text x="1196" y="449" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">78</tspan>  Entrance to Hades</text>
+<text x="1196" y="464" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">79</tspan>  Altar</text>
+<text x="1196" y="479" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">80</tspan>  Temple</text>
+<text x="1196" y="494" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">81</tspan>  Frigid River</text>
+<text x="1196" y="509" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">82</tspan>  Drafty Room</text>
+<text x="1196" y="524" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">83</tspan>  Land of the Dead</text>
+<text x="1196" y="539" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">84</tspan>  Egyptian Room</text>
+<text x="1196" y="554" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">85</tspan>  Machine Room</text>
+<text x="1196" y="569" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">86</tspan>  Gallery</text>
+<text x="1196" y="584" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">87</tspan>  Frigid River</text>
+<text x="1196" y="599" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">88</tspan>  Frigid River</text>
+<text x="1196" y="614" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">89</tspan>  Frigid River</text>
+<text x="1196" y="629" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">90</tspan>  Sandy Beach</text>
+<text x="1196" y="644" font-size="10.5" fill="#1d1d1d"><tspan font-weight="700" fill="#b3360b">91</tspan>  Sandy Cave</text>
+<line x1="946" y1="809" x2="970" y2="809" stroke="#1d1d1d" stroke-width="1.8"/><text x="978" y="812" font-size="10" fill="#1d1d1d">normal passage</text>
+<line x1="946" y1="824" x2="970" y2="824" stroke="#1d1d1d" stroke-width="1.8"/><text x="978" y="827" font-size="10" fill="#1d1d1d">one-way passage (arrow in the middle)</text>
+<line x1="946" y1="839" x2="970" y2="839" stroke="#1d1d1d" stroke-width="1.8" stroke-dasharray="5 4"/><text x="978" y="842" font-size="10" fill="#1d1d1d">special exit: door, window, flag</text>
+<line x1="946" y1="854" x2="970" y2="854" stroke="#1d1d1d" stroke-width="1.8"/><text x="978" y="857" font-size="10" fill="#1d1d1d">U / D: up or down, drawn diagonally</text>
+<line x1="946" y1="869" x2="970" y2="869" stroke="#1d1d1d" stroke-width="1.8" stroke-dasharray="2 3"/><text x="978" y="872" font-size="10" fill="#1d1d1d">dotted stub &#x27;to N&#x27;: links that cannot be drawn straight</text>
+<line x1="946" y1="884" x2="970" y2="884" stroke="#1d1d1d" stroke-width="1.8" stroke-dasharray="2 3"/><text x="978" y="887" font-size="10" fill="#1d1d1d">dotted stub into blank space: maze / puzzle (left out)</text>
+<line x1="946" y1="899" x2="970" y2="899" stroke="#1d1d1d" stroke-width="1.8"/><text x="978" y="902" font-size="10" fill="#1d1d1d">circle: exit back to its own room</text>
+<line x1="946" y1="914" x2="970" y2="914" stroke="#1d1d1d" stroke-width="1.8"/><text x="978" y="917" font-size="10" fill="#1d1d1d">pink &#x27;NO?&#x27;: a routine decides this exit</text>
+<line x1="946" y1="929" x2="970" y2="929" stroke="#1d1d1d" stroke-width="1.8"/><text x="978" y="932" font-size="10" fill="#1d1d1d">dashed square: set down away from its neighbours</text>
+<line x1="946" y1="944" x2="970" y2="944" stroke="#1d1d1d" stroke-width="1.8"/><text x="978" y="947" font-size="10" fill="#1d1d1d">red square: start (West of House)</text>
+<text x="946" y="970" font-size="9" fill="#555">each room owns a 3x3 block; its 8 neighbours are pathway squares</text></svg>

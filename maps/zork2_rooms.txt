@@ -1,0 +1,260 @@
+Zork2: room names and descriptions (from the ZIL source)
+
+Inside the Barrow
+You are inside an ancient barrow hidden deep within a dark forest. The barrow opens into a narrow tunnel at its southern end. You can see a faint glow at the far end.
+
+Narrow Tunnel
+You are standing at the southern end of a narrow tunnel where it opens into a wide cavern. The cavern is dimly illuminated by phosphorescent mosses clinging to its high ceiling. A deep ravine winds through the cavern, with a small stream at the bottom. The walls of the ravine are steep and crumbly. A foot bridge crosses the ravine to the south.
+
+Foot Bridge
+You are standing on a crude but sturdy wooden foot bridge crossing a deep ravine. The path runs north and south from here.
+
+Great Cavern
+This is the center of the great cavern, carved out of the limestone. Stalactites and stalagmites of many sizes are everywhere. The room glows with dim light provided by phosphorescent moss, and weird shadows move all around you. A narrow path winds southwest among the stalagmites, and another leads northeast.
+
+Shallow Ford
+You are at the southern edge of a great cavern. To the south across a shallow ford is a dark tunnel which looks like it was once enlarged and smoothed. To the north a narrow path winds among stalagmites. Dim light illuminates the cavern.
+
+Dark Tunnel
+This is a dark tunnel with dim light to the northeast. The tunnel is smooth but dusty and filled with twigs and leaves, debris which becomes deeper as the tunnel branches into a wide corridor leading southwest and a narrower one leading southeast.
+
+North End of Garden
+This is the northern end of a formal garden. Hedges hide the cavern walls, and if you don't look up, the illusion is of a cloudy day outside. The light comes from a large growth of glowing mosses on the roof of the cave. A break in the hedge is almost overgrown to the north. A carefully manicured path leads south. In the center of a rosebed is a small open structure, painted white. It appears to be a gazebo.
+
+Gazebo
+This is a gazebo in the midst of a formal garden. It is cool and restful here. A tea table adorns the center of the gazebo.
+
+Formal Garden
+This is the middle part of a formal garden. Hedges hide the cavern walls and a dim illumination comes from mosses far above. The path is of small crushed white stones. It winds among bushes and flower beds from south to north. To the north a small structure can be seen. To the south are peculiarly shaped bushes. There is a small gap in the hedges to the west.
+
+Topiary
+This is the southern end of a formal garden. Hedges hide the cavern walls and mosses provide dim illumination. Fantastically shaped hedges and bushes are arrayed with geometric precision. They have not recently been clipped, but you can discern creatures in the shapes of the bushes: There is a dragon, a unicorn, a great serpent, a huge misshapen dog, and several human figures. On the west side of the garden the path leads through a rose arbor into a tunnel.
+
+Path Near Stream
+The path follows the south edge of a deep ravine and heads northeast. A tunnel heads southwest, narrowing to a rather tight crawl. A faint whirring sound can be heard in that direction. On the east is a ruined archway choked with vegetation.
+
+Marble Hall
+This is an arched hall of fine marble. The hall stops abruptly to the north at a ford across a stream, where the marble is cracked and broken. Perhaps a flood or collapse of the cave was responsible. To the south the hall opens into a large room. There is rather annoying whirring sound coming from that room.
+
+Deep Ford
+You are fording the stream at a deep but not impossible spot. The water is very cold. The walls of the ravine rise to east and west. There is a small ledge along the north wall of the ravine. To the south is the entrance to a well-constructed but somewhat ruined hall.
+
+Ledge in Ravine
+You are on a narrow ledge near the bottom of a deep ravine. The ledge continues to the west. A precarious climb up to another tiny ledge is possible. A short scramble down the rock face leads to a stream.
+
+End of Ledge
+A ledge from the east ends here, and a tunnel leads north into the wall. There is a rather odd smokey odor in the warm air of the tunnel.
+
+Dragon Room
+The room is a large cavern full of broken stone. The walls are scorched and there are deep scratches on the floor. A sooty dry smell is very strong here. A paved path winds from a large passage to the west, through the room, and across a huge stone bridge to the south. To the east a small crack is visible. A dark and smokey tunnel leads north.
+
+Dragon's Lair
+You are in the dragon's lair, where the rock walls are scarred by flame. A blackened doorway leads to the south.
+
+Fresco Room
+A path leads east-west through a room decorated with beautiful frescoes of someone battling dragons and rescuing fair maidens. It is hard to tell who is doing this as those parts of the frescoes have been blackened and cracked by intense heat.
+
+Stone Bridge
+This is the middle of a ruined but still impressive stone bridge spanning a deep chasm. Water flows far beneath. A paved path leads north into a large open space. To the south, the path leads into a misty tunnel.
+
+Cool Room
+The room is cool and damp. The air is misty. A twisty path from the southeast splits here toward a wide northerly stone bridge, and a narrow westerly tunnel. It is from the latter that the mist and chill seem to originate.
+
+Ice Room
+This is a large hall of ancient lava, since worn smooth by the movement of a glacier. A large passage exits to the east and an upward lava tube is at the top of a jumble of fallen rocks. A damp and scorched passage leads west. It is still partly full of steam.
+
+Lava Tube
+You are in a tight chimney of solidified lava. It extends up at least another hundred feet and down to a large room far below. A large crack opens to the south, probably the result of a shift in the rock strata.
+
+Cobwebby Corridor
+A winding corridor is filled with cobwebs. Some are broken and the dust on the floor is disturbed. The trend of the twists and turns is northeast to southwest. On the north side of one twist, high up, is a narrow crack.
+
+Room 8
+This is a small chamber carved out of the rock at the end of a short crawl. On the wall is crudely chiseled the number "8".
+
+Menhir Room
+This is a large room which was evidently used once as a quarry. Many large limestone chunks lie helter-skelter around the room. Some are rough-hewn and unworked, others smooth and well-finished. One side of the room appears to have been used to quarry building blocks, the other to produce menhirs (standing stones). Obvious passages lead north and south.
+
+Kennel
+This room looks like it was once a kennel for a very large dog (some of the bones would fit a dinosaur). It apparently hasn't been used for a long time, as the dust is fairly thick all over. The only exit is northeast.
+
+Stairway
+A marble stairway leads down into the gloom and a passage leads north.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Oddly-angled Room
+A small room with oddly angled walls and passages in all directions.
+
+Cerberus Room
+This is the entrance to a huge crypt or tomb. A marble stairway leads up from a gateway arch.
+
+Crypt Anteroom
+The anteroom is large and empty. Marble bas reliefs depict the stirring times and afterlife of the Flatheads (the latter a bit optimistically). The exit is to the west. A huge marble door stands to the south. The door is open. closed. Above the door is the cryptic inscription: "Feel Free".
+
+Crypt
+The room contains the earthly remains of the mighty Flatheads, twelve somewhat flat heads mounted securely on poles. While the room might be expected to contain funerary urns or other evidence of the ritual practices of the ancient Zorkers, it is empty of all such objects. There is writing carved on the crypt. The only apparent exit is to the north through the door to the anteroom. The door is open. closed. Looking closely at the south wall, you can see the dim outline of a secret door labelled with the letter "F".
+
+Landing
+Beyond the door is a roughly hewn staircase leading down into darkness. The landing on which you stand is covered with carefully drawn magical runes like those sketched upon the workbench of the Wizard of Frobozz. These have been overlaid with sweeping green lines of enormous power, which undulate back and forth across the landing. The wand begins to vibrate in harmony with the motion of the lines. You feel yourself compelled downward, and you yield, stepping onto the staircase. As you pass the green lines, they flare and disappear with a burst of light, and you tumble down the staircase! At the bottom, a vast red-lit hall stretches off into the distance. Sinister statues guard the entrance to a dimly visible room far ahead. With courage and cunning you have conquered the Wizard of Frobozz and become the master of his domain, but the final challenge awaits! (The ultimate adventure concludes in "Zork III: The Dungeon Master".) The green curves begin to vibrate toward you, as if searching for something. One by one your possessions glow bright green. Finally, you are attacked by these magical wardens, and destroyed!
+
+Guarded Room
+This room is cobwebby and musty, but tracks in the dust show that it has seen visitors recently. At the south end of the room is a stained and battered (but very strong-looking) door. To the north, a corridor exits. The door is open. Imbedded in the door is a nasty-looking lizard head, with sharp teeth and beady eyes. The lizard is sniffing at you. The eyes move to watch you approach. A sleepy-looking lizard head is mounted on the door.
+
+Wizard's Workshop
+This is the workshop of the Wizard of Frobozz.
+
+Wizard's Workroom
+This room is the Wizard's workroom. A hall continues east and west, and a larger room lies to the south. There are many shelves and racks on the walls, but the Wizard's workbench dominates the room. It is made of dark, heavy wood bound with iron. The workbench is stained from many years of use, and is deeply gouged as though some huge clawed animal was imprisoned on it. There are burn marks and even notes written in a crabbed hand. Many arcane items are scattered about the bench; alembics, mortar and pestle, small knives of various sizes, odd scraps of vellum, wax candles, and much more. In the center of a relatively clear area of the bench are affixed three stands - ruby, sapphire, and diamond - which form a triangle.
+
+Trophy Room
+This is the Wizard's trophy room, filled with memorabilia of various sorts. On one wall is the Wizard's D. T. (Doctor of Thaumaturgy) degree from GUE Tech. Several old magic wands are mounted on a wand rack. A collection of dull and nicked swords testify to the fate of many foolhardy adventurers. Small bottles contain discarded homunculi (a few preserved in alcohol). There is a stuffed owl on a perch.
+
+Pentagram Room
+In this room, inscribed on the floor, is a great pentagram drawn with black chalk. In its center is a black circle.
+
+Aquarium Room
+Here a dark hallway turns a corner. To the south is a dark room, to the east is fitful light.
+
+Murky Room
+The floor here seems to be made of sand, but it is hard to see anything else.
+
+Wizard's Quarters
+This is where the Wizard of Frobozz lives. The room is
+
+Carousel Room
+You are in a large circular room whose high ceiling is lost in gloom. Eight identical passages leave the room. A loud whirring sound comes from all around, and you feel sort of disoriented in here.
+
+Riddle Room
+This is a room which is bare on all sides. There is an exit down in the northwest corner of the room. To the east is a great open closed door made of stone. Above the stone, the following words are written: "No man shall pass this door without solving this riddle: What is tall as a house, round as a cup, and all the king's horses can't draw it up?"
+
+Pearl Room
+This is a former broom closet. The exits are to the east and west.
+
+Volcano Bottom
+You are at the bottom of a large dormant volcano. High above you light enters from the cone of the volcano. The only exit is to the north.
+
+Volcano Core
+You are about one hundred feet above the bottom of the volcano. The top of the volcano is clearly visible here.
+
+Volcano Near Small Ledge
+You are about two hundred feet above the volcano floor. Looming above is the rim of the volcano. There is a small ledge on the west side.
+
+Volcano by Viewing Ledge
+You are high above the floor of the volcano. The rim of the volcano looks very narrow and you are very near it. To the east is what appears to be a viewing ledge, too thin to land on.
+
+Volcano Near Wide Ledge
+You are near the rim of the volcano. Above you it is open to the sky. To the west, there is a place to land on a wide ledge.
+
+Narrow Ledge
+You are on a narrow ledge within an old dormant volcano. This ledge is about halfway between the floor below and the rim above. There is an exit to the south.
+
+Library
+This must have been a large library, probably for the royal family. All of the shelves have been gnawed to pieces by unfriendly gnomes. To the north is an exit.
+
+Volcano View
+You are on a ledge in the middle of a large volcano. Below you the volcano bottom can be seen and above is the rim of the volcano. A couple of ledges can be seen on the other side of the volcano; it appears that this ledge is intermediate in elevation between those on the other side. The exit from this room is to the east.
+
+Wide Ledge
+You are on a wide ledge high in the volcano. The rim of the volcano is about 200 feet above and there is a precipitous drop to the bottom. The way to the south is blocked by rubble. There is a small door to the south.
+
+Dusty Room
+You are in a dusty old room which is featureless, except for an exit on the north side. Imbedded in the far wall is a rusty box. It appears to be somewhat damaged, since an oblong hole has been chipped out of the front of it. On the far wall is a rusty box, whose door has been blown off.
+
+Lava Room
+This is a small room, whose walls are formed by an old lava flow. There are exits here to the east and the south.
+
+Low Room
+You are in a circular room with a low ceiling. There are exits to the east and southeast.
+
+Machine Room
+This is a large room full of assorted heavy machinery, whirring noisily. The room smells of burned resistors. Along one wall are three buttons which are, respectively, round, triangular, and square. Naturally, above these buttons are instructions written in EBCDIC. A large sign in English above all the buttons says "DANGER -- HIGH VOLTAGE" There are exits to the west and the south.
+
+Dingy Closet
+This is a dingy closet adjacent to a larger room to the north. Chiselled into a wall are these words: Protected by FROBOZZ Magic Alarm Company (Hello, footpad!) There doesn't seem to be any footpad here, however.
+
+Cage
+You are trapped inside a solid steel cage.
+
+Top of Well
+You are at the top of the well. Well done. There are etchings on the side of the well. There is a small crack across the floor at the entrance to a room on the east, but it can be crossed easily.
+
+Circular Room
+This is a damp circular room, whose walls are made of brick and mortar. The roof of this room is not visible, but there appear to be some etchings on the walls. There is a passageway to the west.
+
+Tea Room
+This is a small room containing a large oblong table, no doubt set for afternoon tea. It is clear from the objects on the table that the users were indeed mad. In the eastern corner of the room is a small hole (no more than four inches high). There are passageways leading away to the west and the northwest.
+
+Posts Room
+This is an enormous room, in the center of which are four wooden posts delineating a rectangular area, above which is what appears to be a wooden roof. In fact, all objects in this room appear to be abnormally large. To the east is a passageway. There are large gaping chasms to the west and northwest.
+
+Pool Room
+This is a large room, one half of which is depressed. Salty water flows from a large leak in the ceiling. The only exit is to the west.
+
+Bank Entrance
+This is the entrance hall of the Bank of Zork, the largest banking institution of the Great Underground Empire. A partial account of its history is in "The Lives of the Twelve Flatheads," in the chapter on J. Pierpont Flathead. A more detailed history (albeit less objective) may be found in Flathead's outrageous autobiography "I'm Rich and You Aren't - So There!". Most of the furniture has been ravaged by passing scavengers. All that remains are two signs at the northwest and northeast corners of the room, which say: <-- VIEWING ROOMS --> The way out (ornate but tasteful) is to the east.
+
+West Teller's Room
+You are in a small room, which was used by a bank officer who retrieved safety deposit boxes for the customer. On the north side of the room is a sign which reads "Viewing Room". On the west east side of the room, above an open door, is a sign reading: BANK PERSONNEL ONLY
+
+East Teller's Room
+You are in a small room, which was used by a bank officer who retrieved safety deposit boxes for the customer. On the north side of the room is a sign which reads "Viewing Room". On the west east side of the room, above an open door, is a sign reading: BANK PERSONNEL ONLY
+
+West Viewing Room
+This room was used by holders of safety deposit boxes to view their contents. On the north side of the room is a sign which says: "Remain here while the teller retrieves your safety deposit box. When you are finished, leave the box, and exit to the south. Safety deposit boxes cannot be removed from this room! Thank You for Banking at the Zork!"
+
+East Viewing Room
+This room was used by holders of safety deposit boxes to view their contents. On the north side of the room is a sign which says "Remain here while the teller retrieves your safety deposit box. When you are finished, leave the box, and exit to the south. Safety deposit boxes cannot be removed from this room! Thank You for Banking at the Zork!"
+
+Small Room
+This is a small, bare room with no distinguishing features. There are no exits from this room.
+
+Vault
+This is the Vault of the Bank of Zork, in which there are no doors.
+
+Safety Depository
+This is a large rectangular room. The east and west walls were used for storing safety deposit boxes, but all have been carefully removed by evil persons. To the east, west, and south of the room are large doorways. The northern "wall" of the room is a shimmering curtain of light. In the center of the room is a large stone cube, about 10 feet on a side. Engraved on the side of the cube is some lettering.
+
+Chairman's Office
+This room was the office of the Chairman of the Bank of Zork. Like the other rooms here, it has been extensively vandalized. The lone exit is to the north.
+
+Dreary Room
+This is a small and rather dreary room, eerily illuminated by a red glow emanating from a crack in one wall. The light falls upon a dusty wooden table in the center of the room. south
+
+Tiny Room
+This is a tiny room carved out of the wall of the ravine. There is an exit down a precarious climb. north
+
+Room of Red Mist
+You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+
+Room of Blue Mist
+You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+
+Room of White Mist
+You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+
+Room of Black Mist
+You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+
