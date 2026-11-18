@@ -24,6 +24,8 @@ def read_source(src: str):
         rts = {}
         for f in sorted(glob.glob(os.path.join(src, "*.zil"))): rts.update(describe.routines(open(f, errors="replace").read()))
         describe.fill(rooms, rts)
+        from . import events
+        events.versions(rooms, rts); events.teleports(rooms, objs, rts, os.path.basename(os.path.normpath(src)))
         return rooms, objs, os.path.basename(os.path.normpath(src)), None
     rooms, objs, info = zmachine.read_rooms(src)
     start = "R%d" % info["start"] if info.get("start") else None

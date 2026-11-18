@@ -46,6 +46,8 @@ class Room:
     source: str = ""
     line: int = 0
     number: int = 0                                      # square number on the map, assigned by the layout
+    teleports: List[dict] = field(default_factory=list)  # [{dest: room name, via: text}] moves that are not exits (a mirror, a rainbow)
+    versions: List[dict] = field(default_factory=list)   # before / after an irreversible event: [{label, desc, flag}]
 
 
 def _props(form: Form):

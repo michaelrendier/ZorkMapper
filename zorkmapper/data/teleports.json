@@ -1,0 +1,6 @@
+{
+  "_note": "Teleports the ZIL expresses only indirectly (a local variable passed to GOTO), checked by hand against the source. Rooms are ZIL names.",
+  "zork1": [
+    {"from": "MIRROR-ROOM-1", "to": "MIRROR-ROOM-2", "via": "touch the mirror (the rumble swaps the two Mirror Rooms)", "both": true}
+  ]
+}

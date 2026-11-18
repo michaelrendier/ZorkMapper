@@ -236,6 +236,7 @@ room	20	40	44	0	231
 name	Ice Room
 desc	This is a large hall of ancient lava, since worn smooth by the movement of a glacier. A large passage exits to the east and an upward lava tube is at the top of a jumble of fallen rocks. A damp and scorched passage leads west. It is still partly full of steam.
 items	glacier
+alt	ICE-MELTED	This is a large hall of ancient lava, since worn smooth by the movement of a glacier. A large passage exits to the east and an upward lava tube is at the top of a jumble of fallen rocks.	This is a large hall of ancient lava, since worn smooth by the movement of a glacier. A large passage exits to the east and an upward lava tube is at the top of a jumble of fallen rocks. A damp and scorched passage leads west. It is still partly full of steam.
 exit	EAST	to	13	Cool Room
 exit	WEST	cond	28	Lava Room
 exit	UP	to	25	Lava Tube
@@ -265,6 +266,7 @@ room	24	52	44	0	231
 name	Guarded Room
 desc	This room is cobwebby and musty, but tracks in the dust show that it has seen visitors recently. At the south end of the room is a stained and battered (but very strong-looking) door. To the north, a corridor exits. The door is open. Imbedded in the door is a nasty-looking lizard head, with sharp teeth and beady eyes. The lizard is sniffing at you. The eyes move to watch you approach. A sleepy-looking lizard head is mounted on the door.
 items	lizard
+alt	GUARDIAN-FED	This room is cobwebby and musty, but tracks in the dust show that it has seen visitors recently. At the south end of the room is a stained and battered (but very strong-looking) door. To the north, a corridor exits. Imbedded in the door is a nasty-looking lizard head, with sharp teeth and beady eyes. The eyes move to watch you approach.	This room is cobwebby and musty, but tracks in the dust show that it has seen visitors recently. At the south end of the room is a stained and battered (but very strong-looking) door. To the north, a corridor exits. A sleepy-looking lizard head is mounted on the door.
 exit	NORTH	to	16	Cobwebby Corridor
 exit	SOUTH	cond	29	Wizard's Workshop
 exit	IN	cond	29	Wizard's Workshop
@@ -541,12 +543,14 @@ room	62	36	36	N	240
 name	Dusty Room
 desc	You are in a dusty old room which is featureless, except for an exit on the north side. Imbedded in the far wall is a rusty box. It appears to be somewhat damaged, since an oblong hole has been chipped out of the front of it. On the far wall is a rusty box, whose door has been blown off.
 items	box|hole
+alt	SAFE-FLAG	You are in a dusty old room which is featureless, except for an exit on the north side. Imbedded in the far wall is a rusty box. It appears to be somewhat damaged, since an oblong hole has been chipped out of the front of it.	You are in a dusty old room which is featureless, except for an exit on the north side. On the far wall is a rusty box, whose door has been blown off.
 exit	NORTH	to	61	Wide Ledge
 endroom
 room	63	16	92	N	240
 name	Low Room
 desc	You are in a circular room with a low ceiling. There are exits to the east and southeast.
 items	green piece of paper|robot
+tele	65	Dingy Closet	use the robot
 exit	NORTH	per	0	
 exit	SOUTH	per	0	
 exit	WEST	per	0	
@@ -568,6 +572,7 @@ room	65	24	92	N	240
 name	Dingy Closet
 desc	This is a dingy closet adjacent to a larger room to the north. Chiselled into a wall are these words:| |      Protected by|        FROBOZZ|  Magic Alarm Company|   (Hello, footpad!)|| There doesn't seem to be any footpad here, however.
 items	red crystal sphere|solid steel cage
+tele	66	Cage	use the red crystal sphere
 exit	OUT	to	64	Machine Room
 exit	NORTH	to	64	Machine Room
 endroom
@@ -587,6 +592,7 @@ room	68	12	60	N	240
 name	Tea Room
 desc	This is a small room containing a large oblong table, no doubt set for afternoon tea. It is clear from the objects on the table that the users were indeed mad. In the eastern corner of the room is a small hole (no more than four inches high). There are passageways leading away to the west and the northwest.
 items	large oblong table
+tele	70	Posts Room	use the cake frosted with green letters
 exit	EAST	blocked	0	Only a mouse could get in there.
 exit	WEST	to	67	Top of Well
 exit	NW	to	63	Low Room
@@ -602,6 +608,7 @@ room	70	16	68	N	240
 name	Posts Room
 desc	This is an enormous room, in the center of which are four wooden posts delineating a rectangular area, above which is what appears to be a wooden roof. In fact, all objects in this room appear to be abnormally large. To the east is a passageway. There are large gaping chasms to the west and northwest.
 items	group of wooden posts
+tele	68	Tea Room	use the cake frosted with blue letters
 exit	NW	blocked	0	A great chasm blocks your way.
 exit	EAST	to	71	Pool Room
 exit	WEST	blocked	0	A great chasm blocks your way.
@@ -611,6 +618,7 @@ room	71	16	60	N	240
 name	Pool Room
 desc	This is a large room, one half of which is depressed. Salty water flows from a large leak in the ceiling. The only exit is to the west.
 items	stoppered glass flask filled with liquid|leak|pool of tears|package of candy
+tele	68	Tea Room	use the cake frosted with blue letters
 exit	OUT	to	70	Posts Room
 exit	WEST	to	70	Posts Room
 endroom

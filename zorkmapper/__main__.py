@@ -36,6 +36,8 @@ def main(argv=None):
     _rts = {}
     for f in sorted(glob.glob(os.path.join(a.source, "*.zil"))): _rts.update(_d.routines(open(f, errors="replace").read()))
     _d.fill(rooms, _rts)
+    from . import events as _ev
+    _ev.versions(rooms, _rts); _ev.teleports(rooms, objs, _rts, os.path.basename(os.path.normpath(a.source)))
     game = os.path.basename(os.path.normpath(a.source)); a.start = a.start or STARTS.get(game, "WEST-OF-HOUSE"); pat = a.exclude or PROFILES.get(game, "")
     if a.sheet:
         ex = {n for n, r in rooms.items() if pat and (re.search(pat[5:], r.desc) if pat.startswith("DESC:") else re.search(pat, n))}

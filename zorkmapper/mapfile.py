@@ -20,7 +20,8 @@ def build(rooms: Dict[str, Room], objs: Dict[str, GameObject], sh: Sheet, game: 
             exits.append({"dir": d, "kind": e.kind, "dest": num.get(e.dest) if e.dest else None, "dest_name": (rooms[e.dest].desc if e.dest in rooms else None),
                           "cond": e.condition, "msg": e.message, "func": e.func})
         items = [(objs[o].desc if o in objs and objs[o].desc else o.title()) for o in r.objects]
-        out_rooms[str(i)] = {"name": r.desc or n.title(), "id": n, "desc": r.ldesc.strip() or "", "items": items, "flags": r.flags, "level": zl.get(n),
+        tele = [{"dest": num[t["dest"]], "dest_name": rooms[t["dest"]].desc, "via": t["via"]} for t in r.teleports if t["dest"] in num]
+        out_rooms[str(i)] = {"name": r.desc or n.title(), "id": n, "desc": r.ldesc.strip() or "", "teleports": tele, "versions": r.versions, "items": items, "flags": r.flags, "level": zl.get(n),
                              "row": span[i]["row"], "col": span[i]["col"], "exits": exits, "source": "%s:%d" % (r.source, r.line)}
     lv = sorted({s["z"] for s in spans if s["z"] is not None}, reverse=True)
     return {"format": FORMAT, "game": game, "title": title, "start": 1, "canvas": lines, "spans": spans, "rooms": out_rooms,
@@ -48,6 +49,8 @@ def save_zmap(path: str, data: dict):
         r = data["rooms"][k]; bgc = next((s["bg"] for s in data["spans"] if s["n"] == int(k)), 240)
         out.append("room\t%s\t%d\t%d\t%s\t%d" % (k, r["row"], r["col"], "N" if r["level"] is None else r["level"], bgc))
         out.append("name\t" + clean(r["name"])); out.append("desc\t" + clean(r["desc"])); out.append("items\t" + "|".join(clean(i) for i in r["items"]))
+        if r.get("versions"): out.append("alt\t%s\t%s\t%s" % (clean(r["versions"][0]["flag"]), clean(r["versions"][0]["desc"]), clean(r["versions"][1]["desc"])))
+        for t in r.get("teleports", []): out.append("tele\t%d\t%s\t%s" % (t["dest"], clean(t["dest_name"]), clean(t["via"])))
         for e in r["exits"]: out.append("exit\t%s\t%s\t%d\t%s" % (e["dir"], e["kind"], e["dest"] or 0, clean(e["dest_name"] or e.get("cond") or e.get("msg") or "")))
         out.append("endroom")
     out.append("levels\t%d" % len(data["levels"]))

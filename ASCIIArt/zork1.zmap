@@ -85,6 +85,7 @@ room	1	16	28	0	231
 name	West of House
 desc	You are standing in an open field west of a white house, with a boarded front door. A secret path leads southwest into the forest.
 items	door|small mailbox
+alt	WON-FLAG	You are standing in an open field west of a white house, with a boarded front door.	You are standing in an open field west of a white house, with a boarded front door. A secret path leads southwest into the forest.
 exit	NORTH	to	2	North of House
 exit	SOUTH	to	3	South of House
 exit	NE	to	2	North of House
@@ -169,6 +170,7 @@ room	9	12	20	0	231
 name	Clearing
 desc	You are in a clearing, with a forest surrounding you on all sides. A path leads south. There is an open grating, descending into darkness. There is a grating securely fastened into the ground.
 items	pile of leaves
+alt	GRATE-REVEALED	You are in a clearing, with a forest surrounding you on all sides. A path leads south.	You are in a clearing, with a forest surrounding you on all sides. A path leads south. There is a grating securely fastened into the ground.
 exit	NORTH	blocked	0	The forest becomes impenetrable to the north.
 exit	EAST	to	11	Forest
 exit	WEST	to	4	Forest
@@ -247,6 +249,7 @@ room	18	28	28	-1	88
 name	End of Rainbow
 desc	You are on a small, rocky beach on the continuation of the Frigid River past the Falls. The beach is narrow due to the presence of the White Cliffs. The river canyon opens here and sunlight shines in from above. A rainbow crosses over the falls to the east and a narrow path continues to the southwest.
 items	pot of gold
+tele	20	Aragain Falls	use the rainbow
 exit	UP	cond	19	On the Rainbow
 exit	NE	cond	19	On the Rainbow
 exit	EAST	cond	19	On the Rainbow
@@ -263,6 +266,7 @@ room	20	24	28	0	231
 name	Aragain Falls
 desc	You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet. The only path here is on the north end. A solid rainbow spans the falls. A beautiful rainbow can be seen over the falls and to the west.
 items	
+tele	18	End of Rainbow	use the rainbow
 exit	WEST	cond	19	On the Rainbow
 exit	DOWN	blocked	0	It's a long way...
 exit	NORTH	to	21	Shore
@@ -302,6 +306,7 @@ room	25	16	44	0	231
 name	Living Room
 desc	You are in the living room. There is a doorway to the east . To the west is a cyclops-shaped opening in an old wooden door, above which is some strange gothic lettering, , a wooden door with strange gothic lettering to the west, which appears to be nailed shut, a trophy case, and a rug lying beside an open trap door. and a closed trap door at your feet. and an open trap door at your feet. and a large oriental rug in the center of the room.
 items	trophy case|carpet|trap door|brass lantern|wooden door|sword
+alt	MAGIC-FLAG	You are in the living room. There is a doorway to the east , a wooden door with strange gothic lettering to the west, which appears to be nailed shut, a trophy case, and a large oriental rug in the center of the room.	You are in the living room. There is a doorway to the east . To the west is a cyclops-shaped opening in an old wooden door, above which is some strange gothic lettering, a trophy case, and a large oriental rug in the center of the room.
 exit	EAST	to	22	Kitchen
 exit	WEST	cond	26	Strange Passage
 exit	DOWN	per	0	
@@ -318,6 +323,7 @@ room	27	16	60	0	231
 name	Cyclops Room
 desc	This room has an exit on the northwest, and a staircase leading up. The cyclops is sleeping blissfully at the foot of the stairs. The east wall, previously solid, now has a cyclops-sized opening in it. A cyclops, who looks prepared to eat horses (much less mere adventurers), blocks the staircase. From his state of health, and the bloodstains on the walls, you gather that he is not very friendly, though he likes people. The cyclops is standing in the corner, eyeing you closely. I don't think he likes you very much. He looks extremely hungry, even for a cyclops. The cyclops, having eaten the hot peppers, appears to be gasping. His enflamed tongue protrudes from his man-sized mouth.
 items	cyclops
+alt	MAGIC-FLAG	This room has an exit on the northwest, and a staircase leading up.	This room has an exit on the northwest, and a staircase leading up. The east wall, previously solid, now has a cyclops-sized opening in it.
 exit	NW	to	0	Maze
 exit	EAST	cond	26	Strange Passage
 exit	UP	cond	28	Treasure Room
@@ -372,6 +378,8 @@ room	34	28	68	-1	88
 name	Mirror Room
 desc	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room. Unfortunately, the mirror has been destroyed by your recklessness.
 items	mirror
+alt	MIRROR-MUNG	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room.	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room. Unfortunately, the mirror has been destroyed by your recklessness.
+tele	68	Mirror Room	touch the mirror (the rumble swaps the two Mirror Rooms)
 exit	NORTH	to	32	Cold Passage
 exit	WEST	to	36	Twisting Passage
 exit	EAST	to	37	Cave
@@ -645,6 +653,8 @@ room	68	64	68	-1	88
 name	Mirror Room
 desc	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room. Unfortunately, the mirror has been destroyed by your recklessness.
 items	mirror
+alt	MIRROR-MUNG	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room.	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room. Unfortunately, the mirror has been destroyed by your recklessness.
+tele	34	Mirror Room	touch the mirror (the rumble swaps the two Mirror Rooms)
 exit	WEST	to	72	Winding Passage
 exit	NORTH	to	64	Narrow Passage
 exit	EAST	to	73	Cave

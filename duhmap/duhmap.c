@@ -36,12 +36,13 @@
 #define MAXL 16
 
 typedef struct { char dir[8], kind[8]; int dest; char text[200]; } Exit;
-typedef struct { int num, row, col, level, has_level, bg; char name[100]; char *desc; char items[600]; Exit ex[MAXX]; int nex; } Room;
+typedef struct { int dest; char name[100], via[200]; } Tele;
+typedef struct { int num, row, col, level, has_level, bg; char name[100]; char *desc; char items[600]; Exit ex[MAXX]; int nex; Tele tele[4]; int ntele; char alt_flag[48]; char *alt_before, *alt_after; } Room;
 typedef struct { int z, bg, rooms; char label[80]; } Level;
 
 static wchar_t **canvas; static int crows, ccols;
 static Room rooms[MAXR + 1]; static int nrooms, start_room = 1, cur = 1;
-static Level levels[MAXL]; static int nlev;
+static Level levels[MAXL]; static int nlev; static unsigned char ver[MAXR + 1];   /* ver[room] = 1 shows the room after its irreversible event */
 static int PCT_LEFT = 16, PCT_RIGHT = 30, PCT_BOTTOM = 22;                  /* panel sizes, percent of the terminal (config: panel_left / panel_right / panel_bottom) */
 static char mapper_home[512] = "..", conf_root[512];
 static char title[200], game[100], mapdir[512] = "ASCIIArt", mappath[600], status[400] = "F5 / Alt-O opens a map.";
@@ -52,7 +53,7 @@ static void free_map(void)
 {
   int i;
   if (canvas) { for (i = 0; i < crows; i++) free(canvas[i]); free(canvas); canvas = NULL; }
-  for (i = 1; i <= nrooms; i++) { free(rooms[i].desc); rooms[i].desc = NULL; }
+  for (i = 1; i <= nrooms; i++) { free(rooms[i].desc); rooms[i].desc = NULL; free(rooms[i].alt_before); free(rooms[i].alt_after); rooms[i].alt_before = rooms[i].alt_after = NULL; ver[i] = 0; }
   nrooms = nlev = 0;
 }
 
@@ -82,6 +83,13 @@ static int load_map(const char *path)
     } else if (r && !strncmp(line, "name\t", 5)) snprintf(rooms[r].name, sizeof rooms[r].name, "%s", line + 5);
     else if (r && !strncmp(line, "desc\t", 5)) rooms[r].desc = strdup(line + 5);
     else if (r && !strncmp(line, "items\t", 6)) snprintf(rooms[r].items, sizeof rooms[r].items, "%s", line + 6);
+    else if (r && !strncmp(line, "alt\t", 4)) {                                 /* before / after an irreversible event: flag, text before, text after */
+      char *p = line + 4, *t1 = strchr(p, '\t'), *t2; if (!t1) continue; *t1 = 0; t2 = strchr(t1 + 1, '\t'); if (!t2) continue; *t2 = 0;
+      snprintf(rooms[r].alt_flag, sizeof rooms[r].alt_flag, "%s", p); rooms[r].alt_before = strdup(t1 + 1); rooms[r].alt_after = strdup(t2 + 1);
+    } else if (r && !strncmp(line, "tele\t", 5) && rooms[r].ntele < 4) {          /* a teleport: destination number, its name, how */
+      Tele *tl = &rooms[r].tele[rooms[r].ntele]; char *p = line + 5, *t1 = strchr(p, '\t'), *t2; if (!t1) continue; *t1 = 0; t2 = strchr(t1 + 1, '\t'); if (!t2) continue; *t2 = 0;
+      tl->dest = atoi(p); snprintf(tl->name, sizeof tl->name, "%s", t1 + 1); snprintf(tl->via, sizeof tl->via, "%s", t2 + 1); rooms[r].ntele++;
+    }
     else if (r && !strncmp(line, "exit\t", 5) && rooms[r].nex < MAXX) {
       Exit *e = &rooms[r].ex[rooms[r].nex++]; char *p = line + 5, *t;
       t = strchr(p, '\t'); if (!t) continue; *t = 0; snprintf(e->dir, sizeof e->dir, "%s", p); p = t + 1;
@@ -124,7 +132,7 @@ static void load_config(void)
 /* ------------------------------------------------------------------ colours and boxes
    Every surface has an explicit background, so the screen reads the same on a light or a dark terminal theme.
    The rule: black text on light backgrounds, white (or a bright accent) text on dark backgrounds, never light on light or dark on dark. */
-enum { P_TEXT = 1, P_DIM, P_BORDER, P_HEAD, P_STRIP, P_MENU, P_MENUSEL, P_BANNER, P_BRACKET, P_YEL, P_CYAN, P_GRN, P_MAP, P_BLACKBOX, P_LEVEL0 = 30 };
+enum { P_TEXT = 1, P_DIM, P_BORDER, P_HEAD, P_STRIP, P_MENU, P_MENUSEL, P_BANNER, P_BRACKET, P_YEL, P_CYAN, P_GRN, P_MAP, P_BLACKBOX, P_TELE, P_LEVEL0 = 30 };
 static void init_colors(void)
 {
   init_pair(P_TEXT, 15, 234);      /* white on near-black */
@@ -139,6 +147,7 @@ static void init_colors(void)
   init_pair(P_YEL, 226, 234); init_pair(P_CYAN, 51, 234); init_pair(P_GRN, 46, 234);
   init_pair(P_MAP, 250, 233);      /* the map's passages: light grey on black */
   init_pair(P_BLACKBOX, 16, 252);  /* the lines of a dialog or menu: black on light grey */
+  init_pair(P_TELE, 16, 196);      /* the teleport notice: black on bright red */
 }
 static int bright_bg(int c) { return c == 231 || c == 196 || c == 208 || c == 226 || c == 46 || c == 33; }
 static short pair_for(int bg)                                /* an elevation colour: black text on the bright ones, white on the dark ones, the whole square */
@@ -346,6 +355,12 @@ static void wrap_put(int y0, int x0, int ymax, int w, const char *s, int attr)
   }
 }
 
+static const char *room_desc(Room *r)
+{
+  if (r->alt_after) return ver[r->num] ? r->alt_after : r->alt_before;
+  return r->desc && r->desc[0] ? r->desc : "(no fixed description in this source)";
+}
+
 static void draw_all(void)
 {
   int h, w, i, a, b, lr; Rect L, M, R, S; Room *r = &rooms[cur]; erase(); getmaxyx(stdscr, h, w); layout(h, w, &L, &M, &R, &S);
@@ -373,13 +388,16 @@ static void draw_all(void)
         char lab[8]; snprintf(lab, sizeof lab, i < 100 ? "%02d" : "**", i);
         put(R.y + 1 + i - a, R.x + 1, i == cur ? ">" : " ", COLOR_PAIR(P_YEL) | A_BOLD);
         put(R.y + 1 + i - a, R.x + 2, lab, COLOR_PAIR(pair_for(rooms[i].has_level ? rooms[i].bg : 240)));
+        if (rooms[i].alt_after) put(R.y + 1 + i - a, R.x + 4, "*", COLOR_PAIR(P_YEL) | A_BOLD); else if (rooms[i].ntele) put(R.y + 1 + i - a, R.x + 4, "~", COLOR_PAIR(P_CYAN) | A_BOLD);
         putf(R.y + 1 + i - a, R.x + 5, COLOR_PAIR(P_TEXT) | (i == cur ? A_BOLD : 0), "%.*s", R.w - 7 > 0 ? R.w - 7 : 0, rooms[i].name);
       }
       if (dh >= 4) {
         draw_box(R.y + lh, R.x, dh, R.w, r->name, P_BORDER, P_TEXT); dy = R.y + lh + 1;
-        wrap_put(dy, R.x + 2, R.y + lh + dh - 1, R.w - 4, r->desc && r->desc[0] ? r->desc : "(no fixed description in this source)", COLOR_PAIR(P_TEXT));
-        dy += (int)((r->desc && r->desc[0] ? strlen(r->desc) : 40) / (R.w - 4 > 4 ? R.w - 4 : 4)) + 2;
+        if (r->alt_after) putf(dy++, R.x + 2, COLOR_PAIR(P_YEL) | A_BOLD, "%s%s%s   (* switches)", ver[cur] ? "AFTER: " : "BEFORE", ver[cur] ? r->alt_flag : "", "");
+        wrap_put(dy, R.x + 2, R.y + lh + dh - 1, R.w - 4, room_desc(r), COLOR_PAIR(P_TEXT));
+        dy += (int)(strlen(room_desc(r)) / (R.w - 4 > 4 ? R.w - 4 : 4)) + 2;
         if (r->items[0] && dy < R.y + lh + dh - 1) putf(dy++, R.x + 2, COLOR_PAIR(P_CYAN), "Items: %.*s", R.w - 11 > 0 ? R.w - 11 : 0, r->items);
+        for (i = 0; i < r->ntele && dy < R.y + lh + dh - 1; i++) putf(dy++, R.x + 2, COLOR_PAIR(P_CYAN) | A_BOLD, "~ t: %.*s -> %02d %.*s", 30, r->tele[i].via, r->tele[i].dest, 24, r->tele[i].name);
         for (i = 0; i < r->nex && dy < R.y + lh + dh - 1; i++)
           if (r->ex[i].dest > 0) putf(dy++, R.x + 2, COLOR_PAIR(P_GRN), "%-5.5s -> %02d %.*s", r->ex[i].dir, r->ex[i].dest, R.w - 17 > 0 ? R.w - 17 : 0, rooms[r->ex[i].dest].name);
           else putf(dy++, R.x + 2, COLOR_PAIR(P_DIM), "%-5.5s %s", r->ex[i].dir, !strcmp(r->ex[i].kind, "per") ? "(routine)" : "x");
@@ -390,7 +408,7 @@ static void draw_all(void)
     draw_box(S.y, S.x, S.h, S.w, "Status", P_BORDER, P_TEXT);
     if (show_help) {
       const char *h_[] = {"arrows N S W E   Shift-Up UPW  Shift-Down UPE  Shift-Left DW  Shift-Right DE   y u b n = NW NE SW SE", "Tab / Shift-Tab next / previous room   Home start   End last   PgUp / PgDn level up / down   F7 or l layer view   + - = zoom",
-        "F2 legend  F3 sidebar  F4 status   ESC menu bar   Alt-O open  Alt-M map a game  Alt-G go to number  Alt-X quit", 0};
+        "F2 legend  F3 sidebar  F4 status   ESC menu bar   Alt-O open  Alt-M map a game  Alt-G go to number  Alt-X quit", "t teleport (asks TELEPORT? Y/n)   * other version of a room marked * in the list   ~ marks a teleporter", 0};
       for (i = 0; h_[i] && i < S.h - 2; i++) put(S.y + 1 + i, S.x + 2, h_[i], COLOR_PAIR(P_TEXT));
     } else wrap_put(S.y + 1, S.x + 2, S.y + S.h - 1, S.w - 4, status, COLOR_PAIR(P_TEXT));
   }
@@ -404,6 +422,27 @@ static void show_banner(const char *msg)
   beep(); snprintf(b, sizeof b, "   %s   ", msg); if (x < 0) x = 0;
   draw_box(y - 1, x - 1, 3, len + 2, NULL, P_BANNER, P_BANNER); put(y, x, b, COLOR_PAIR(P_BANNER) | A_BOLD); refresh();
   napms(550); flushinp();                                                     /* a quick flash; keys typed meanwhile are dropped */
+}
+
+static void teleport_prompt(void)                                            /* a push notification across the viewport that waits for Y or n */
+{
+  Room *r = &rooms[cur]; int sel = 0, c, y, w, x;
+  if (!r->ntele) { show_banner("NO TELEPORT HERE"); return; }
+  nocbreak(); cbreak(); beep();
+  for (;;) {
+    char l2[200]; Tele *t = &r->tele[sel]; draw_all();
+    snprintf(l2, sizeof l2, "%s -> %02d %s", t->via, t->dest, t->name); w = (int)strlen(l2) + 6; if (w < 30) w = 30; if (w > last_map.w - 2) w = last_map.w - 2;
+    y = last_map.y + last_map.h / 2 - 2; x = last_map.x + (last_map.w - w) / 2; if (x < 0) x = 0;
+    draw_box(y, x, 5, w, NULL, P_TELE, P_TELE);
+    putf(y + 1, x + (w - 13) / 2, COLOR_PAIR(P_TELE) | A_BOLD, "TELEPORT? Y/n");
+    putf(y + 2, x + 2, COLOR_PAIR(P_TELE), "%.*s", w - 4, l2);
+    if (r->ntele > 1) putf(y + 3, x + 2, COLOR_PAIR(P_TELE), "Tab: next destination (%d of %d)", sel + 1, r->ntele);
+    refresh(); c = getch();
+    if (c == 'y' || c == 'Y' || c == '\n' || c == KEY_ENTER) { cur = t->dest; snprintf(status, sizeof status, "Teleported to %02d %s.", t->dest, t->name); break; }
+    if (c == 'n' || c == 'N' || c == 27 || c == 'q') { snprintf(status, sizeof status, "Teleport cancelled."); break; }
+    if (c == '\t' && r->ntele > 1) sel = (sel + 1) % r->ntele;
+  }
+  halfdelay(5);
 }
 
 /* ------------------------------------------------------------------ dialogs (black on light grey, boxed) */
@@ -457,15 +496,15 @@ static void map_a_game(void)
 
 /* ------------------------------------------------------------------ the ESC menu bar (after TheDraw): black on light grey, the selection white on blue */
 static const char *menu_names[] = {"Files", "Go", "View", "Levels", "Help"};
-static const char *menu_items[5][5] = {{"Open map       Alt-O", "Map a game     Alt-M", "Quit           Alt-X", 0, 0}, {"Start          Home", "Next room      Tab", "Previous       S-Tab", "Last room      End", "Go to number   Alt-G"},
-  {"Legend         F2", "Sidebar        F3", "Status         F4", "Zoom auto      =", 0}, {"Level up       PgUp", "Level down     PgDn", "Layer view     F7", 0, 0}, {"Keys           F1", 0, 0, 0, 0}};
+static const char *menu_items[5][7] = {{"Open map       Alt-O", "Map a game     Alt-M", "Quit           Alt-X", 0, 0, 0, 0}, {"Start          Home", "Next room      Tab", "Previous       S-Tab", "Last room      End", "Go to number   Alt-G", "Teleport       t", 0},
+  {"Legend         F2", "Sidebar        F3", "Status         F4", "Zoom auto      =", "Other version  *", 0, 0}, {"Level up       PgUp", "Level down     PgDn", "Layer view     F7", 0, 0, 0, 0}, {"Keys           F1", 0, 0, 0, 0, 0, 0}};
 static int menu_bar(void)                                   /* returns a command code: 'o' 'm' 'x' 'g' or 0 */
 {
   int m = 0, i = 0, open_ = 0, c, k, n, cnt;
   for (;;) {
     draw_all(); fill(0, 0, 1, COLS, P_MENU); put(0, 0, " ", COLOR_PAIR(P_MENU));
     for (k = 0, n = 1; k < 5; k++) { putf(0, n, k == m ? COLOR_PAIR(P_MENUSEL) | A_BOLD : COLOR_PAIR(P_MENU), " %s ", menu_names[k]); n += (int)strlen(menu_names[k]) + 3; }
-    cnt = 0; while (cnt < 5 && menu_items[m][cnt]) cnt++;
+    cnt = 0; while (cnt < 7 && menu_items[m][cnt]) cnt++;
     if (open_) { int x0 = 1; for (k = 0; k < m; k++) x0 += (int)strlen(menu_names[k]) + 3; draw_box(1, x0, cnt + 2, 24, NULL, P_BLACKBOX, P_MENU);
       for (k = 0; k < cnt; k++) putf(2 + k, x0 + 1, k == i ? COLOR_PAIR(P_MENUSEL) | A_BOLD : COLOR_PAIR(P_MENU), " %-21s", menu_items[m][k]); }
     refresh(); c = getch();
@@ -476,8 +515,8 @@ static int menu_bar(void)                                   /* returns a command
     else if (c == '\n' || c == KEY_ENTER) {
       if (!open_) { open_ = 1; continue; }
       if (m == 0) return i == 0 ? 'o' : i == 1 ? 'm' : 'x';
-      if (m == 1) { if (i == 0) cur = start_room; else if (i == 1) cur = cur % nrooms + 1; else if (i == 2) cur = (cur + nrooms - 2) % nrooms + 1; else if (i == 3) cur = nrooms; else return 'g'; return 0; }
-      if (m == 2) { if (i == 0) show_left = !show_left; else if (i == 1) show_right = !show_right; else if (i == 2) show_bottom = !show_bottom; else zoom_manual = 0; return 0; }
+      if (m == 1) { if (i == 0) cur = start_room; else if (i == 1) cur = cur % nrooms + 1; else if (i == 2) cur = (cur + nrooms - 2) % nrooms + 1; else if (i == 3) cur = nrooms; else if (i == 4) return 'g'; else return 't'; return 0; }
+      if (m == 2) { if (i == 0) show_left = !show_left; else if (i == 1) show_right = !show_right; else if (i == 2) show_bottom = !show_bottom; else if (i == 3) zoom_manual = 0; else if (rooms[cur].alt_after) ver[cur] = !ver[cur]; return 0; }
       if (m == 3) { if (i == 2) layer_view = !layer_view; else move_to(go_level(i == 0 ? 1 : -1), i == 0 ? "up a level" : "down a level"); return 0; }
       show_help = !show_help; return 0;
     } else if (c == 'f' || c == 'F') { m = 0; open_ = 1; } else if (c == 'g' || c == 'G') { m = 1; open_ = 1; } else if (c == 'v' || c == 'V') { m = 2; open_ = 1; }
@@ -547,6 +586,8 @@ int main(int argc, char *argv[])
     case '+': zoom_manual = (zoom_manual ? zoom_manual : zk) + 1; if (zoom_manual > 5) zoom_manual = 5; break;
     case '-': zoom_manual = (zoom_manual ? zoom_manual : zk) - 1; if (zoom_manual < 1) zoom_manual = 1; break;
     case '=': zoom_manual = 0; break;
+    case '*': if (nrooms && rooms[cur].alt_after) { ver[cur] = !ver[cur]; snprintf(status, sizeof status, ver[cur] ? "Showing the room AFTER %s (irreversible)." : "Showing the room BEFORE the event.", rooms[cur].alt_flag); } else snprintf(status, sizeof status, "This room has no other version."); break;
+    case 't': if (nrooms) teleport_prompt(); break;
     case KEY_F(7): case 'l': layer_view = !layer_view; snprintf(status, sizeof status, layer_view ? "Layer view: only this elevation layer in colour; PgUp / PgDn change layer." : "Layer view off."); break;
     case KEY_F(1): case ALT + 'h': show_help = !show_help; break;
     case KEY_F(2): show_left = !show_left; break; case KEY_F(3): show_right = !show_right; break; case KEY_F(4): show_bottom = !show_bottom; break;
@@ -555,7 +596,7 @@ int main(int argc, char *argv[])
     case KEY_F(6): case ALT + 'm': nocbreak(); cbreak(); map_a_game(); halfdelay(5); break;
     case ALT + 'g': { char b[16]; nocbreak(); cbreak(); prompt_line("Go to room number > ", b, sizeof b); halfdelay(5); if (atoi(b) >= 1 && atoi(b) <= nrooms) cur = atoi(b); } break;
     case 27: { int cmd; nocbreak(); cbreak(); cmd = menu_bar(); halfdelay(5);
-      if (cmd == 'x') quit = 1; else if (cmd == 'o') { nocbreak(); cbreak(); pick_map(); halfdelay(5); } else if (cmd == 'm') { nocbreak(); cbreak(); map_a_game(); halfdelay(5); }
+      if (cmd == 't') teleport_prompt(); else if (cmd == 'x') quit = 1; else if (cmd == 'o') { nocbreak(); cbreak(); pick_map(); halfdelay(5); } else if (cmd == 'm') { nocbreak(); cbreak(); map_a_game(); halfdelay(5); }
       else if (cmd == 'g') { char b[16]; nocbreak(); cbreak(); prompt_line("Go to room number > ", b, sizeof b); halfdelay(5); if (atoi(b) >= 1 && atoi(b) <= nrooms) cur = atoi(b); } } break;
     }
   }

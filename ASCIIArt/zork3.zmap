@@ -394,6 +394,7 @@ room	31	56	60	N	240
 name	Key Room
 desc	You are between some rock and a dark place. The room is lit dimly from above, revealing a lone, dark path sloping down to the west. A heavy manhole cover has been moved to reveal a dark passage below. To one side of the room is a large manhole cover.
 items	manhole cover|strange key
+alt	COVER-MOVED	You are between some rock and a dark place. The room is lit dimly from above, revealing a lone, dark path sloping down to the west. To one side of the room is a large manhole cover.	You are between some rock and a dark place. The room is lit dimly from above, revealing a lone, dark path sloping down to the west. A heavy manhole cover has been moved to reveal a dark passage below.
 exit	WEST	to	35	Dark Place
 exit	DOWN	cond	25	Aqueduct
 endroom
@@ -484,6 +485,7 @@ room	40	20	76	N	240
 name	Dungeon Entrance
 desc	The wooden door has a barred panel in it at about head height. The door itself is
 items	
+tele	14	Button Room	use the wooden door
 exit	NORTH	cond	42	Narrow Corridor
 exit	ENTER	cond	42	Narrow Corridor
 exit	SOUTH	per	0	
@@ -695,6 +697,7 @@ room	65	32	20	N	240
 name	Side Room
 desc	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a passage metal door leads to the east.
 items	
+alt	CP-FLAG	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a metal door leads to the east.	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a passage leads to the east.
 exit	NORTH	to	61	Royal Puzzle Entrance
 exit	EAST	blocked	0	The steel door is closed.
 endroom
@@ -702,6 +705,7 @@ room	66	40	52	N	240
 name	Technology Museum
 desc	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. Not all of the jewels are in place, however. is bare. The room is, by appearances, unfinished. You are in a large, unfinished room, probably intended to be a part of the Royal Museum. This appears to be an unfinished entranceway to the Royal Museum. There are doors to the east and north, and a blind stairway to the south. A heavy iron door to the west is closed and locked.
 items	
+alt	RING-STOLEN	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. The room is, by appearances, unfinished.	You are in a high-ceilinged chamber, in the center of which is a pedestal which is bare. The room is, by appearances, unfinished.
 exit	SOUTH	cond	67	Museum Entrance
 exit	OUT	cond	67	Museum Entrance
 endroom
@@ -709,6 +713,7 @@ room	67	44	52	N	240
 name	Museum Entrance
 desc	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. Not all of the jewels are in place, however. is bare. The room is, by appearances, unfinished. You are in a large, unfinished room, probably intended to be a part of the Royal Museum. This appears to be an unfinished entranceway to the Royal Museum. There are doors to the east and north, and a blind stairway to the south. A heavy iron door to the west is closed and locked.
 items	
+alt	RING-STOLEN	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. The room is, by appearances, unfinished.	You are in a high-ceilinged chamber, in the center of which is a pedestal which is bare. The room is, by appearances, unfinished.
 exit	EAST	cond	68	Jewel Room
 exit	WEST	blocked	0	The guards locked the iron door behind them.
 exit	NORTH	cond	66	Technology Museum
@@ -718,6 +723,7 @@ room	68	40	60	N	240
 name	Jewel Room
 desc	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. Not all of the jewels are in place, however. is bare. The room is, by appearances, unfinished. You are in a large, unfinished room, probably intended to be a part of the Royal Museum. This appears to be an unfinished entranceway to the Royal Museum. There are doors to the east and north, and a blind stairway to the south. A heavy iron door to the west is closed and locked.
 items	
+alt	RING-STOLEN	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. The room is, by appearances, unfinished.	You are in a high-ceilinged chamber, in the center of which is a pedestal which is bare. The room is, by appearances, unfinished.
 exit	WEST	cond	67	Museum Entrance
 exit	OUT	cond	67	Museum Entrance
 endroom
@@ -789,6 +795,7 @@ room	79	28	20	0	231
 name	Side Room
 desc	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a passage metal door leads to the east.
 items	
+alt	CP-FLAG	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a metal door leads to the east.	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a passage leads to the east.
 exit	NORTH	to	59	Royal Puzzle Entrance
 exit	UP	to	59	Royal Puzzle Entrance
 exit	EAST	cond	0	Room in a Puzzle
