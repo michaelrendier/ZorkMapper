@@ -1,0 +1,836 @@
+ZMAP 1
+title	Zork1: graph-paper map as text, a square is two characters wide
+start	1
+game	zork1
+canvas	77	122
+                                                                                                                          
+                                                                                                                          
+                                                                                                                          
+                                                                                                                          
+                                            12                                                                            
+                                                                                                                          
+                                    ⁰⁹  U/  ¹⁰                                                                            
+                                                                                                                          
+                    91          ⁰⁴  07  ==  11  ==  15                                                                    
+                                                                                                                          
+                //                  ||      ²²      ¹¹                                                  ⟲                 
+                                                                                                                          
+            90  ¹¹  09  ⁰⁷  23      02  ==  06  ==  10  ¹³          28      42                      52                    
+                                                                                                                          
+            ²¹  U/  ||          UX          ⁰³      ⁰⁸  Ma      U/          ||  D\      ⟲       //      \\      ⟲         
+                                                                                                                          
+            14  ⁰⁷  04  <=  01  ⁰⁶  22  ==  25  ==  26  ==  27      38  ==  40      44  ==  47              58            
+                                                                                                                          
+        Ma          ⁰⁸  //  ⁹⁰  \\      D\      U\  ⁶¹              ||                          ⟲       //                
+                                                                                                                          
+                    05      21      03  ⁰⁶  24      29      33  ==  35                              63                    
+                                                                                                                          
+                            ||      ||      ⁸⁶      ||  D\  ||                                  U/                        
+                                                                                                                          
+                    19  ==  20  ⁰⁴  08  <=  13  ¹⁰  30  ⁸⁶  31  ==  32                      67                            
+                                                                                                                          
+                        U\          ¹⁰  U/  ²⁴                      ||                  D/                                
+                                                                                                                          
+                            18      16  ³⁰  86          ³⁷  36  ==  34  ==  37  ³⁶  71  ==  77  ==  82                    
+                                                                                                                          
+                            ||  U/                                      D/          ||              ||                    
+                                                                                                                          
+                            17                                      39              76              85                    
+                                                                                                                          
+                                                                    ||                                                    
+                                                                                                                          
+                                                                    41      46  ⁵¹                                        
+                                                                                                                          
+                                                                    ||  U/                                                
+                                                                                                                          
+                                                                    43      57  ==  62                                    
+                                                                                                                          
+                                                                    ||      ||                                            
+                                                                                                                          
+                                                            51  ==  45  ==  50                                            
+                                                                                                                          
+                                                                //      DX  ||                                            
+                                                                                                                          
+                                                            49      56      48                                            
+                                                                                                                          
+                                                        D/  ⁵³      ⁴⁹  //      D\                                        
+                                                                                                                          
+                                        Ma  61  ==  55  ⁵⁹  87  ⁵⁶  53          ⁵⁹  54  ==  60  ==  66                    
+                                                                                                                          
+                                            ²⁹          D/          ||                              ||                    
+                                                                                                                          
+                                                    88          ⁵⁵  59  ⁵⁴              ⁹⁰  75  =>  70                    
+                                                                                                                          
+                                                D/                  ||  \\                      D\                        
+                                                                                                                          
+                                        ⁶⁶  89  ⁷⁵                  64      65  ==  69              81  ²¹                
+                                                                                                                          
+                                                                    ||                  D\                                
+                                                                                                                          
+                                                        ⁷³  72  ==  68  ==  73  ⁷²          74                            
+                                                                                                                          
+                                                                        D/      D\  ⁸⁰      ||                            
+                                                                                                                          
+                                                                    78              79      80                            
+                                                                                                                          
+                                                                    ||                  U/  ⁷⁹                            
+                                                                                                                          
+                                                                    83              84                                    
+                                                                                                                          
+                                                                                                                          
+                                                                                                                          
+                                                                                                                          
+rooms	91
+room	1	16	28	0	231
+name	West of House
+desc	You are standing in an open field west of a white house, with a boarded front door. A secret path leads southwest into the forest.
+items	door|small mailbox
+exit	NORTH	to	2	North of House
+exit	SOUTH	to	3	South of House
+exit	NE	to	2	North of House
+exit	SE	to	3	South of House
+exit	WEST	to	4	Forest
+exit	EAST	blocked	0	The door is boarded and you can't remove the boards.
+exit	SW	cond	5	Stone Barrow
+exit	IN	cond	5	Stone Barrow
+endroom
+room	2	12	36	0	231
+name	North of House
+desc	You are facing the north side of a white house. There is no door here, and all the windows are boarded up. To the north a narrow path winds through the trees.
+items	
+exit	SW	to	1	West of House
+exit	SE	to	6	Behind House
+exit	WEST	to	1	West of House
+exit	EAST	to	6	Behind House
+exit	NORTH	to	7	Forest Path
+exit	SOUTH	blocked	0	The windows are all boarded.
+endroom
+room	3	20	36	0	231
+name	South of House
+desc	You are facing the south side of a white house. There is no door here, and all the windows are boarded.
+items	
+exit	WEST	to	1	West of House
+exit	EAST	to	6	Behind House
+exit	NE	to	6	Behind House
+exit	NW	to	1	West of House
+exit	SOUTH	to	8	Forest
+exit	NORTH	blocked	0	The windows are all boarded.
+endroom
+room	4	16	20	0	231
+name	Forest
+desc	This is a forest, with trees in all directions. To the east, there appears to be sunlight.
+items	
+exit	UP	blocked	0	There is no tree here suitable for climbing.
+exit	NORTH	to	9	Clearing
+exit	EAST	to	7	Forest Path
+exit	SOUTH	to	8	Forest
+exit	WEST	blocked	0	You would need a machete to go further west.
+endroom
+room	5	20	20	0	231
+name	Stone Barrow
+desc	You are standing in front of a massive barrow of stone. In the east face is a huge stone door which is open. You cannot see into the dark of the tomb.
+items	stone door|stone barrow
+exit	NE	to	1	West of House
+endroom
+room	6	12	44	0	231
+name	Behind House
+desc	You are behind the white house. A path leads into the forest to the east. In one corner of the house there is a small window which is open. slightly ajar.
+items	
+exit	NORTH	to	2	North of House
+exit	SOUTH	to	3	South of House
+exit	SW	to	3	South of House
+exit	NW	to	2	North of House
+exit	EAST	to	10	Clearing
+exit	WEST	cond	22	Kitchen
+exit	IN	cond	22	Kitchen
+endroom
+room	7	8	36	0	231
+name	Forest Path
+desc	This is a path winding through a dimly lit forest. The path heads north-south here. One particularly large tree with some low branches stands at the edge of the path.
+items	
+exit	UP	to	12	Up a Tree
+exit	NORTH	to	9	Clearing
+exit	EAST	to	11	Forest
+exit	SOUTH	to	2	North of House
+exit	WEST	to	4	Forest
+endroom
+room	8	24	36	0	231
+name	Forest
+desc	This is a dimly lit forest, with large trees all around.
+items	
+exit	UP	blocked	0	There is no tree here suitable for climbing.
+exit	NORTH	to	10	Clearing
+exit	EAST	blocked	0	The rank undergrowth prevents eastward movement.
+exit	SOUTH	blocked	0	Storm-tossed trees block your way.
+exit	WEST	to	4	Forest
+exit	NW	to	3	South of House
+endroom
+room	9	12	20	0	231
+name	Clearing
+desc	You are in a clearing, with a forest surrounding you on all sides. A path leads south. There is an open grating, descending into darkness. There is a grating securely fastened into the ground.
+items	pile of leaves
+exit	NORTH	blocked	0	The forest becomes impenetrable to the north.
+exit	EAST	to	11	Forest
+exit	WEST	to	4	Forest
+exit	SOUTH	to	7	Forest Path
+exit	DOWN	per	0	
+endroom
+room	10	12	52	0	231
+name	Clearing
+desc	You are in a small clearing in a well marked forest path that extends to the east and west.
+items	
+exit	UP	blocked	0	There is no tree here suitable for climbing.
+exit	EAST	to	13	Canyon View
+exit	NORTH	to	11	Forest
+exit	SOUTH	to	8	Forest
+exit	WEST	to	6	Behind House
+endroom
+room	11	8	44	0	231
+name	Forest
+desc	This is a dimly lit forest, with large trees all around.
+items	
+exit	UP	blocked	0	There is no tree here suitable for climbing.
+exit	NORTH	blocked	0	The forest becomes impenetrable to the north.
+exit	EAST	to	15	Forest
+exit	SOUTH	to	10	Clearing
+exit	WEST	to	7	Forest Path
+endroom
+room	12	4	44	1	196
+name	Up a Tree
+desc	You are about 10 feet above the ground nestled among some large branches. The nearest branch above you is above your reach. On the ground below you can see: .
+items	bird's nest
+exit	DOWN	to	7	Forest Path
+exit	UP	blocked	0	You cannot climb any higher.
+endroom
+room	13	24	44	0	231
+name	Canyon View
+desc	You are at the top of the Great Canyon on its west wall. From here there is a marvelous view of the canyon and parts of the Frigid River upstream. Across the canyon, the walls of the White Cliffs join the mighty ramparts of the Flathead Mountains to the east. Following the Canyon upstream to the north, Aragain Falls may be seen, complete with rainbow. The mighty Frigid River flows out from a great dark cavern. To the west and south can be seen an immense forest, stretching for miles around. A path leads northwest. It is possible to climb down into the canyon from here.
+items	
+exit	EAST	to	16	Rocky Ledge
+exit	DOWN	to	16	Rocky Ledge
+exit	NW	to	10	Clearing
+exit	WEST	to	8	Forest
+exit	SOUTH	blocked	0	Storm-tossed trees block your way.
+endroom
+room	14	16	12	N	240
+name	Grating Room
+desc	You are in a small room near the maze. There are twisty passages in the immediate vicinity. Above you is an open grating with sunlight pouring in. Above you is a grating. Above you is a grating locked with a skull-and-crossbones lock.
+items	
+exit	SW	to	0	Maze
+exit	UP	cond	9	Clearing
+endroom
+room	15	8	52	0	231
+name	Forest
+desc	The forest thins out, revealing impassable mountains.
+items	mountain range
+exit	UP	blocked	0	The mountains are impassable.
+exit	NORTH	to	11	Forest
+exit	EAST	blocked	0	The mountains are impassable.
+exit	SOUTH	to	11	Forest
+exit	WEST	to	11	Forest
+endroom
+room	16	28	36	0	231
+name	Rocky Ledge
+desc	You are on a ledge about halfway up the wall of the river canyon. You can see from here that the main flow from Aragain Falls twists along a passage which it is impossible for you to enter. Below you is the canyon bottom. Above you is more cliff, which appears climbable.
+items	
+exit	UP	to	13	Canyon View
+exit	DOWN	to	17	Canyon Bottom
+endroom
+room	17	32	28	-1	88
+name	Canyon Bottom
+desc	You are beneath the walls of the river canyon which may be climbable here. The lesser part of the runoff of Aragain Falls flows by below. To the north is a narrow path.
+items	
+exit	UP	to	16	Rocky Ledge
+exit	NORTH	to	18	End of Rainbow
+endroom
+room	18	28	28	-1	88
+name	End of Rainbow
+desc	You are on a small, rocky beach on the continuation of the Frigid River past the Falls. The beach is narrow due to the presence of the White Cliffs. The river canyon opens here and sunlight shines in from above. A rainbow crosses over the falls to the east and a narrow path continues to the southwest.
+items	pot of gold
+exit	UP	cond	19	On the Rainbow
+exit	NE	cond	19	On the Rainbow
+exit	EAST	cond	19	On the Rainbow
+exit	SW	to	17	Canyon Bottom
+endroom
+room	19	24	20	0	231
+name	On the Rainbow
+desc	You are on top of a rainbow (I bet you never thought you would walk on a rainbow), with a magnificent view of the Falls. The rainbow travels east-west here.
+items	
+exit	WEST	to	18	End of Rainbow
+exit	EAST	to	20	Aragain Falls
+endroom
+room	20	24	28	0	231
+name	Aragain Falls
+desc	You are at the top of Aragain Falls, an enormous waterfall with a drop of about 450 feet. The only path here is on the north end. A solid rainbow spans the falls. A beautiful rainbow can be seen over the falls and to the west.
+items	
+exit	WEST	cond	19	On the Rainbow
+exit	DOWN	blocked	0	It's a long way...
+exit	NORTH	to	21	Shore
+exit	UP	cond	19	On the Rainbow
+endroom
+room	21	20	28	0	231
+name	Shore
+desc	You are on the east shore of the river. The water here seems somewhat treacherous. A path travels from north to south here, the south end quickly turning around a sharp corner.
+items	
+exit	NORTH	to	90	Sandy Beach
+exit	SOUTH	to	20	Aragain Falls
+endroom
+room	22	16	36	0	231
+name	Kitchen
+desc	You are in the kitchen of the white house. A table seems to have been used recently for the preparation of food. A passage leads to the west and a dark staircase can be seen leading upward. A dark chimney leads down and to the east is a small window which is open. slightly ajar.
+items	kitchen table
+exit	EAST	cond	6	Behind House
+exit	WEST	to	25	Living Room
+exit	OUT	cond	6	Behind House
+exit	UP	to	23	Attic
+exit	DOWN	cond	24	Studio
+endroom
+room	23	12	28	1	196
+name	Attic
+desc	This is the attic. The only exit is a stairway leading down.
+items	table|rope
+exit	DOWN	to	22	Kitchen
+endroom
+room	24	20	44	-1	88
+name	Studio
+desc	This appears to have been an artist's studio. The walls and floors are splattered with paints of 69 different colors. Strangely enough, nothing of value is hanging here. At the south end of the room is an open door (also covered with paint). A dark and narrow chimney leads up from a fireplace; although you might be able to get up it, it seems unlikely you could get back down.
+items	ZORK owner's manual
+exit	SOUTH	to	86	Gallery
+exit	UP	per	0	
+endroom
+room	25	16	44	0	231
+name	Living Room
+desc	You are in the living room. There is a doorway to the east . To the west is a cyclops-shaped opening in an old wooden door, above which is some strange gothic lettering, , a wooden door with strange gothic lettering to the west, which appears to be nailed shut, a trophy case, and a rug lying beside an open trap door. and a closed trap door at your feet. and an open trap door at your feet. and a large oriental rug in the center of the room.
+items	trophy case|carpet|trap door|brass lantern|wooden door|sword
+exit	EAST	to	22	Kitchen
+exit	WEST	cond	26	Strange Passage
+exit	DOWN	per	0	
+endroom
+room	26	16	52	0	231
+name	Strange Passage
+desc	This is a long passage. To the west is one entrance. On the east there is an old wooden door, with a large opening in it (about cyclops sized).
+items	
+exit	WEST	to	27	Cyclops Room
+exit	IN	to	27	Cyclops Room
+exit	EAST	to	25	Living Room
+endroom
+room	27	16	60	0	231
+name	Cyclops Room
+desc	This room has an exit on the northwest, and a staircase leading up. The cyclops is sleeping blissfully at the foot of the stairs. The east wall, previously solid, now has a cyclops-sized opening in it. A cyclops, who looks prepared to eat horses (much less mere adventurers), blocks the staircase. From his state of health, and the bloodstains on the walls, you gather that he is not very friendly, though he likes people. The cyclops is standing in the corner, eyeing you closely. I don't think he likes you very much. He looks extremely hungry, even for a cyclops. The cyclops, having eaten the hot peppers, appears to be gasping. His enflamed tongue protrudes from his man-sized mouth.
+items	cyclops
+exit	NW	to	0	Maze
+exit	EAST	cond	26	Strange Passage
+exit	UP	cond	28	Treasure Room
+endroom
+room	28	12	68	1	196
+name	Treasure Room
+desc	This is a large room, whose east wall is solid granite. A number of discarded bags, which crumble at your touch, are scattered about on the floor. There is an exit down a staircase.
+items	chalice
+exit	DOWN	to	27	Cyclops Room
+endroom
+room	29	20	52	-1	88
+name	Cellar
+desc	You are in a dark and damp cellar with a narrow passageway leading north, and a crawlway to the south. On the west is the bottom of a steep metal ramp which is unclimbable.
+items	
+exit	NORTH	to	61	The Troll Room
+exit	SOUTH	to	30	East of Chasm
+exit	UP	cond	25	Living Room
+exit	WEST	blocked	0	You try to ascend the ramp, but it is impossible, and you slide back down.
+endroom
+room	30	24	52	-1	88
+name	East of Chasm
+desc	You are on the east edge of a chasm, the bottom of which cannot be seen. A narrow passage goes north, and the path you are on continues to the east.
+items	
+exit	NORTH	to	29	Cellar
+exit	EAST	to	86	Gallery
+exit	DOWN	blocked	0	The chasm probably leads straight to the infernal regions.
+endroom
+room	31	24	60	-1	88
+name	Slide Room
+desc	This is a small chamber, which appears to have been part of a coal mine. On the south wall of the chamber the letters "Granite Wall" are etched in the rock. To the east is a long passage, and there is a steep metal slide twisting downward. To the north is a small opening.
+items	
+exit	EAST	to	32	Cold Passage
+exit	NORTH	to	33	Mine Entrance
+exit	DOWN	to	29	Cellar
+endroom
+room	32	24	68	-1	88
+name	Cold Passage
+desc	This is a cold and damp corridor where a long east-west passageway turns into a southward path.
+items	
+exit	SOUTH	to	34	Mirror Room
+exit	WEST	to	31	Slide Room
+endroom
+room	33	20	60	-1	88
+name	Mine Entrance
+desc	You are standing at the entrance of what might have been a coal mine. The shaft enters the west wall, and there is another exit on the south end of the room.
+items	
+exit	SOUTH	to	31	Slide Room
+exit	IN	to	35	Squeaky Room
+exit	WEST	to	35	Squeaky Room
+endroom
+room	34	28	68	-1	88
+name	Mirror Room
+desc	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room. Unfortunately, the mirror has been destroyed by your recklessness.
+items	mirror
+exit	NORTH	to	32	Cold Passage
+exit	WEST	to	36	Twisting Passage
+exit	EAST	to	37	Cave
+endroom
+room	35	20	68	-1	88
+name	Squeaky Room
+desc	You are in a small room. Strange squeaky sounds may be heard coming from the passage at the north end. You may also escape to the east.
+items	
+exit	NORTH	to	38	Bat Room
+exit	EAST	to	33	Mine Entrance
+endroom
+room	36	28	60	-1	88
+name	Twisting Passage
+desc	This is a winding passage. It seems that there are only exits on the east and north.
+items	
+exit	NORTH	to	34	Mirror Room
+exit	EAST	to	37	Cave
+endroom
+room	37	28	76	-1	88
+name	Cave
+desc	This is a tiny cave with entrances west and north, and a staircase leading down.
+items	
+exit	NORTH	to	34	Mirror Room
+exit	DOWN	to	39	Atlantis Room
+exit	SOUTH	to	39	Atlantis Room
+exit	WEST	to	36	Twisting Passage
+endroom
+room	38	16	68	-1	88
+name	Bat Room
+desc	You are in a small room which has doors only to the east and south.
+items	bat|jade figurine
+exit	SOUTH	to	35	Squeaky Room
+exit	EAST	to	40	Shaft Room
+endroom
+room	39	32	68	-2	130
+name	Atlantis Room
+desc	This is an ancient room, long under water. There is an exit to the south and a staircase leading up.
+items	crystal trident
+exit	UP	to	37	Cave
+exit	SOUTH	to	41	Reservoir North
+endroom
+room	40	16	76	-1	88
+name	Shaft Room
+desc	This is a large room, in the middle of which is a small shaft descending through the floor into darkness below. To the west and the north are exits from this room. Constructed over the top of the shaft is a metal framework to which a heavy iron chain is attached.
+items	basket
+exit	DOWN	blocked	0	You wouldn't fit and would die if you could.
+exit	WEST	to	38	Bat Room
+exit	NORTH	to	42	Smelly Room
+endroom
+room	41	36	68	-2	130
+name	Reservoir North
+desc	You are in a large cavernous room, the south of which was formerly a lake. However, with the water level lowered, there is merely a wide stream running through there. You are in a large cavernous area. To the south is a wide lake, whose water level appears to be falling rapidly. You are in a cavernous area, to the south of which is a very wide stream. The level of the stream is rising rapidly, and it appears that before long it will be impossible to cross to the other side. You are in a large cavernous room, north of a large lake. There is a slimy stairway leaving the room to the north.
+items	hand-held air pump
+exit	NORTH	to	39	Atlantis Room
+exit	SOUTH	cond	43	Reservoir
+endroom
+room	42	12	76	-1	88
+name	Smelly Room
+desc	This is a small nondescript room. However, from the direction of a small descending staircase a foul odor can be detected. To the south is a narrow tunnel.
+items	
+exit	DOWN	to	44	Gas Room
+exit	SOUTH	to	40	Shaft Room
+endroom
+room	43	40	68	-2	130
+name	Reservoir
+desc	You are on what used to be a large lake, but which is now a large mud pile. There are "shores" to the north and south. You are on the lake. Beaches can be seen north and south. Upstream a small stream enters the lake through a narrow cleft in the rocks. The dam can be seen downstream.
+items	trunk of jewels
+exit	NORTH	to	41	Reservoir North
+exit	SOUTH	to	45	Reservoir South
+exit	UP	to	46	Stream
+exit	WEST	to	46	Stream
+exit	DOWN	blocked	0	The dam blocks your way.
+endroom
+room	44	16	84	-2	130
+name	Gas Room
+desc	This is a small room which smells strongly of coal gas. There is a short climb up some stairs and a narrow tunnel leading east.
+items	sapphire-encrusted bracelet
+exit	UP	to	42	Smelly Room
+exit	EAST	to	47	Coal Mine
+endroom
+room	45	44	68	-2	130
+name	Reservoir South
+desc	You are in a long room, to the north of which was formerly a lake. However, with the water level lowered, there is merely a wide stream running through the center of the room. You are in a long room. To the north is a large lake, too deep to cross. You notice, however, that the water level appears to be dropping at a rapid rate. Before long, it might be possible to cross to the other side from here. You are in a long room, to the north of which is a wide area which was formerly a reservoir, but now is merely a stream. You notice, however, that the level of the stream is rising quickly and that before long it will be impossible to cross here. You are in a long room on the south shore of a large lake, far too deep and wide for crossing. There is a path along the stream to the east or west, a steep pathway climbing southwest along the edge of a chasm, and a path leading into a canyon to the southeast.
+items	
+exit	SE	to	48	Deep Canyon
+exit	SW	to	49	Chasm
+exit	EAST	to	50	Dam
+exit	WEST	to	51	Stream View
+exit	NORTH	cond	43	Reservoir
+endroom
+room	46	36	76	-1	88
+name	Stream
+desc	You are on the gently flowing stream. The upstream route is too narrow to navigate, and the downstream route is invisible due to twisting walls. There is a narrow beach to land on.
+items	
+exit	UP	blocked	0	The channel is too narrow.
+exit	WEST	blocked	0	The channel is too narrow.
+exit	LAND	to	51	Stream View
+exit	DOWN	to	43	Reservoir
+exit	EAST	to	43	Reservoir
+endroom
+room	47	16	92	-2	130
+name	Coal Mine
+desc	This is a nondescript part of a coal mine.
+items	
+exit	NORTH	to	44	Gas Room
+exit	EAST	to	47	Coal Mine
+exit	NE	to	52	Coal Mine
+endroom
+room	48	48	76	0	231
+name	Deep Canyon
+desc	You are on the south edge of a deep canyon. Passages lead off to the east, northwest and southwest. A stairway leads down. You can hear a loud roaring sound, like that of rushing water, from below. You can hear the sound of flowing water from below.
+items	
+exit	NW	to	45	Reservoir South
+exit	EAST	to	50	Dam
+exit	SW	to	53	North-South Passage
+exit	DOWN	to	54	Loud Room
+endroom
+room	49	48	60	-2	130
+name	Chasm
+desc	A chasm runs southwest to northeast and the path follows it. You are on the south side of the chasm, where a crack opens into a passage.
+items	
+exit	NE	to	45	Reservoir South
+exit	SW	to	55	East-West Passage
+exit	UP	to	55	East-West Passage
+exit	SOUTH	to	53	North-South Passage
+exit	DOWN	blocked	0	Are you out of your mind?
+endroom
+room	50	44	76	-2	130
+name	Dam
+desc	You are standing on the top of the Flood Control Dam #3, which was quite a tourist attraction in times far distant. There are paths to the north, south, and west, and a scramble down. The water level behind the dam is low: The sluice gates have been opened. Water rushes through the dam and downstream. The sluice gates are open, and water rushes through the dam. The water level behind the dam is still high. The sluice gates are closed. The water level in the reservoir is quite low, but the level is rising quickly. The sluice gates on the dam are closed. Behind the dam, there can be seen a wide reservoir. Water is pouring over the top of the now abandoned dam. There is a control panel here, on which a large metal bolt is mounted. Directly above the bolt is a small green plastic bubble which is glowing serenely .
+items	bolt|green bubble|dam|control panel
+exit	SOUTH	to	48	Deep Canyon
+exit	DOWN	to	56	Dam Base
+exit	EAST	to	56	Dam Base
+exit	NORTH	to	57	Dam Lobby
+exit	WEST	to	45	Reservoir South
+endroom
+room	51	44	60	-2	130
+name	Stream View
+desc	You are standing on a path beside a gently flowing stream. The path follows the stream, which flows from west to east.
+items	
+exit	EAST	to	45	Reservoir South
+exit	WEST	blocked	0	The stream emerges from a spot too small for you to enter.
+endroom
+room	52	12	100	-2	130
+name	Coal Mine
+desc	This is a nondescript part of a coal mine.
+items	
+exit	NORTH	to	52	Coal Mine
+exit	SOUTH	to	47	Coal Mine
+exit	SE	to	58	Coal Mine
+endroom
+room	53	52	68	-1	88
+name	North-South Passage
+desc	This is a high north-south passage, which forks to the northeast.
+items	
+exit	NORTH	to	49	Chasm
+exit	NE	to	48	Deep Canyon
+exit	SOUTH	to	59	Round Room
+endroom
+room	54	52	84	-1	88
+name	Loud Room
+desc	This is a large room with a ceiling which cannot be detected from the ground. There is a narrow passage from east to west and a stone stairway leading upward. The room is eerie in its quietness. The room is deafeningly loud with an undetermined rushing sound. The sound seems to reverberate from all of the walls, making it difficult even to think.
+items	platinum bar
+exit	EAST	to	60	Damp Cave
+exit	WEST	to	59	Round Room
+exit	UP	to	48	Deep Canyon
+endroom
+room	55	52	52	-1	88
+name	East-West Passage
+desc	This is a narrow east-west passageway. There is a narrow stairway leading down at the north end of the room.
+items	
+exit	EAST	to	59	Round Room
+exit	WEST	to	61	The Troll Room
+exit	DOWN	to	49	Chasm
+exit	NORTH	to	49	Chasm
+endroom
+room	56	48	68	-3	100
+name	Dam Base
+desc	You are at the base of Flood Control Dam #3, which looms above you and to the north. The river Frigid is flowing by here. Along the river are the White Cliffs which seem to form giant walls stretching from north to south along the shores of the river as it winds its way downstream.
+items	pile of plastic
+exit	NORTH	to	50	Dam
+exit	UP	to	50	Dam
+endroom
+room	57	40	76	-2	130
+name	Dam Lobby
+desc	This room appears to have been the waiting room for groups touring the dam. There are open doorways here to the north and east marked "Private", and there is a path leading south over the top of the dam.
+items	matchbook|tour guidebook
+exit	SOUTH	to	50	Dam
+exit	NORTH	to	62	Maintenance Room
+exit	EAST	to	62	Maintenance Room
+endroom
+room	58	16	108	-2	130
+name	Coal Mine
+desc	This is a nondescript part of a coal mine.
+items	
+exit	SOUTH	to	58	Coal Mine
+exit	SW	to	63	Coal Mine
+exit	EAST	to	52	Coal Mine
+endroom
+room	59	56	68	-1	88
+name	Round Room
+desc	This is a circular stone room with passages in all directions. Several of them have unfortunately been blocked by cave-ins.
+items	thief
+exit	EAST	to	54	Loud Room
+exit	WEST	to	55	East-West Passage
+exit	NORTH	to	53	North-South Passage
+exit	SOUTH	to	64	Narrow Passage
+exit	SE	to	65	Engravings Cave
+endroom
+room	60	52	92	-1	88
+name	Damp Cave
+desc	This cave has exits to the west and east, and narrows to a crack toward the south. The earth is particularly damp here.
+items	
+exit	WEST	to	54	Loud Room
+exit	EAST	to	66	White Cliffs Beach
+exit	SOUTH	blocked	0	It is too narrow for most insects.
+endroom
+room	61	52	44	-1	88
+name	The Troll Room
+desc	This is a small room with passages to the east and south and a forbidding hole leading west. Bloodstains and deep scratches (perhaps made by an axe) mar the walls.
+items	troll
+exit	SOUTH	to	29	Cellar
+exit	EAST	cond	55	East-West Passage
+exit	WEST	cond	0	Maze
+endroom
+room	62	40	84	-2	130
+name	Maintenance Room
+desc	This is what appears to have been the maintenance room for Flood Control Dam #3. Apparently, this room has been ransacked recently, for most of the valuable equipment is gone. On the wall in front of you is a group of buttons colored blue, yellow, brown, and red. There are doorways to the west and south.
+items	group of tool chests|yellow button|brown button|red button|blue button|leak|screwdriver|tube|wrench
+exit	SOUTH	to	57	Dam Lobby
+exit	WEST	to	57	Dam Lobby
+endroom
+room	63	20	100	-2	130
+name	Coal Mine
+desc	This is a nondescript part of a coal mine.
+items	
+exit	NORTH	to	58	Coal Mine
+exit	WEST	to	63	Coal Mine
+exit	DOWN	to	67	Ladder Top
+endroom
+room	64	60	68	-1	88
+name	Narrow Passage
+desc	This is a long and narrow corridor where a long north-south passageway briefly narrows even further.
+items	
+exit	NORTH	to	59	Round Room
+exit	SOUTH	to	68	Mirror Room
+endroom
+room	65	60	76	-1	88
+name	Engravings Cave
+desc	You have entered a low cave with passages leading northwest and east.
+items	wall with engravings
+exit	NW	to	59	Round Room
+exit	EAST	to	69	Dome Room
+endroom
+room	66	52	100	-1	88
+name	White Cliffs Beach
+desc	You are on a narrow strip of beach which runs along the base of the White Cliffs. There is a narrow path heading south along the Cliffs and a tight passage leading west into the cliffs themselves.
+items	
+exit	SOUTH	cond	70	White Cliffs Beach
+exit	WEST	cond	60	Damp Cave
+endroom
+room	67	24	92	-3	100
+name	Ladder Top
+desc	This is a very small room. In the corner is a rickety wooden ladder, leading downward. It might be safe to descend. There is also a staircase leading upward.
+items	
+exit	DOWN	to	71	Ladder Bottom
+exit	UP	to	63	Coal Mine
+endroom
+room	68	64	68	-1	88
+name	Mirror Room
+desc	You are in a large square room with tall ceilings. On the south wall is an enormous mirror which fills the entire wall. There are exits on the other three sides of the room. Unfortunately, the mirror has been destroyed by your recklessness.
+items	mirror
+exit	WEST	to	72	Winding Passage
+exit	NORTH	to	64	Narrow Passage
+exit	EAST	to	73	Cave
+endroom
+room	69	60	84	-1	88
+name	Dome Room
+desc	You are at the periphery of a large dome, which forms the ceiling of another room below. Protecting you from a precipitous drop is a wooden railing which circles the dome. Hanging down from the railing is a rope which ends about ten feet from the floor below.
+items	wooden railing
+exit	WEST	to	65	Engravings Cave
+exit	DOWN	cond	74	Torch Room
+endroom
+room	70	56	100	-1	88
+name	White Cliffs Beach
+desc	You are on a rocky, narrow strip of beach beside the Cliffs. A narrow path leads north along the shore.
+items	
+exit	NORTH	cond	66	White Cliffs Beach
+endroom
+room	71	28	84	-4	22
+name	Ladder Bottom
+desc	This is a rather wide room. On one side is the bottom of a narrow wooden ladder. To the west and the south are passages leaving the room.
+items	
+exit	SOUTH	to	76	Dead End
+exit	WEST	to	77	Timber Room
+exit	UP	to	67	Ladder Top
+endroom
+room	72	64	60	-1	88
+name	Winding Passage
+desc	This is a winding passage. It seems that there are only exits on the east and north.
+items	
+exit	NORTH	to	68	Mirror Room
+exit	EAST	to	73	Cave
+endroom
+room	73	64	76	-1	88
+name	Cave
+desc	This is a tiny cave with entrances west and north, and a dark, forbidding staircase leading down.
+items	
+exit	NORTH	to	68	Mirror Room
+exit	WEST	to	72	Winding Passage
+exit	DOWN	to	78	Entrance to Hades
+endroom
+room	74	64	92	-2	130
+name	Torch Room
+desc	This is a large room with a prominent doorway leading to a down staircase. Above you is a large dome. Up around the edge of the dome (20 feet up) is a wooden railing. In the center of the room sits a white marble pedestal. A piece of rope descends from the railing above, ending some five feet above your head.
+items	pedestal
+exit	UP	blocked	0	You cannot reach the rope.
+exit	SOUTH	to	80	Temple
+exit	DOWN	to	80	Temple
+endroom
+room	75	56	92	N	240
+name	Frigid River
+desc	The river is running faster here and the sound ahead appears to be that of rushing water. On the east shore is a sandy beach. A small area of beach can also be seen below the cliffs on the west shore.
+items	red buoy
+exit	UP	blocked	0	You cannot go upstream due to strong currents.
+exit	DOWN	to	81	Frigid River
+exit	LAND	blocked	0	You can land either to the east or the west.
+exit	WEST	to	70	White Cliffs Beach
+exit	EAST	to	90	Sandy Beach
+endroom
+room	76	32	84	-4	22
+name	Dead End
+desc	You have come to a dead end in the mine.
+items	small pile of coal
+exit	NORTH	to	71	Ladder Bottom
+endroom
+room	77	28	92	-4	22
+name	Timber Room
+desc	This is a long and narrow passage, which is cluttered with broken timbers. A wide passage comes from the east and turns at the west end of the room into a very narrow passageway. From the west comes a strong draft.
+items	broken timber
+exit	EAST	to	71	Ladder Bottom
+exit	WEST	cond	82	Drafty Room
+endroom
+room	78	68	68	-2	130
+name	Entrance to Hades
+desc	You are outside a large gateway, on which is inscribed Abandon every hope all ye who enter here! The gate is open; through it you can see a desolation, with a pile of mangled bodies in one corner. Thousands of voices, lamenting some hideous fate, can be heard. The way through the gate is barred by evil spirits, who jeer at your attempts to pass.
+items	number of ghosts
+exit	UP	to	73	Cave
+exit	IN	cond	83	Land of the Dead
+exit	SOUTH	cond	83	Land of the Dead
+endroom
+room	79	68	84	-2	130
+name	Altar
+desc	This is the south end of a large temple. In front of you is what appears to be an altar. In one corner is a small hole in the floor which leads into darkness. You probably could not get back up it.
+items	altar|pair of candles
+exit	NORTH	to	80	Temple
+exit	DOWN	cond	73	Cave
+endroom
+room	80	68	92	-2	130
+name	Temple
+desc	This is the north end of a large temple. On the east wall is an ancient inscription, probably a prayer in a long-forgotten language. Below the prayer is a staircase leading down. The west wall is solid granite. The exit to the north end of the room is through huge marble pillars.
+items	brass bell|prayer
+exit	DOWN	to	84	Egyptian Room
+exit	EAST	to	84	Egyptian Room
+exit	NORTH	to	74	Torch Room
+exit	OUT	to	74	Torch Room
+exit	UP	to	74	Torch Room
+exit	SOUTH	to	79	Altar
+endroom
+room	81	60	100	N	240
+name	Frigid River
+desc	The sound of rushing water is nearly unbearable here. On the east shore is a large landing area.
+items	
+exit	UP	blocked	0	You cannot go upstream due to strong currents.
+exit	EAST	to	21	Shore
+exit	LAND	to	21	Shore
+endroom
+room	82	28	100	-4	22
+name	Drafty Room
+desc	This is a small drafty room in which is the bottom of a long shaft. To the south is a passageway and to the east a very narrow passage. In the shaft can be seen a heavy iron chain.
+items	basket
+exit	SOUTH	to	85	Machine Room
+exit	OUT	cond	77	Timber Room
+exit	EAST	cond	77	Timber Room
+endroom
+room	83	72	68	-2	130
+name	Land of the Dead
+desc	You have entered the Land of the Living Dead. Thousands of lost souls can be heard weeping and moaning. In the corner are stacked the remains of dozens of previous adventurers less fortunate than yourself. A passage exits to the north.
+items	crystal skull
+exit	OUT	to	78	Entrance to Hades
+exit	NORTH	to	78	Entrance to Hades
+endroom
+room	84	72	84	-3	100
+name	Egyptian Room
+desc	This is a room which looks like an Egyptian tomb. There is an ascending staircase to the west.
+items	gold coffin
+exit	WEST	to	80	Temple
+exit	UP	to	80	Temple
+endroom
+room	85	32	100	-4	22
+name	Machine Room
+desc	This is a large, cold room whose sole exit is to the north. In one corner there is a machine which is reminiscent of a clothes dryer. On its face is a switch which is labelled "START". The switch does not appear to be manipulable by any human hand (unless the fingers are about 1/16 by 1/4 inch). On the front of the machine is a large lid, which is open. closed.
+items	machine|switch
+exit	NORTH	to	82	Drafty Room
+endroom
+room	86	28	44	-1	88
+name	Gallery
+desc	This is an art gallery. Most of the paintings have been stolen by vandals with exceptional taste. The vandals left through either the north or west exits.
+items	painting
+exit	WEST	to	30	East of Chasm
+exit	NORTH	to	24	Studio
+endroom
+room	87	52	60	N	240
+name	Frigid River
+desc	You are on the Frigid River in the vicinity of the Dam. The river flows quietly here. There is a landing on the west shore.
+items	
+exit	UP	blocked	0	You cannot go upstream due to strong currents.
+exit	WEST	to	56	Dam Base
+exit	LAND	to	56	Dam Base
+exit	DOWN	to	88	Frigid River
+exit	EAST	blocked	0	The White Cliffs prevent your landing here.
+endroom
+room	88	56	52	N	240
+name	Frigid River
+desc	The river turns a corner here making it impossible to see the Dam. The White Cliffs loom on the east bank and large rocks prevent landing on the west.
+items	
+exit	UP	blocked	0	You cannot go upstream due to strong currents.
+exit	DOWN	to	89	Frigid River
+exit	LAND	blocked	0	There is no safe landing spot here.
+exit	EAST	blocked	0	The White Cliffs prevent your landing here.
+exit	WEST	blocked	0	Just in time you steer away from the rocks.
+endroom
+room	89	60	44	N	240
+name	Frigid River
+desc	The river descends here into a valley. There is a narrow beach on the west shore below the cliffs. In the distance a faint rumbling can be heard.
+items	
+exit	UP	blocked	0	You cannot go upstream due to strong currents.
+exit	DOWN	to	75	Frigid River
+exit	LAND	to	66	White Cliffs Beach
+exit	WEST	to	66	White Cliffs Beach
+endroom
+room	90	12	12	0	231
+name	Sandy Beach
+desc	You are on a large sandy beach on the east shore of the river, which is flowing quickly by. A path runs beside the river to the south here, and a passage is partially buried in sand to the northeast.
+items	shovel
+exit	NE	to	91	Sandy Cave
+exit	SOUTH	to	21	Shore
+endroom
+room	91	8	20	0	231
+name	Sandy Cave
+desc	This is a sand-filled cave whose exit is to the southwest.
+items	sand|beautiful jeweled scarab
+exit	SW	to	90	Sandy Beach
+endroom
+levels	6
+level	1	196	3	up 1: red
+level	0	231	24	ground level (start)
+level	-1	88	31	down 1: dark red
+level	-2	130	19	down 2: dark orange
+level	-3	100	3	down 3: dark yellow
+level	-4	22	5	down 4: dark green

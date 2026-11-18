@@ -52,3 +52,9 @@ def write_descriptions(rooms: Dict[str, Room], rts: Dict[str, Form], path: str, 
             t = room_text(r, rts); n_empty += (not t)
             fh.write("%s\n%s\n\n" % (r.desc or r.name.title(), t or "(no fixed description in the source: the game builds this room's text in a routine)"))
     return n_empty
+
+
+def fill(rooms: Dict[str, Room], rts: Dict[str, Form]):
+    """give every room its description: LDESC, else the M-LOOK text of its ACTION routine (stored back in room.ldesc)"""
+    for r in rooms.values():
+        if not clean(r.ldesc): r.ldesc = room_text(r, rts)

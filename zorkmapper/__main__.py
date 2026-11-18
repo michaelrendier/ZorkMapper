@@ -27,6 +27,10 @@ def main(argv=None):
         for f in sorted(glob.glob(os.path.join(a.source, "*.zil"))): rts.update(describe.routines(open(f, errors="replace").read()))
         empty = describe.write_descriptions(rooms, rts, a.descriptions, os.path.basename(os.path.normpath(a.source)).title())
         print("wrote %s: %d rooms, %d without a fixed description" % (a.descriptions, len(rooms), empty))
+    from . import describe as _d
+    _rts = {}
+    for f in sorted(glob.glob(os.path.join(a.source, "*.zil"))): _rts.update(_d.routines(open(f, errors="replace").read()))
+    _d.fill(rooms, _rts)
     game = os.path.basename(os.path.normpath(a.source)); a.start = a.start or STARTS.get(game, "WEST-OF-HOUSE"); pat = a.exclude or PROFILES.get(game, "")
     if a.sheet:
         ex = {n for n, r in rooms.items() if pat and (re.search(pat[5:], r.desc) if pat.startswith("DESC:") else re.search(pat, n))}
@@ -37,7 +41,7 @@ def main(argv=None):
             from . import asciiart
             t = "%s: graph-paper map as text, a square is two characters wide" % game.title()
             from . import mapfile
-            mf = mapfile.build(rooms, objs, sh, game, t, a.start); mf["left_out"] = sorted(rooms[n].desc or n for n in ex); mapfile.save(a.ascii + ".map.json", mf)
+            mf = mapfile.build(rooms, objs, sh, game, t, a.start); mf["left_out"] = sorted(rooms[n].desc or n for n in ex); mapfile.save(a.ascii + ".map.json", mf); mapfile.save_zmap(a.ascii + ".zmap", mf)
             open(a.ascii + ".txt", "w").write(asciiart.render(rooms, sh, t, a.start, False)); open(a.ascii + ".ans", "w").write(asciiart.render(rooms, sh, t, a.start, True)); print("wrote", a.ascii + ".txt/.ans")
         if a.svg: open(a.svg, "w").write(sheetsvg.render(rooms, sh, "%s: rooms on a graph-paper lattice (3x3 per room)" % game.title())); print("wrote", a.svg)
         return

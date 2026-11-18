@@ -1,0 +1,652 @@
+ZMAP 1
+title	Zork2: graph-paper map as text, a square is two characters wide
+start	1
+game	zork2
+canvas	65	106
+                                                                                                          
+                                                                                                          
+                                                                                                          
+                                                                                                          
+                                                                            52                            
+                                                                                                          
+                                                                                                          
+                                                                                                          
+                                                                    66      73      51  ⁵²                
+                                                                                                          
+                                                        ⁶³                      Ma  ||                    
+                                                                                                          
+                                                            68  ==  67      49  ==  50      60  ⁶¹        
+                                                                                                          
+                                                                                        ?N  ?N  ?N        
+                                                                                                          
+                                                            71  ==  70      58      01  ?W  63  ?E        
+                                                                                                          
+                                                                                    ||  ?S  ?S  ?S        
+                                                                                                          
+                                                                    72      59      02  ⁶³  64            
+                                                                                                          
+                                                                                    ||      ||            
+                                                                                                          
+                                            44  ³⁷                  36  ⁷⁵  74      03      65            
+                                                                                                          
+                            ⁴²              ^^                      ||              ||                    
+                                                                                                          
+                ?W  45  <=  41      42      40  ⁴⁵  33  ²⁷  48  ²⁶  31  ⁷⁶  75      04                    
+                                                                                                          
+                    ||          \\  vv  //          ||  ⁴⁸      U/              //                        
+                                                                                                          
+                    46  ⁵⁴  61  ⁶²  37  ==  32  ==  27  ⁴⁸  26  ⁷⁷  76      05                            
+                                                                                                          
+                            ²⁸      ⁶¹              ||      ||              ||                            
+                                                                                                          
+            57  =>  55  =>  54      62              19      18      77      06                            
+                                                                                                          
+                    ||                              ||      ||          //      \\                        
+                                                                                                          
+                    56              28  ==  20  ==  13      11  ==  08  ⁰⁹  47  ⁰⁷  07  ⁴⁷                
+                                                                                                          
+                                    ⁵⁴      ²⁵          \\  ||  //                  ||                    
+                                                                                                          
+                                    30  ==  25  ²⁰  17  ==  10  ¹²  69  ²¹      ⁰⁸  09                    
+                                                                                                          
+                                                U\      //  ||  \\                  ||                    
+                                                                                                          
+                                                    16      15      14  ==  21  ¹⁰  12                    
+                                                                                                          
+                                                //      //  ||              ⁶⁹                            
+                                                                                                          
+                    53  ³⁹                  24      23      22                                            
+                                                                                                          
+                                            ||          Ma                                                
+                                                                                                          
+                        ⁵³  39  ==  35  ==  29                                                            
+                                                                                                          
+                            ||      ||      ||                                                            
+                                                                                                          
+                            43      38      34                                                            
+                                                                                                          
+                                                                                                          
+                                                                                                          
+                                                                                                          
+rooms	77
+room	1	16	84	0	231
+name	Inside the Barrow
+desc	You are inside an ancient barrow hidden deep within a dark forest. The barrow opens into a narrow tunnel at its southern end. You can see a faint glow at the far end.
+items	lamp|elvish sword
+exit	SOUTH	to	2	Narrow Tunnel
+exit	OUT	blocked	0	You may not recall, but when you entered, the door of the barrow shut behind you. There is no way out.
+endroom
+room	2	20	84	0	231
+name	Narrow Tunnel
+desc	You are standing at the southern end of a narrow tunnel where it opens into a wide cavern. The cavern is dimly illuminated by phosphorescent mosses clinging to its high ceiling. A deep ravine winds through the cavern, with a small stream at the bottom. The walls of the ravine are steep and crumbly. A foot bridge crosses the ravine to the south.
+items	
+exit	NORTH	to	1	Inside the Barrow
+exit	SOUTH	to	3	Foot Bridge
+exit	CROSS	to	3	Foot Bridge
+exit	DOWN	blocked	0	As you start down, you slip on the crumbling rocks and pull back, narrowly averting a fatal fall.
+endroom
+room	3	24	84	0	231
+name	Foot Bridge
+desc	You are standing on a crude but sturdy wooden foot bridge crossing a deep ravine. The path runs north and south from here.
+items	
+exit	NORTH	to	2	Narrow Tunnel
+exit	SOUTH	to	4	Great Cavern
+exit	DOWN	blocked	0	The drop would be fatal.
+exit	CROSS	blocked	0	You'll have to specify a direction.
+endroom
+room	4	28	84	0	231
+name	Great Cavern
+desc	This is the center of the great cavern, carved out of the limestone. Stalactites and stalagmites of many sizes are everywhere. The room glows with dim light provided by phosphorescent moss, and weird shadows move all around you. A narrow path winds southwest among the stalagmites, and another leads northeast.
+items	
+exit	NE	to	3	Foot Bridge
+exit	SW	to	5	Shallow Ford
+endroom
+room	5	32	76	0	231
+name	Shallow Ford
+desc	You are at the southern edge of a great cavern. To the south across a shallow ford is a dark tunnel which looks like it was once enlarged and smoothed. To the north a narrow path winds among stalagmites. Dim light illuminates the cavern.
+items	
+exit	NORTH	to	4	Great Cavern
+exit	SOUTH	to	6	Dark Tunnel
+exit	CROSS	to	6	Dark Tunnel
+endroom
+room	6	36	76	0	231
+name	Dark Tunnel
+desc	This is a dark tunnel with dim light to the northeast. The tunnel is smooth but dusty and filled with twigs and leaves, debris which becomes deeper as the tunnel branches into a wide corridor leading southwest and a narrower one leading southeast.
+items	
+exit	NE	to	5	Shallow Ford
+exit	SE	to	7	North End of Garden
+exit	SW	to	8	Path Near Stream
+endroom
+room	7	40	84	0	231
+name	North End of Garden
+desc	This is the northern end of a formal garden. Hedges hide the cavern walls, and if you don't look up, the illusion is of a cloudy day outside. The light comes from a large growth of glowing mosses on the roof of the cave. A break in the hedge is almost overgrown to the north. A carefully manicured path leads south. In the center of a rosebed is a small open structure, painted white. It appears to be a gazebo.
+items	
+exit	IN	to	47	Gazebo
+exit	NORTH	to	6	Dark Tunnel
+exit	SOUTH	to	9	Formal Garden
+endroom
+room	8	40	68	0	231
+name	Path Near Stream
+desc	The path follows the south edge of a deep ravine and heads northeast. A tunnel heads southwest, narrowing to a rather tight crawl. A faint whirring sound can be heard in that direction. On the east is a ruined archway choked with vegetation.
+items	
+exit	EAST	to	9	Formal Garden
+exit	NE	to	6	Dark Tunnel
+exit	SW	to	10	Carousel Room
+exit	WEST	cond	11	Marble Hall
+exit	DOWN	blocked	0	The ravine is extremely deep. You would never make it.
+endroom
+room	9	44	84	0	231
+name	Formal Garden
+desc	This is the middle part of a formal garden. Hedges hide the cavern walls and a dim illumination comes from mosses far above. The path is of small crushed white stones. It winds among bushes and flower beds from south to north. To the north a small structure can be seen. To the south are peculiarly shaped bushes. There is a small gap in the hedges to the west.
+items	
+exit	WEST	to	8	Path Near Stream
+exit	NORTH	to	7	North End of Garden
+exit	SOUTH	to	12	Topiary
+endroom
+room	10	44	60	0	231
+name	Carousel Room
+desc	You are in a large circular room whose high ceiling is lost in gloom. Eight identical passages leave the room. A loud whirring sound comes from all around, and you feel sort of disoriented in here.
+items	steel box
+exit	NORTH	to	11	Marble Hall
+exit	NE	to	8	Path Near Stream
+exit	EAST	to	12	Topiary
+exit	SE	to	14	Riddle Room
+exit	SOUTH	to	15	Menhir Room
+exit	SW	to	16	Cobwebby Corridor
+exit	WEST	to	17	Room 8
+exit	NW	to	13	Cool Room
+endroom
+room	11	40	60	0	231
+name	Marble Hall
+desc	This is an arched hall of fine marble. The hall stops abruptly to the north at a ford across a stream, where the marble is cracked and broken. Perhaps a flood or collapse of the cave was responsible. To the south the hall opens into a large room. There is rather annoying whirring sound coming from that room.
+items	brick
+exit	EAST	cond	8	Path Near Stream
+exit	NORTH	to	18	Deep Ford
+exit	SOUTH	to	10	Carousel Room
+endroom
+room	12	48	84	0	231
+name	Topiary
+desc	This is the southern end of a formal garden. Hedges hide the cavern walls and mosses provide dim illumination. Fantastically shaped hedges and bushes are arrayed with geometric precision. They have not recently been clipped, but you can discern creatures in the shapes of the bushes: There is a dragon, a unicorn, a great serpent, a huge misshapen dog, and several human figures. On the west side of the garden the path leads through a rose arbor into a tunnel.
+items	hedge
+exit	WEST	to	10	Carousel Room
+exit	NORTH	to	9	Formal Garden
+endroom
+room	13	40	52	0	231
+name	Cool Room
+desc	The room is cool and damp. The air is misty. A twisty path from the southeast splits here toward a wide northerly stone bridge, and a narrow westerly tunnel. It is from the latter that the mist and chill seem to originate.
+items	
+exit	SE	to	10	Carousel Room
+exit	NORTH	to	19	Stone Bridge
+exit	WEST	to	20	Ice Room
+exit	CROSS	to	19	Stone Bridge
+endroom
+room	14	48	68	0	231
+name	Riddle Room
+desc	This is a room which is bare on all sides. There is an exit down in the northwest corner of the room. To the east is a great open closed door made of stone. Above the stone, the following words are written: "No man shall pass this door without solving this riddle: What is tall as a house, round as a cup, and all the king's horses can't draw it up?"
+items	stone door
+exit	DOWN	to	10	Carousel Room
+exit	NW	to	10	Carousel Room
+exit	EAST	cond	21	Pearl Room
+endroom
+room	15	48	60	0	231
+name	Menhir Room
+desc	This is a large room which was evidently used once as a quarry. Many large limestone chunks lie helter-skelter around the room. Some are rough-hewn and unworked, others smooth and well-finished. One side of the room appears to have been used to quarry building blocks, the other to produce menhirs (standing stones). Obvious passages lead north and south.
+items	
+exit	NORTH	to	10	Carousel Room
+exit	SW	cond	23	Kennel
+exit	SOUTH	to	22	Stairway
+endroom
+room	16	48	52	0	231
+name	Cobwebby Corridor
+desc	A winding corridor is filled with cobwebs. Some are broken and the dust on the floor is disturbed. The trend of the twists and turns is northeast to southwest. On the north side of one twist, high up, is a narrow crack.
+items	black string
+exit	IN	to	25	Lava Tube
+exit	UP	to	25	Lava Tube
+exit	NORTH	to	25	Lava Tube
+exit	NE	to	10	Carousel Room
+exit	SW	to	24	Guarded Room
+exit	DOWN	to	24	Guarded Room
+endroom
+room	17	44	52	0	231
+name	Room 8
+desc	This is a small chamber carved out of the rock at the end of a short crawl. On the wall is crudely chiseled the number "8".
+items	Frobozz Magic Grue Repellent
+exit	EAST	to	10	Carousel Room
+endroom
+room	18	36	60	0	231
+name	Deep Ford
+desc	You are fording the stream at a deep but not impossible spot. The water is very cold. The walls of the ravine rise to east and west. There is a small ledge along the north wall of the ravine. To the south is the entrance to a well-constructed but somewhat ruined hall.
+items	
+exit	NORTH	to	26	Ledge in Ravine
+exit	UP	to	26	Ledge in Ravine
+exit	SOUTH	to	11	Marble Hall
+exit	EAST	blocked	0	The stream deepens rapidly, and you wisely return before drowning.
+exit	WEST	blocked	0	You notice that the ledge above would be a drier route west.
+endroom
+room	19	36	52	0	231
+name	Stone Bridge
+desc	This is the middle of a ruined but still impressive stone bridge spanning a deep chasm. Water flows far beneath. A paved path leads north into a large open space. To the south, the path leads into a misty tunnel.
+items	
+exit	NORTH	to	27	Dragon Room
+exit	SOUTH	to	13	Cool Room
+exit	DOWN	blocked	0	It's a long way down.
+exit	CROSS	blocked	0	You'll have to specify a direction.
+endroom
+room	20	40	44	0	231
+name	Ice Room
+desc	This is a large hall of ancient lava, since worn smooth by the movement of a glacier. A large passage exits to the east and an upward lava tube is at the top of a jumble of fallen rocks. A damp and scorched passage leads west. It is still partly full of steam.
+items	glacier
+exit	EAST	to	13	Cool Room
+exit	WEST	cond	28	Lava Room
+exit	UP	to	25	Lava Tube
+endroom
+room	21	48	76	0	231
+name	Pearl Room
+desc	This is a former broom closet. The exits are to the east and west.
+items	pearl necklace
+exit	EAST	to	69	Circular Room
+exit	WEST	to	14	Riddle Room
+endroom
+room	22	52	60	0	231
+name	Stairway
+desc	A marble stairway leads down into the gloom and a passage leads north.
+items	
+exit	DOWN	to	0	Oddly-angled Room
+exit	NORTH	to	15	Menhir Room
+endroom
+room	23	52	52	0	231
+name	Kennel
+desc	This room looks like it was once a kennel for a very large dog (some of the bones would fit a dinosaur). It apparently hasn't been used for a long time, as the dust is fairly thick all over. The only exit is northeast.
+items	gigantic dog collar
+exit	NE	cond	15	Menhir Room
+exit	OUT	cond	15	Menhir Room
+endroom
+room	24	52	44	0	231
+name	Guarded Room
+desc	This room is cobwebby and musty, but tracks in the dust show that it has seen visitors recently. At the south end of the room is a stained and battered (but very strong-looking) door. To the north, a corridor exits. The door is open. Imbedded in the door is a nasty-looking lizard head, with sharp teeth and beady eyes. The lizard is sniffing at you. The eyes move to watch you approach. A sleepy-looking lizard head is mounted on the door.
+items	lizard
+exit	NORTH	to	16	Cobwebby Corridor
+exit	SOUTH	cond	29	Wizard's Workshop
+exit	IN	cond	29	Wizard's Workshop
+endroom
+room	25	44	44	0	231
+name	Lava Tube
+desc	You are in a tight chimney of solidified lava. It extends up at least another hundred feet and down to a large room far below. A large crack opens to the south, probably the result of a shift in the rock strata.
+items	
+exit	DOWN	to	20	Ice Room
+exit	UP	to	30	Volcano View
+exit	SOUTH	to	16	Cobwebby Corridor
+endroom
+room	26	32	60	0	231
+name	Ledge in Ravine
+desc	You are on a narrow ledge near the bottom of a deep ravine. The ledge continues to the west. A precarious climb up to another tiny ledge is possible. A short scramble down the rock face leads to a stream.
+items	
+exit	UP	to	31	Tiny Room
+exit	SOUTH	to	18	Deep Ford
+exit	WEST	to	48	End of Ledge
+exit	DOWN	to	18	Deep Ford
+endroom
+room	27	32	52	0	231
+name	Dragon Room
+desc	The room is a large cavern full of broken stone. The walls are scorched and there are deep scratches on the floor. A sooty dry smell is very strong here. A paved path winds from a large passage to the west, through the room, and across a huge stone bridge to the south. To the east a small crack is visible. A dark and smokey tunnel leads north.
+items	huge red dragon
+exit	EAST	to	48	End of Ledge
+exit	NORTH	cond	33	Dragon's Lair
+exit	IN	cond	33	Dragon's Lair
+exit	WEST	to	32	Fresco Room
+exit	SOUTH	to	19	Stone Bridge
+exit	CROSS	to	19	Stone Bridge
+endroom
+room	28	40	36	0	231
+name	Lava Room
+desc	This is a small room, whose walls are formed by an old lava flow. There are exits here to the east and the south.
+items	ruby
+exit	SOUTH	to	54	Volcano Bottom
+exit	EAST	to	20	Ice Room
+endroom
+room	29	56	44	0	231
+name	Wizard's Workshop
+desc	This is the workshop of the Wizard of Frobozz.
+items	
+exit	NORTH	cond	24	Guarded Room
+exit	OUT	cond	24	Guarded Room
+exit	WEST	to	35	Wizard's Workroom
+exit	SOUTH	to	34	Trophy Room
+endroom
+room	30	44	36	1	196
+name	Volcano View
+desc	You are on a ledge in the middle of a large volcano. Below you the volcano bottom can be seen and above is the rim of the volcano. A couple of ledges can be seen on the other side of the volcano; it appears that this ledge is intermediate in elevation between those on the other side. The exit from this room is to the east.
+items	
+exit	DOWN	blocked	0	I wouldn't try that.
+exit	CROSS	blocked	0	It is impossible to cross this distance.
+exit	EAST	to	25	Lava Tube
+endroom
+room	31	28	68	1	196
+name	Tiny Room
+desc	This is a tiny room carved out of the wall of the ravine. There is an exit down a precarious climb. north
+items	metal lid|keyhole
+exit	NORTH	cond	36	Dreary Room
+exit	IN	cond	36	Dreary Room
+exit	DOWN	to	26	Ledge in Ravine
+endroom
+room	32	32	44	0	231
+name	Fresco Room
+desc	A path leads east-west through a room decorated with beautiful frescoes of someone battling dragons and rescuing fair maidens. It is hard to tell who is doing this as those parts of the frescoes have been blackened and cracked by intense heat.
+items	
+exit	EAST	to	27	Dragon Room
+exit	WEST	to	37	Bank Entrance
+endroom
+room	33	28	52	0	231
+name	Dragon's Lair
+desc	You are in the dragon's lair, where the rock walls are scarred by flame. A blackened doorway leads to the south.
+items	rotten wooden chest|beautiful princess
+exit	SOUTH	to	27	Dragon Room
+exit	OUT	to	27	Dragon Room
+endroom
+room	34	60	44	0	231
+name	Trophy Room
+desc	This is the Wizard's trophy room, filled with memorabilia of various sorts. On one wall is the Wizard's D. T. (Doctor of Thaumaturgy) degree from GUE Tech. Several old magic wands are mounted on a wand rack. A collection of dull and nicked swords testify to the fate of many foolhardy adventurers. Small bottles contain discarded homunculi (a few preserved in alcohol). There is a stuffed owl on a perch.
+items	degree|set of used wands|nicked swords|small bottles|warning label|Wizard's trophy cabinet
+exit	NORTH	to	29	Wizard's Workshop
+endroom
+room	35	56	36	0	231
+name	Wizard's Workroom
+desc	This room is the Wizard's workroom. A hall continues east and west, and a larger room lies to the south. There are many shelves and racks on the walls, but the Wizard's workbench dominates the room. It is made of dark, heavy wood bound with iron. The workbench is stained from many years of use, and is deeply gouged as though some huge clawed animal was imprisoned on it. There are burn marks and even notes written in a crabbed hand. Many arcane items are scattered about the bench; alembics, mortar and pestle, small knives of various sizes, odd scraps of vellum, wax candles, and much more. In the center of a relatively clear area of the bench are affixed three stands - ruby, sapphire, and diamond - which form a triangle.
+items	arcane item|Wizard's workbench
+exit	EAST	to	29	Wizard's Workshop
+exit	SOUTH	to	38	Pentagram Room
+exit	WEST	to	39	Aquarium Room
+endroom
+room	36	24	68	1	196
+name	Dreary Room
+desc	This is a small and rather dreary room, eerily illuminated by a red glow emanating from a crack in one wall. The light falls upon a dusty wooden table in the center of the room. south
+items	metal lid|table|narrow crack|keyhole|blue crystal sphere
+exit	SOUTH	cond	31	Tiny Room
+exit	OUT	cond	31	Tiny Room
+endroom
+room	37	32	36	0	231
+name	Bank Entrance
+desc	This is the entrance hall of the Bank of Zork, the largest banking institution of the Great Underground Empire. A partial account of its history is in "The Lives of the Twelve Flatheads," in the chapter on J. Pierpont Flathead. A more detailed history (albeit less objective) may be found in Flathead's outrageous autobiography "I'm Rich and You Aren't - So There!". Most of the furniture has been ravaged by passing scavengers. All that remains are two signs at the northwest and northeast corners of the room, which say:| |     <--  VIEWING ROOMS  -->| | The way out (ornate but tasteful) is to the east.
+items	
+exit	NW	to	41	West Teller's Room
+exit	NE	to	40	East Teller's Room
+exit	EAST	to	32	Fresco Room
+endroom
+room	38	60	36	0	231
+name	Pentagram Room
+desc	In this room, inscribed on the floor, is a great pentagram drawn with black chalk. In its center is a black circle.
+items	pentagram
+exit	NORTH	to	35	Wizard's Workroom
+endroom
+room	39	56	28	0	231
+name	Aquarium Room
+desc	Here a dark hallway turns a corner. To the south is a dark room, to the east is fitful light.
+items	aquarium
+exit	EAST	to	35	Wizard's Workroom
+exit	IN	to	53	Murky Room
+exit	SOUTH	to	43	Wizard's Quarters
+endroom
+room	40	28	44	0	231
+name	East Teller's Room
+desc	You are in a small room, which was used by a bank officer who retrieved safety deposit boxes for the customer. On the north side of the room is a sign which reads "Viewing Room". On the west east side of the room, above an open door, is a sign reading: BANK PERSONNEL ONLY
+items	
+exit	NORTH	to	44	East Viewing Room
+exit	SOUTH	to	37	Bank Entrance
+exit	EAST	to	45	Safety Depository
+endroom
+room	41	28	28	0	231
+name	West Teller's Room
+desc	You are in a small room, which was used by a bank officer who retrieved safety deposit boxes for the customer. On the north side of the room is a sign which reads "Viewing Room". On the west east side of the room, above an open door, is a sign reading: BANK PERSONNEL ONLY
+items	
+exit	NORTH	to	42	West Viewing Room
+exit	SOUTH	to	37	Bank Entrance
+exit	WEST	to	45	Safety Depository
+endroom
+room	42	28	36	0	231
+name	West Viewing Room
+desc	This room was used by holders of safety deposit boxes to view their contents. On the north side of the room is a sign which says:| | "Remain here while the teller retrieves your safety deposit box. When you are finished, leave the box, and exit to the south. Safety deposit boxes cannot be removed from this room!| | Thank You for Banking at the Zork!"
+items	
+exit	SOUTH	to	37	Bank Entrance
+endroom
+room	43	60	28	0	231
+name	Wizard's Quarters
+desc	This is where the Wizard of Frobozz lives. The room is
+items	
+exit	NORTH	to	39	Aquarium Room
+endroom
+room	44	24	44	0	231
+name	East Viewing Room
+desc	This room was used by holders of safety deposit boxes to view their contents. On the north side of the room is a sign which says| | "Remain here while the teller retrieves your safety deposit box. When you are finished, leave the box, and exit to the south. Safety deposit boxes cannot be removed from this room!| | Thank You for Banking at the Zork!"
+items	
+exit	SOUTH	to	37	Bank Entrance
+endroom
+room	45	28	20	0	231
+name	Safety Depository
+desc	This is a large rectangular room. The east and west walls were used for storing safety deposit boxes, but all have been carefully removed by evil persons. To the east, west, and south of the room are large doorways. The northern "wall" of the room is a shimmering curtain of light. In the center of the room is a large stone cube, about 10 feet on a side. Engraved on the side of the cube is some lettering.
+items	bank brochure|large stone cube|shimmering curtain of light
+exit	NORTH	blocked	0	There is a curtain of light there.
+exit	WEST	per	0	
+exit	EAST	per	0	
+exit	SOUTH	to	46	Chairman's Office
+endroom
+room	46	32	20	0	231
+name	Chairman's Office
+desc	This room was the office of the Chairman of the Bank of Zork. Like the other rooms here, it has been extensively vandalized. The lone exit is to the north.
+items	portrait of J. Pierpont Flathead
+exit	NORTH	to	45	Safety Depository
+endroom
+room	47	40	76	0	231
+name	Gazebo
+desc	This is a gazebo in the midst of a formal garden. It is cool and restful here. A tea table adorns the center of the gazebo.
+items	table
+exit	OUT	to	7	North End of Garden
+endroom
+room	48	28	60	0	231
+name	End of Ledge
+desc	A ledge from the east ends here, and a tunnel leads north into the wall. There is a rather odd smokey odor in the warm air of the tunnel.
+items	
+exit	EAST	to	26	Ledge in Ravine
+exit	IN	to	27	Dragon Room
+exit	NORTH	to	27	Dragon Room
+exit	DOWN	blocked	0	There are a lot of sharp rocks down there.
+endroom
+room	49	12	76	N	240
+name	Cerberus Room
+desc	This is the entrance to a huge crypt or tomb. A marble stairway leads up from a gateway arch.
+items	three-headed dog
+exit	EAST	cond	50	Crypt Anteroom
+exit	IN	cond	50	Crypt Anteroom
+exit	UP	to	0	Oddly-angled Room
+endroom
+room	50	12	84	N	240
+name	Crypt Anteroom
+desc	The anteroom is large and empty. Marble bas reliefs depict the stirring times and afterlife of the Flatheads (the latter a bit optimistically). The exit is to the west. A huge marble door stands to the south. The door is open. closed. Above the door is the cryptic inscription: "Feel Free".
+items	
+exit	IN	cond	51	Crypt
+exit	SOUTH	cond	51	Crypt
+exit	WEST	to	49	Cerberus Room
+endroom
+room	51	8	84	N	240
+name	Crypt
+desc	The room contains the earthly remains of the mighty Flatheads, twelve somewhat flat heads mounted securely on poles. While the room might be expected to contain funerary urns or other evidence of the ritual practices of the ancient Zorkers, it is empty of all such objects. There is writing carved on the crypt. The only apparent exit is to the north through the door to the anteroom. The door is open. closed. Looking closely at the south wall, you can see the dim outline of a secret door labelled with the letter "F".
+items	set of poled heads|marble crypt
+exit	NORTH	cond	50	Crypt Anteroom
+exit	SOUTH	cond	52	Landing
+endroom
+room	52	4	76	N	240
+name	Landing
+desc	Beyond the door is a roughly hewn staircase leading down into darkness. The landing on which you stand is covered with carefully drawn magical runes like those sketched upon the workbench of the Wizard of Frobozz. These have been overlaid with sweeping green lines of enormous power, which undulate back and forth across the landing. The wand begins to vibrate in harmony with the motion of the lines. You feel yourself compelled downward, and you yield, stepping onto the staircase. As you pass the green lines, they flare and disappear with a burst of light, and you tumble down the staircase! At the bottom, a vast red-lit hall stretches off into the distance. Sinister statues guard the entrance to a dimly visible room far ahead. With courage and cunning you have conquered the Wizard of Frobozz and become the master of his domain, but the final challenge awaits! (The ultimate adventure concludes in "Zork III: The Dungeon Master".) The green curves begin to vibrate toward you, as if searching for something. One by one your possessions glow bright green. Finally, you are attacked by these magical wardens, and destroyed!
+items	
+endroom
+room	53	52	20	0	231
+name	Murky Room
+desc	The floor here seems to be made of sand, but it is hard to see anything else.
+items	clear crystal sphere
+exit	OUT	to	39	Aquarium Room
+endroom
+room	54	36	28	0	231
+name	Volcano Bottom
+desc	You are at the bottom of a large dormant volcano. High above you light enters from the cone of the volcano. The only exit is to the north.
+items	basket
+exit	NORTH	to	28	Lava Room
+endroom
+room	55	36	20	N	240
+name	Narrow Ledge
+desc	You are on a narrow ledge within an old dormant volcano. This ledge is about halfway between the floor below and the rim above. There is an exit to the south.
+items	hook|priceless zorkmid
+exit	DOWN	blocked	0	I wouldn't jump from here.
+exit	WEST	cond	54	Volcano Bottom
+exit	SOUTH	to	56	Library
+endroom
+room	56	40	20	N	240
+name	Library
+desc	This must have been a large library, probably for the royal family. All of the shelves have been gnawed to pieces by unfriendly gnomes. To the north is an exit.
+items	green book|blue book|white book|purple book
+exit	NORTH	to	55	Narrow Ledge
+exit	OUT	to	55	Narrow Ledge
+endroom
+room	57	36	12	N	240
+name	Volcano Near Small Ledge
+desc	You are about two hundred feet above the volcano floor. Looming above is the rim of the volcano. There is a small ledge on the west side.
+items	
+exit	WEST	to	55	Narrow Ledge
+exit	LAND	to	55	Narrow Ledge
+endroom
+room	58	16	76	N	240
+name	Volcano Core
+desc	You are about one hundred feet above the bottom of the volcano. The top of the volcano is clearly visible here.
+items	
+endroom
+room	59	20	76	N	240
+name	Volcano by Viewing Ledge
+desc	You are high above the floor of the volcano. The rim of the volcano looks very narrow and you are very near it. To the east is what appears to be a viewing ledge, too thin to land on.
+items	
+endroom
+room	60	12	92	N	240
+name	Volcano Near Wide Ledge
+desc	You are near the rim of the volcano. Above you it is open to the sky. To the west, there is a place to land on a wide ledge.
+items	
+exit	LAND	to	61	Wide Ledge
+exit	WEST	to	61	Wide Ledge
+endroom
+room	61	32	28	N	240
+name	Wide Ledge
+desc	You are on a wide ledge high in the volcano. The rim of the volcano is about 200 feet above and there is a precipitous drop to the bottom. The way to the south is blocked by rubble. There is a small door to the south.
+items	hook
+exit	DOWN	blocked	0	It's a long way down.
+exit	WEST	cond	54	Volcano Bottom
+exit	SOUTH	to	62	Dusty Room
+endroom
+room	62	36	36	N	240
+name	Dusty Room
+desc	You are in a dusty old room which is featureless, except for an exit on the north side. Imbedded in the far wall is a rusty box. It appears to be somewhat damaged, since an oblong hole has been chipped out of the front of it. On the far wall is a rusty box, whose door has been blown off.
+items	box|hole
+exit	NORTH	to	61	Wide Ledge
+endroom
+room	63	16	92	N	240
+name	Low Room
+desc	You are in a circular room with a low ceiling. There are exits to the east and southeast.
+items	green piece of paper|robot
+exit	NORTH	per	0	
+exit	SOUTH	per	0	
+exit	WEST	per	0	
+exit	NE	per	0	
+exit	NW	per	0	
+exit	SW	per	0	
+exit	SE	per	0	
+exit	EAST	per	0	
+exit	OUT	per	0	
+endroom
+room	64	20	92	N	240
+name	Machine Room
+desc	This is a large room full of assorted heavy machinery, whirring noisily. The room smells of burned resistors. Along one wall are three buttons which are, respectively, round, triangular, and square. Naturally, above these buttons are instructions written in EBCDIC. A large sign in English above all the buttons says|        "DANGER -- HIGH VOLTAGE"| There are exits to the west and the south.
+items	round button|square button|triangular button
+exit	WEST	to	63	Low Room
+exit	SOUTH	to	65	Dingy Closet
+endroom
+room	65	24	92	N	240
+name	Dingy Closet
+desc	This is a dingy closet adjacent to a larger room to the north. Chiselled into a wall are these words:| |      Protected by|        FROBOZZ|  Magic Alarm Company|   (Hello, footpad!)|| There doesn't seem to be any footpad here, however.
+items	red crystal sphere|solid steel cage
+exit	OUT	to	64	Machine Room
+exit	NORTH	to	64	Machine Room
+endroom
+room	66	8	68	N	240
+name	Cage
+desc	You are trapped inside a solid steel cage.
+items	
+endroom
+room	67	12	68	N	240
+name	Top of Well
+desc	You are at the top of the well. Well done. There are etchings on the side of the well. There is a small crack across the floor at the entrance to a room on the east, but it can be crossed easily.
+items	wall with etchings
+exit	EAST	to	68	Tea Room
+exit	DOWN	blocked	0	It's a long way down!
+endroom
+room	68	12	60	N	240
+name	Tea Room
+desc	This is a small room containing a large oblong table, no doubt set for afternoon tea. It is clear from the objects on the table that the users were indeed mad. In the eastern corner of the room is a small hole (no more than four inches high). There are passageways leading away to the west and the northwest.
+items	large oblong table
+exit	EAST	blocked	0	Only a mouse could get in there.
+exit	WEST	to	67	Top of Well
+exit	NW	to	63	Low Room
+endroom
+room	69	44	68	0	231
+name	Circular Room
+desc	This is a damp circular room, whose walls are made of brick and mortar. The roof of this room is not visible, but there appear to be some etchings on the walls. There is a passageway to the west.
+items	wall with etchings|wooden bucket
+exit	WEST	to	21	Pearl Room
+exit	UP	blocked	0	The walls cannot be climbed.
+endroom
+room	70	16	68	N	240
+name	Posts Room
+desc	This is an enormous room, in the center of which are four wooden posts delineating a rectangular area, above which is what appears to be a wooden roof. In fact, all objects in this room appear to be abnormally large. To the east is a passageway. There are large gaping chasms to the west and northwest.
+items	group of wooden posts
+exit	NW	blocked	0	A great chasm blocks your way.
+exit	EAST	to	71	Pool Room
+exit	WEST	blocked	0	A great chasm blocks your way.
+exit	DOWN	blocked	0	A great chasm blocks your way.
+endroom
+room	71	16	60	N	240
+name	Pool Room
+desc	This is a large room, one half of which is depressed. Salty water flows from a large leak in the ceiling. The only exit is to the west.
+items	stoppered glass flask filled with liquid|leak|pool of tears|package of candy
+exit	OUT	to	70	Posts Room
+exit	WEST	to	70	Posts Room
+endroom
+room	72	20	68	N	240
+name	Small Room
+desc	This is a small, bare room with no distinguishing features. There are no exits from this room.
+items	
+endroom
+room	73	8	76	N	240
+name	Vault
+desc	This is the Vault of the Bank of Zork, in which there are no doors.
+items	stack of zorkmid bills
+endroom
+room	74	24	76	N	240
+name	Room of Red Mist
+desc	You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+items	
+exit	WEST	to	75	Room of Blue Mist
+endroom
+room	75	28	76	N	240
+name	Room of Blue Mist
+desc	You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+items	
+exit	WEST	to	76	Room of White Mist
+endroom
+room	76	32	68	N	240
+name	Room of White Mist
+desc	You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+items	
+exit	WEST	to	77	Room of Black Mist
+endroom
+room	77	36	68	N	240
+name	Room of Black Mist
+desc	You are inside a huge crystalline sphere filled with thin red blue white mist. The mist becomes blue white black to the west. You strain to look out through the mist... You see a small room with a sign on the wall, but it is too blurry to read. You look out into a large, dreary room with a great door and a huge table. There is an odd glow to the mist. A strange blurry room is barely visible. An odd sinuous shadow crosses the mist as you look.
+items	
+endroom
+levels	2
+level	1	196	3	up 1: red
+level	0	231	48	ground level (start)

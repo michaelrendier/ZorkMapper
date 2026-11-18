@@ -1,0 +1,873 @@
+ZMAP 1
+title	Zork3: graph-paper map as text, a square is two characters wide
+start	1
+game	zork3
+canvas	77	98
+                                                                                                  
+                                                                                                  
+                                                                            ⁵⁰                    
+                                                                                                  
+                                                                            85      52            
+                                                                                                  
+                                                                                    ||            
+                                                                                                  
+                                                                                ⁸⁵  50  ⁴⁸        
+                                                                                                  
+                                                                    ⁵⁰      ?N      ||            
+                                                                                                  
+                                                                    48  ==  45  ==  47            
+                                                                                                  
+                                                                            ||                    
+                                                                                                  
+                                                                            42                    
+                                                                                                  
+                                                            ³⁹              ||                    
+                                                                                                  
+                                                            80  ?E          40                    
+                                                                                                  
+                                                            ³⁷          ↗/  ||  \\                
+                                                                                                  
+                                                    76              39  ?W  43  ?W  41            
+                                                                                                  
+                                                                ?S  ^^  ?S  ⁴⁴  ?N  vv  ?N        
+                                                                                                  
+                    79  ⁵⁹          60              73      75  ⁷⁴  38      81  ⁴⁴  44            
+                                                                                                  
+                                    ||              ||      ⁷⁶  ?N  vv  ?N  ⁴⁹  ?S  ^^  ?S        
+                                                                                                  
+                    65  ⁶¹  56  ==  57  ==  58      72  ==  74  ⁷⁵  37      82  ³⁷  46            
+                                                                                                  
+                            ||      ||                  D\      ?S  ^^  ?S  ³⁰  ?N  vv  ?N        
+                                                                                                  
+                    78      55  ⁷⁹  59      62  ==  63      71  ?W  34      83  ⁴⁹  49            
+                                                                                                  
+                ?N  ?N  ?N  ||          U/  ||                  ?N  vv  ?N  ²⁴  ?S  ^^  ?S        
+                                                                                                  
+                ?W  84  ⁵³  54  ⁶⁵  61      64      66  ⁶⁷  68      30          ?W  51            
+                                                                                                  
+                ?S  ?S  ?S                          ||          ?N  vv  ?N          ²⁴            
+                                                                                                  
+                    86      11  ⁰⁴  53  ⁵⁴  01      67  ⁶⁸  07  ⁰⁶  24                            
+                                                                                                  
+                        //      \\          ||          //      U\  ||                            
+                                                                                                  
+                    20      13  ==  05  ==  02  ==  03  ==  06  ⁰⁷  14                            
+                                                                                                  
+                    ²⁹  //      D\          ||      ^^                                            
+                                                                                                  
+                    22  ==  12      23  ²⁰  04  ⁵³  08      77      87                            
+                                                                                                  
+                ²⁹  ||  XX  ||  \\      //  ||      ||              vv                            
+                                                                                                  
+                    21  ==  19  ==  10  ==  09      15      31      88                            
+                                                                                                  
+            ²⁰  D/  ||  XX  ||  //  ||      ||      ||  D/      U\  ³⁶                            
+                                                                                                  
+        ²²  29  ==  28  ==  18  ²⁸  17  ¹⁸  16      25              35                            
+                                                                                                  
+                        ¹⁷      ¹⁷      D/  ^^                                                    
+                                                                                                  
+                                    26      27  =>  69                                            
+                                                                                                  
+                                ⟲       D/  vv      ||                                            
+                                                                                                  
+                                    32      33      70                                            
+                                                                                                  
+                                ⟲       ⟲   ||                                                    
+                                                                                                  
+                                            36                                                    
+                                                                                                  
+                                            ³⁵                                                    
+                                                                                                  
+                                                                                                  
+rooms	88
+room	1	44	44	0	231
+name	Endless Stair
+desc	You are at the bottom of a seemingly endless stair, winding its way upward beyond your vision. An eerie light, coming from all around you, casts strange shadows on the walls. To the south is a dark and winding trail.
+items	
+exit	NORTH	blocked	0	The stairs are endless.
+exit	UP	blocked	0	The stairs are endless.
+exit	SOUTH	to	2	Junction
+endroom
+room	2	48	44	0	231
+name	Junction
+desc	You are at the junction of a north-south passage and an east-west passage. To the north, you can make out the bottom of a stairway. The ways to the east and south are relatively cramped, but a wider trail leads to the west.
+items	great rock
+exit	WEST	to	5	Barren Area
+exit	NORTH	to	1	Endless Stair
+exit	SOUTH	to	4	Creepy Crawl
+exit	EAST	to	3	Damp Passage
+endroom
+room	3	48	52	0	231
+name	Damp Passage
+desc	This is a particularly damp spot even by dungeon standards. You can see the junction to the west, and two similar passages to the east and northeast. A wide stone channel steeply descends into the room from the south. It is covered with slippery moss and lichen. The channel crosses the room, but the opening where it once continued north is now blocked by rubble.
+items	
+exit	WEST	to	2	Junction
+exit	EAST	to	6	Dead End
+exit	NE	to	7	Engravings Room
+exit	NORTH	blocked	0	The opening is blocked by tons of debris.
+exit	UP	blocked	0	The channel is too steep and the moss too slippery.
+exit	SOUTH	blocked	0	The channel is too steep and the moss too slippery.
+endroom
+room	4	52	44	0	231
+name	Creepy Crawl
+desc	You are in a dark and quite creepy crawlway with passages leaving to the north, east, south, and southwest.
+items	
+exit	NORTH	to	2	Junction
+exit	SOUTH	to	9	Foggy Room
+exit	SW	to	10	Land of Shadow
+exit	EAST	to	53	Tight Squeeze
+endroom
+room	5	48	36	0	231
+name	Barren Area
+desc	You are west of the junction, where the rock-bound passage widens out into a large, flat area. Although the land here is barren, you can see vegetation to the west. South of here is a mighty wall of stone, ancient and crumbling. To the southwest the wall has decayed enough to form an opening, through which seeps a thin mist. A trail dips sharply into rocky terrain to the northwest.
+items	
+exit	SW	to	12	Land of Shadow
+exit	NW	to	11	Hairpin Loop
+exit	SOUTH	blocked	0	A stone wall blocks your way.
+exit	SE	blocked	0	A stone wall blocks your way.
+exit	WEST	to	13	Cliff
+exit	EAST	to	2	Junction
+endroom
+room	6	48	60	0	231
+name	Dead End
+desc	You have come to the end of two adjoining passages to the west and the northwest.
+items	
+exit	WEST	to	3	Damp Passage
+exit	NW	to	7	Engravings Room
+endroom
+room	7	44	60	0	231
+name	Engravings Room
+desc	You are in a room with passages heading southwest and southeast. The north wall is ornately carved, filled with strange runes and writing in an unfamiliar language. The outline of a door is barely visible among the runes.
+items	runes
+exit	NORTH	cond	14	Button Room
+exit	DOWN	cond	14	Button Room
+exit	SW	to	3	Damp Passage
+exit	SE	to	6	Dead End
+endroom
+room	8	52	52	N	240
+name	Water Slide
+desc	You are near the northern end of this segment of the aqueduct system. To the south and slightly uphill, the bulk of the aqueduct looms ominously, towering above a gorge. To the north, the water channel drops precipitously and enters a rocky hole. The damp moss and lichen would certainly make that a one-way trip. The southern part of the aqueduct system is inaccessable due to the collapse of one of the water-bearing arches.
+items	
+exit	NORTH	to	3	Damp Passage
+exit	DOWN	to	3	Damp Passage
+exit	SOUTH	cond	15	High Arch
+endroom
+room	9	56	44	0	231
+name	Foggy Room
+desc	You are in a dank passage filled with a wispy fog. A spooky passageway leads north and a wider path heads off to the south. To the west, the path leaves the rock and enters an eerie, shadowy land.
+items	
+exit	NORTH	to	4	Creepy Crawl
+exit	SOUTH	to	16	Lake Shore
+exit	WEST	to	10	Land of Shadow
+endroom
+room	10	56	36	0	231
+name	Land of Shadow
+desc	You are at the eastern end of a dark, featureless landscape of shallow hills. Paths to the east and southeast re-enter the rock.
+items	
+exit	NE	blocked	0	Towering walls of rock bar your way.
+exit	NORTH	blocked	0	Towering walls of rock bar your way.
+exit	SOUTH	to	17	Land of Shadow
+exit	EAST	to	4	Creepy Crawl
+exit	NW	to	12	Land of Shadow
+exit	WEST	to	19	Land of Shadow
+exit	SW	to	18	Land of Shadow
+exit	SE	to	9	Foggy Room
+endroom
+room	11	44	28	0	231
+name	Hairpin Loop
+desc	You are at a sharp turn on a narrow and steeply sloping path, strewn with boulders of various sizes. The path climbs sharply toward a desolate plain to the southeast. Southwest of here the path winds down to the base of a cliff.
+items	
+exit	SE	to	5	Barren Area
+exit	UP	to	5	Barren Area
+exit	SW	to	20	Cliff Base
+exit	DOWN	to	20	Cliff Base
+endroom
+room	12	52	28	0	231
+name	Land of Shadow
+desc	You are in a shadowy land of low, rolling hills stretching out to the west and south. The land is bordered to the north by a massive stone wall. Ancient and weathered, the wall has crumbled enough at one point to permit passage.
+items	
+exit	NE	blocked	0	A stone wall blocks the way.
+exit	NORTH	to	5	Barren Area
+exit	NW	blocked	0	A stone wall blocks the way.
+exit	SE	to	10	Land of Shadow
+exit	SW	to	21	Land of Shadow
+exit	SOUTH	to	19	Land of Shadow
+exit	WEST	to	22	Land of Shadow
+exit	EAST	to	10	Land of Shadow
+endroom
+room	13	48	28	0	231
+name	Cliff
+desc	This is a remarkable spot in the dungeon. Perhaps two hundred feet above you is a gaping hole in the earth's surface through which pours bright sunshine! A few seedlings from the world above, nurtured by the sunlight and occasional rains, have grown into giant trees, making this a virtual oasis in the desert of the Underground Empire. To the west is a sheer precipice, dropping nearly fifty feet to jagged rocks below. The way south is barred by a forbidding stone wall, crumbling from age. There is a jagged opening in the wall to the southwest, through which leaks a fine mist. The land to the east looks lifeless and barren. A rope is tied to one of the large trees here and is dangling over the side of the cliff, reaching down to the shelf below.
+items	piece of waybread|rope|tree
+exit	DOWN	cond	23	Cliff Ledge
+exit	UP	blocked	0	There's no tree here suitable for climbing.
+exit	SW	to	22	Land of Shadow
+exit	EAST	to	5	Barren Area
+endroom
+room	14	48	68	0	231
+name	Button Room
+desc	You are at the southern end of a long hall. To the south, stairs ascend into darkness. To the north the corridor is illuminated by torches set high in the walls, out of reach. On one wall is a red button.
+items	red button
+exit	SOUTH	cond	7	Engravings Room
+exit	UP	cond	7	Engravings Room
+exit	NORTH	to	24	Beam Room
+endroom
+room	15	56	52	N	240
+name	High Arch
+desc	You are now on one of the tallest arches of the aqueduct, hundreds of feet above a rocky chasm. The immensity of the aqueduct project is apparent from here. Stone supports rise from the rock floor to form massive arches, which traverse the region from north to south. The water-carrying channel here is wide and deep. To the west and far below, you can make out a balcony which must command a wide view of the aqueduct. The channel ends abruptly to your north where a supporting pillar has crumbled, casting the arch into the chasm.
+items	
+exit	NORTH	cond	8	Water Slide
+exit	SOUTH	to	25	Aqueduct
+exit	DOWN	blocked	0	It's a long way down....
+endroom
+room	16	60	44	0	231
+name	Lake Shore
+desc	You are in a wide cavern on the north shore of a small lake. Some polished stone steps lead to the southeast and a sheer rock face prevents any movement around the lake to the southwest. The cavern is dimly lit from above.
+items	
+exit	SE	to	26	Aqueduct View
+exit	DOWN	to	26	Aqueduct View
+exit	SOUTH	blocked	0	If you really want to enter the lake, you should say so.
+exit	SW	blocked	0	The sheer rock face prevents movement along the lake shore.
+exit	NORTH	to	9	Foggy Room
+endroom
+room	17	60	36	0	231
+name	Land of Shadow
+desc	You are at the southern end of a shadowy land. The ground here is quite soft, and the area is surrounded by quicksand on most sides. North of here is a terrain of shallow hills.
+items	
+exit	NORTH	to	18	Land of Shadow
+exit	NW	to	28	Land of Shadow
+exit	NE	to	10	Land of Shadow
+exit	SE	blocked	0	The quicksand prevents movement in that direction.
+exit	WEST	blocked	0	The quicksand prevents movement in that direction.
+exit	SOUTH	blocked	0	The quicksand prevents movement in that direction.
+exit	SW	blocked	0	The quicksand prevents movement in that direction.
+exit	EAST	blocked	0	The quicksand prevents movement in that direction.
+endroom
+room	18	60	28	0	231
+name	Land of Shadow
+desc	You are in an ominously dark land of rolling hills. The ground becomes softer to the south.
+items	
+exit	NORTH	to	19	Land of Shadow
+exit	EAST	to	10	Land of Shadow
+exit	NE	to	10	Land of Shadow
+exit	SE	to	17	Land of Shadow
+exit	SOUTH	to	17	Land of Shadow
+exit	SW	blocked	0	The ground becomes too soft to walk on in that direction.
+exit	WEST	to	28	Land of Shadow
+exit	NW	to	21	Land of Shadow
+endroom
+room	19	56	28	0	231
+name	Land of Shadow
+desc	You are in a dark and shadowy land. All around you are gentle hills and eerie shadows. Far above, shrouded in mist, you can barely make out the ceiling of the enormous cavern that spans this entire land.
+items	
+exit	NW	to	22	Land of Shadow
+exit	NE	to	10	Land of Shadow
+exit	SE	to	10	Land of Shadow
+exit	SW	to	28	Land of Shadow
+exit	NORTH	to	12	Land of Shadow
+exit	SOUTH	to	18	Land of Shadow
+exit	WEST	to	21	Land of Shadow
+exit	EAST	to	10	Land of Shadow
+endroom
+room	20	48	20	0	231
+name	Cliff Base
+desc	You are at the base of a steep cliff. Directly above you is a wide ledge and far above that some natural sunlight can be seen. To the northeast is a steeply climbing path and the ground becomes sandy toward the south.
+items	
+exit	UP	blocked	0	You can't get up the rock face.
+exit	SOUTH	to	29	Flathead Ocean
+exit	NE	to	11	Hairpin Loop
+endroom
+room	21	56	20	0	231
+name	Land of Shadow
+desc	You are in a land of dark shadows and shallow hills, which stretch out in all directions. To the west, the land dips sharply.
+items	
+exit	NE	to	12	Land of Shadow
+exit	EAST	to	19	Land of Shadow
+exit	SE	to	18	Land of Shadow
+exit	SOUTH	to	28	Land of Shadow
+exit	NORTH	to	22	Land of Shadow
+exit	DOWN	to	29	Flathead Ocean
+exit	NW	to	29	Flathead Ocean
+exit	WEST	to	29	Flathead Ocean
+exit	SW	to	29	Flathead Ocean
+endroom
+room	22	52	20	0	231
+name	Land of Shadow
+desc	You are standing atop a steep cliff, looking west over a vast ocean. Far below, the surf pounds at a sandy beach. To the south and east are rolling hills filled with eerie shadows. A path cut into the face of the cliff descends toward the beach. To the north is a tall stone wall, which ends at the cliff edge. It was obviously built long ago, and directly north is a spot where you could climb over the rubble of the decaying wall.
+items	
+exit	SOUTH	to	21	Land of Shadow
+exit	EAST	to	12	Land of Shadow
+exit	SE	to	19	Land of Shadow
+exit	SW	to	29	Flathead Ocean
+exit	WEST	to	29	Flathead Ocean
+exit	NE	blocked	0	A stone wall blocks the way.
+exit	NW	blocked	0	A stone wall blocks the way.
+exit	DOWN	to	29	Flathead Ocean
+exit	NORTH	to	13	Cliff
+endroom
+room	23	52	36	-1	88
+name	Cliff Ledge
+desc	This is a rock-strewn ledge near the base of a tall cliff. The bottom of the cliff is another fifteen feet below. You have little hope of climbing up the cliff face, but you might be able to scramble down from here (though it's doubtful you could return). A long piece of rope is dangling down from the top of the cliff and is within your reach.
+items	chest
+exit	UP	blocked	0	You attempt the climb but slide back down.
+exit	DOWN	to	20	Cliff Base
+endroom
+room	24	44	68	0	231
+name	Beam Room
+desc	You are in the middle of a long north-south corridor whose walls are polished stone. A narrow red beam of light crosses the room at the north end, inches above the floor. The beam is blocked by a lying on the floor.
+items	red beam of light
+exit	NORTH	per	0	
+exit	NW	per	0	
+exit	NE	per	0	
+exit	SOUTH	to	14	Button Room
+endroom
+room	25	60	52	N	240
+name	Aqueduct
+desc	You are in a wide stone channel, part of the water supply system for the Great Underground Empire. The source of water was a waterfall to the south, which has long since dried up. Water flowed along the aqueduct to the north. This region is lit from above, although the source of light is not apparent.
+items	
+exit	UP	blocked	0	The hole is too far above your head.
+exit	SOUTH	blocked	0	You can't climb the dried-up waterfall.
+exit	NORTH	to	15	High Arch
+endroom
+room	26	64	36	0	231
+name	Aqueduct View
+desc	This is a small balcony carved into a near-vertical cliff. To the east, stretching from north to south, stands a monumental aqueduct supported by mighty stone pillars, some of which are starting to crumble from age. You feel a sense of loss and sadness as you ponder this once-proud structure and the failure of the Empire which created this and other engineering marvels. Some stone steps lead up to the northwest.
+items	
+exit	NW	to	16	Lake Shore
+exit	UP	to	16	Lake Shore
+exit	DOWN	blocked	0	The drop would be fatal.
+endroom
+room	27	64	44	N	240
+name	On the Lake
+desc	You are floating on the surface of the lake. The water is ice cold and your ability to survive here for long is very questionable. A swim north puts you at your starting point. Conditions to the east are poor where the lake turns into swamp. The west and south shores are suitable for walking, however.
+items	
+exit	NORTH	to	16	Lake Shore
+exit	SOUTH	to	33	Southern Shore
+exit	SE	blocked	0	The swamp is impassable.
+exit	EAST	blocked	0	The swamp is impassable.
+exit	NE	blocked	0	The swamp is impassable.
+exit	WEST	to	69	Western Shore
+exit	NW	to	69	Western Shore
+exit	SW	to	33	Southern Shore
+exit	DOWN	to	32	Underwater
+endroom
+room	28	60	20	0	231
+name	Land of Shadow
+desc	You are near the southern end of the land of shadow. The ground here is soft and spongy, and it becomes quicksand to the south. North and east of here are gentle, rolling hills. A gentle sea breeze wafts over a steeply sloping path to the west.
+items	
+exit	NORTH	to	21	Land of Shadow
+exit	NW	to	29	Flathead Ocean
+exit	WEST	to	29	Flathead Ocean
+exit	DOWN	to	29	Flathead Ocean
+exit	SE	to	17	Land of Shadow
+exit	EAST	to	18	Land of Shadow
+exit	NE	to	19	Land of Shadow
+exit	SOUTH	blocked	0	The quicksand prevents movement in that direction.
+exit	SW	blocked	0	The quicksand prevents movement in that direction.
+endroom
+room	29	60	12	-1	88
+name	Flathead Ocean
+desc	You are at the shore of an amazing underground sea, the topic of many a legend among adventurers. Few were known to have arrived at this spot, and fewer to return. There is a heavy surf and a breeze is blowing on-shore. The land rises steeply to the east and quicksand prevents movement to the south. A thick mist covers the ocean and extends over the hills to the east. A path heads north along the beach. An ancient Viking ship is passing along the shore, an old and crusty sailor at the helm.
+items	Viking Ship
+exit	NORTH	to	20	Cliff Base
+exit	ENTER	blocked	0	Between the rocks, wind, and waves, you wouldn't last a minute.
+exit	WEST	blocked	0	Between the rocks, wind, and waves, you wouldn't last a minute.
+exit	SW	blocked	0	Between the rocks, wind, and waves, you wouldn't last a minute.
+exit	NW	blocked	0	Between the rocks, wind, and waves, you wouldn't last a minute.
+exit	SE	to	28	Land of Shadow
+exit	NE	to	22	Land of Shadow
+exit	EAST	to	21	Land of Shadow
+exit	SOUTH	blocked	0	The quicksand prevents movement here.
+endroom
+room	30	40	68	N	240
+name	Hallway
+desc	
+items	
+exit	NORTH	per	0	
+exit	NW	per	0	
+exit	NE	per	0	
+exit	ENTER	per	0	
+exit	SOUTH	to	24	Beam Room
+endroom
+room	31	56	60	N	240
+name	Key Room
+desc	You are between some rock and a dark place. The room is lit dimly from above, revealing a lone, dark path sloping down to the west. A heavy manhole cover has been moved to reveal a dark passage below. To one side of the room is a large manhole cover.
+items	manhole cover|strange key
+exit	WEST	to	35	Dark Place
+exit	DOWN	cond	25	Aqueduct
+endroom
+room	32	68	36	N	240
+name	Underwater
+desc	You are below the surface of the lake. It turns out that the lake is quite shallow and the bottom is only a few feet below you. Considering the frigid temperature of the water, you should probably not plan an extended stay. The lake bottom is sandy and a few hearty plants and algae live there.
+items	sand|plants and algae|shiny object
+exit	UP	to	27	On the Lake
+exit	DOWN	blocked	0	You are already at the bottom of the lake.
+exit	NORTH	to	32	Underwater
+exit	SOUTH	to	32	Underwater
+exit	EAST	to	32	Underwater
+exit	WEST	to	32	Underwater
+exit	NE	to	32	Underwater
+exit	NW	to	32	Underwater
+exit	SE	to	32	Underwater
+exit	SW	to	32	Underwater
+endroom
+room	33	68	44	N	240
+name	Southern Shore
+desc	You are on the south shore of the lake. Rock formations prevent movement to the west and thickening swamp to the east makes the going all but impossible. To the south, where the beach meets a rock formation, you can make out a dark passage sloping steeply upward into the rock.
+items	
+exit	EAST	blocked	0	The swamp is too thick.
+exit	UP	to	36	Dark Place
+exit	NORTH	blocked	0	If you want to go into the lake, you should say so.
+exit	SOUTH	to	36	Dark Place
+endroom
+room	34	36	68	N	240
+name	Narrow Room
+desc	To the north and south are large hallways.
+items	
+exit	ENTER	per	0	
+exit	WEST	per	0	
+exit	NORTH	to	37	Hallway
+exit	SOUTH	to	30	Hallway
+endroom
+room	35	60	68	N	240
+name	Dark Place
+desc	
+items	
+exit	NORTH	to	36	Dark Place
+exit	EAST	to	31	Key Room
+exit	UP	to	31	Key Room
+exit	DOWN	to	36	Dark Place
+endroom
+room	36	72	44	N	240
+name	Dark Place
+desc	
+items	
+exit	NORTH	to	33	Southern Shore
+exit	SOUTH	to	35	Dark Place
+exit	UP	to	35	Dark Place
+exit	DOWN	to	33	Southern Shore
+endroom
+room	37	32	68	N	240
+name	Hallway
+desc	
+items	
+exit	NORTH	per	0	
+exit	NW	per	0	
+exit	NE	per	0	
+exit	ENTER	per	0	
+exit	SOUTH	per	0	
+exit	SW	per	0	
+exit	SE	per	0	
+endroom
+room	38	28	68	N	240
+name	Narrow Room
+desc	To the east and west are the Guardians of Zork, in perfect symmetry. From here, it's hard to tell which of the two is a reflection!
+items	
+exit	ENTER	per	0	
+exit	WEST	per	0	
+exit	NORTH	to	39	Hallway
+exit	SOUTH	to	37	Hallway
+endroom
+room	39	24	68	N	240
+name	Hallway
+desc	
+items	
+exit	NORTH	to	40	Dungeon Entrance
+exit	NE	to	40	Dungeon Entrance
+exit	NW	to	40	Dungeon Entrance
+exit	SOUTH	per	0	
+exit	SE	per	0	
+exit	SW	per	0	
+endroom
+room	40	20	76	N	240
+name	Dungeon Entrance
+desc	The wooden door has a barred panel in it at about head height. The door itself is
+items	
+exit	NORTH	cond	42	Narrow Corridor
+exit	ENTER	cond	42	Narrow Corridor
+exit	SOUTH	per	0	
+exit	SE	to	41	Narrow Room
+exit	SW	to	43	Narrow Room
+endroom
+room	41	24	84	N	240
+name	Narrow Room
+desc	Somewhat to the south
+items	
+exit	ENTER	per	0	
+exit	WEST	per	0	
+exit	NORTH	to	40	Dungeon Entrance
+exit	SOUTH	to	44	Hallway
+endroom
+room	42	16	76	N	240
+name	Narrow Corridor
+desc	You are in a narrow north-south corridor. At the south end is a door and at the north end is an east-west corridor. The door is
+items	dungeon master
+exit	NORTH	to	45	South Corridor
+exit	SOUTH	cond	40	Dungeon Entrance
+endroom
+room	43	24	76	N	240
+name	Narrow Room
+desc	Somewhat to the south
+items	
+exit	ENTER	per	0	
+exit	WEST	per	0	
+exit	NORTH	to	40	Dungeon Entrance
+exit	SOUTH	to	44	Hallway
+endroom
+room	44	28	84	N	240
+name	Hallway
+desc	To the east and west are the Guardians of Zork, in perfect symmetry. From here, it's hard to tell which of the two is a reflection!
+items	
+exit	NORTH	per	0	
+exit	NW	per	0	
+exit	NE	per	0	
+exit	ENTER	per	0	
+exit	SOUTH	per	0	
+exit	SW	per	0	
+exit	SE	per	0	
+endroom
+room	45	12	76	N	240
+name	South Corridor
+desc	You are in an east-west corridor which turns north at its eastern and western ends. The walls are made of the finest marble. Another hall leads south at the center of the corridor. In the center of the north wall is a bronze door which is
+items	
+exit	EAST	to	47	East Corridor
+exit	WEST	to	48	West Corridor
+exit	NORTH	per	0	
+exit	SOUTH	to	42	Narrow Corridor
+endroom
+room	46	32	84	N	240
+name	Narrow Room
+desc	Somewhat to the north
+items	
+exit	ENTER	per	0	
+exit	WEST	per	0	
+exit	NORTH	to	44	Hallway
+exit	SOUTH	to	49	Hallway
+endroom
+room	47	12	84	N	240
+name	East Corridor
+desc	This is a hall with polished marble walls. It widens slightly as it turns west at its northern and southern ends.
+items	
+exit	NORTH	to	50	North Corridor
+exit	SOUTH	to	45	South Corridor
+endroom
+room	48	12	68	N	240
+name	West Corridor
+desc	This is a hall with polished marble walls. It widens slightly as it turns east at its northern and southern ends.
+items	
+exit	NORTH	to	50	North Corridor
+exit	SOUTH	to	45	South Corridor
+endroom
+room	49	36	84	N	240
+name	Hallway
+desc	
+items	
+exit	NORTH	per	0	
+exit	NW	per	0	
+exit	NE	per	0	
+exit	ENTER	per	0	
+exit	SOUTH	per	0	
+exit	SW	per	0	
+exit	SE	per	0	
+endroom
+room	50	8	84	N	240
+name	North Corridor
+desc	This is a wide east-west corridor which opens onto a northern parapet at its center. You can see flames and smoke as you peer towards the parapet. The corridor turns south at either end, and in the center of the south wall is a heavy wooden door with a small barred window. The door is
+items	
+exit	EAST	to	47	East Corridor
+exit	WEST	to	48	West Corridor
+exit	NORTH	to	52	Parapet
+exit	SOUTH	cond	85	Prison Cell
+exit	ENTER	cond	85	Prison Cell
+endroom
+room	51	40	84	N	240
+name	Narrow Room
+desc	To the north is a large hallway.
+items	
+exit	ENTER	per	0	
+exit	WEST	per	0	
+exit	NORTH	to	49	Hallway
+exit	SOUTH	to	24	Beam Room
+endroom
+room	52	4	84	N	240
+name	Parapet
+desc	You are standing behind a stone retaining wall which rims a parapet overlooking a fiery pit. It is difficult to see through the smoke and flame which fills the pit, but it seems to be bottomless. The pit itself is circular, about two hundred feet in diameter, and is fashioned of roughly hewn stone. The flames generate considerable heat, so it is rather uncomfortable standing here. There is an object here which looks like a sundial. On it are an indicator arrow surrounding a large button. On the face of the dial are numbers 1 through 8. The indicator points to the number . To the south, across a narrow corridor, is a prison cell.
+items	large button|sundial
+exit	SOUTH	to	50	North Corridor
+exit	NORTH	blocked	0	You would be burned to a crisp in no time.
+endroom
+room	53	44	36	0	231
+name	Tight Squeeze
+desc	This is a very low and narrow passage leading east to west.
+items	
+exit	WEST	to	4	Creepy Crawl
+exit	EAST	to	54	Crystal Grotto
+endroom
+room	54	40	28	0	231
+name	Crystal Grotto
+desc	This is a chamber of breathtaking beauty. Mighty stalagmites form crystalline-encrusted rock formations. Phosphorescent mosses, fed by a trickle of water from above, make the crystals glow and sparkle with every color of the rainbow. There is an opening to the west, and a man-made passage heads south.
+items	rock structure
+exit	SOUTH	to	55	Royal Hall
+exit	WEST	to	53	Tight Squeeze
+endroom
+room	55	36	28	0	231
+name	Royal Hall
+desc	This is the north end of a large hall with a vaulted ceiling. A long, tiled hallway leads north through a tall arch. Although the purpose of this room is unclear, there is a large rendering of the Royal Seal of Lord Dimwit Flathead carved on the wall.
+items	Royal Seal of Dimwit Flathead
+exit	NORTH	to	54	Crystal Grotto
+exit	SOUTH	to	56	Great Door
+endroom
+room	56	32	28	0	231
+name	Great Door
+desc	This is the south end of a monumental hall, full of debris from a recent earthquake. To the east is a great iron door, rusted shut. To its right, however, is a gaping cleft in the rock and behind, a cleared area. You are in the southern half of a monumental hall. To the east lies a tremendous iron door which appears to be rusted shut.
+items	
+exit	NORTH	to	55	Royal Hall
+exit	EAST	cond	57	Museum Entrance
+endroom
+room	57	32	36	0	231
+name	Museum Entrance
+desc	This is an entrance hall of some sort, judging by the grand iron door to the west, and the ornate stone and wooden doors which lead to the east and north, respectively. A few wide steps lead south. This is the entrance to the Royal Museum, the finest and grandest in the Great Underground Empire. To the south, down a few steps, is the entrance to the Royal Puzzle and to the east, through a stone door, is the Royal Jewel Collection. A wooden door to the north is open closed and leads to the Museum of Technology. To the west is a great iron door, rusted shut. To its left, however, is a cleft in the rock providing an exit from the museum. To the west is a great iron door, rusted shut. To the west is a great iron door, rusted shut. The cleft in the rock, present when you started, has filled in with rubble.
+items	
+exit	EAST	cond	58	Jewel Room
+exit	WEST	cond	56	Great Door
+exit	SOUTH	to	59	Royal Puzzle Entrance
+exit	DOWN	to	59	Royal Puzzle Entrance
+exit	NORTH	cond	60	Technology Museum
+endroom
+room	58	32	44	0	231
+name	Jewel Room
+desc	You are in a high-ceilinged chamber in the middle of which sits a tall, round steel cage, which is securely locked. In the middle of the cage is a pedestal on which sit the Crown Jewels of the Great Underground Empire: a sceptre, a jewelled knife, and a golden ring. A small bronze plaque, now tarnished, is on the cage. in the middle of which is a bare pedestal. The room is unfinished with no indication of its purpose. A small plaque is fastened to a wall.
+items	pedestal|steel cage
+exit	WEST	cond	57	Museum Entrance
+exit	OUT	cond	57	Museum Entrance
+endroom
+room	59	36	36	0	231
+name	Royal Puzzle Entrance
+desc	This is a small square room, in the middle of which is a round hole which is blocked by smooth sandstone. through which you can discern the floor some ten feet below. The area under the hole is dark, but it appears to be completely enclosed in rock. In any event, it doesn't seem likely that you could climb back up. Exits are west and, up a few steps, north.
+items	lamp|warning note|hole
+exit	WEST	to	79	Side Room
+exit	NORTH	to	57	Museum Entrance
+exit	UP	to	57	Museum Entrance
+exit	DOWN	per	0	
+endroom
+room	60	28	36	0	231
+name	Technology Museum
+desc	This is an exhibit of Empire technology. A wooden door to the south is . This is a large hall which hosted the technological exhibits of the Great Underground Empire. A door to the south is .
+items	gold machine|grey machine|black machine|plaque
+exit	SOUTH	cond	57	Museum Entrance
+exit	OUT	cond	57	Museum Entrance
+endroom
+room	61	40	36	N	240
+name	Royal Puzzle Entrance
+desc	This is a small square room, in the middle of which is a round hole which is blocked by smooth sandstone. through which you can discern the floor some ten feet below. The area under the hole is dark, but it appears to be completely enclosed in rock. In any event, it doesn't seem likely that you could climb back up. Exits are west and, up a few steps, north.
+items	
+exit	WEST	to	65	Side Room
+exit	NORTH	to	62	Museum Entrance
+exit	UP	to	62	Museum Entrance
+exit	DOWN	per	0	
+endroom
+room	62	36	44	N	240
+name	Museum Entrance
+desc	This is an entrance hall of some sort, judging by the grand iron door to the west, and the ornate stone and wooden doors which lead to the east and north, respectively. A few wide steps lead south. This is the entrance to the Royal Museum, the finest and grandest in the Great Underground Empire. To the south, down a few steps, is the entrance to the Royal Puzzle and to the east, through a stone door, is the Royal Jewel Collection. A wooden door to the north is open closed and leads to the Museum of Technology. To the west is a great iron door, rusted shut. To its left, however, is a cleft in the rock providing an exit from the museum. To the west is a great iron door, rusted shut. To the west is a great iron door, rusted shut. The cleft in the rock, present when you started, has filled in with rubble.
+items	
+exit	EAST	cond	63	Jewel Room
+exit	WEST	blocked	0	The iron door is rusted shut.
+exit	SOUTH	to	61	Royal Puzzle Entrance
+exit	DOWN	to	61	Royal Puzzle Entrance
+exit	NORTH	cond	64	Technology Museum
+endroom
+room	63	36	52	N	240
+name	Jewel Room
+desc	You are in a high-ceilinged chamber in the middle of which sits a tall, round steel cage, which is securely locked. In the middle of the cage is a pedestal on which sit the Crown Jewels of the Great Underground Empire: a sceptre, a jewelled knife, and a golden ring. A small bronze plaque, now tarnished, is on the cage. in the middle of which is a bare pedestal. The room is unfinished with no indication of its purpose. A small plaque is fastened to a wall.
+items	
+exit	WEST	cond	62	Museum Entrance
+exit	OUT	cond	62	Museum Entrance
+endroom
+room	64	40	44	N	240
+name	Technology Museum
+desc	This is an exhibit of Empire technology. A wooden door to the south is . This is a large hall which hosted the technological exhibits of the Great Underground Empire. A door to the south is .
+items	
+exit	SOUTH	cond	62	Museum Entrance
+exit	OUT	cond	62	Museum Entrance
+endroom
+room	65	32	20	N	240
+name	Side Room
+desc	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a passage metal door leads to the east.
+items	
+exit	NORTH	to	61	Royal Puzzle Entrance
+exit	EAST	blocked	0	The steel door is closed.
+endroom
+room	66	40	52	N	240
+name	Technology Museum
+desc	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. Not all of the jewels are in place, however. is bare. The room is, by appearances, unfinished. You are in a large, unfinished room, probably intended to be a part of the Royal Museum. This appears to be an unfinished entranceway to the Royal Museum. There are doors to the east and north, and a blind stairway to the south. A heavy iron door to the west is closed and locked.
+items	
+exit	SOUTH	cond	67	Museum Entrance
+exit	OUT	cond	67	Museum Entrance
+endroom
+room	67	44	52	N	240
+name	Museum Entrance
+desc	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. Not all of the jewels are in place, however. is bare. The room is, by appearances, unfinished. You are in a large, unfinished room, probably intended to be a part of the Royal Museum. This appears to be an unfinished entranceway to the Royal Museum. There are doors to the east and north, and a blind stairway to the south. A heavy iron door to the west is closed and locked.
+items	
+exit	EAST	cond	68	Jewel Room
+exit	WEST	blocked	0	The guards locked the iron door behind them.
+exit	NORTH	cond	66	Technology Museum
+exit	SOUTH	blocked	0	The stairs end blindly to the south.
+endroom
+room	68	40	60	N	240
+name	Jewel Room
+desc	You are in a high-ceilinged chamber, in the center of which is a pedestal which is the intended home of the Crown Jewels of the Great Underground Empire: a jewelled knife, a golden ring, and the royal sceptre. Not all of the jewels are in place, however. is bare. The room is, by appearances, unfinished. You are in a large, unfinished room, probably intended to be a part of the Royal Museum. This appears to be an unfinished entranceway to the Royal Museum. There are doors to the east and north, and a blind stairway to the south. A heavy iron door to the west is closed and locked.
+items	
+exit	WEST	cond	67	Museum Entrance
+exit	OUT	cond	67	Museum Entrance
+endroom
+room	69	64	52	N	240
+name	Western Shore
+desc	You are on the western shore of the lake. The ground here is quite hard, but a few sickly reeds manage to grow near the water's edge. The only path leads into the rock to the south.
+items	reeds
+exit	EAST	blocked	0	If you want to enter the lake, you should say so.
+exit	SOUTH	to	70	Scenic Vista
+endroom
+room	70	68	52	N	240
+name	Scenic Vista
+desc	You are in a small chamber carved in the rock, with the sole exit to the north. Mounted on one wall is a table labelled "Scenic Vista," whose featureless surface is angled toward you. One might believe that the table was used to indicate points of interest in the view from this spot, like those found in many parks. On the other hand, your surroundings are far from spacious and by no stretch of the imagination could this spot be considered scenic. An indicator above the table reads " ".
+items	viewing table|torch|indicator
+exit	NORTH	to	69	Western Shore
+endroom
+room	71	36	60	N	240
+name	Ladder Top
+desc	This is a very small room. In the corner is a rickety wooden ladder, leading downward. It might be safe to descend. There is also a staircase leading upward.
+items	
+exit	DOWN	to	72	Ladder Bottom
+endroom
+room	72	32	52	N	240
+name	Ladder Bottom
+desc	This is a rather wide room. On one side is the bottom of a narrow wooden ladder. To the west and the south are passages leaving the room.
+items	
+exit	SOUTH	to	73	Dead End
+exit	WEST	to	74	Timber Room
+exit	UP	to	71	Ladder Top
+endroom
+room	73	28	52	N	240
+name	Dead End
+desc	You have come to a dead end in the mine.| There is a small pile of coal here.
+items	
+exit	NORTH	to	72	Ladder Bottom
+endroom
+room	74	32	60	N	240
+name	Timber Room
+desc	This is a long and narrow passage, which is cluttered with broken timbers. A wide passage comes from the east and turns at the west end of the room into a very narrow passageway. From the west comes a strong draft.
+items	broken timber
+exit	EAST	to	72	Ladder Bottom
+exit	WEST	cond	75	Drafty Room
+endroom
+room	75	28	60	N	240
+name	Drafty Room
+desc	
+items	
+exit	SOUTH	to	76	Machine Room
+exit	OUT	to	74	Timber Room
+exit	EAST	to	74	Timber Room
+endroom
+room	76	24	52	N	240
+name	Machine Room
+desc	
+items	
+endroom
+room	77	52	60	N	240
+name	Room 8
+desc	This is a small chamber carved out of the rock at the end of a short crawl. On the wall is crudely chiseled the number "8". The only apparent exit, to the east, seems to be a blur and a loud, whirring sound resounds through the rock.
+items	Frobozz Magic Grue Repellent
+exit	EAST	blocked	0	You are repelled from the exit by a fierce wind.
+endroom
+room	78	36	20	N	240
+name	Sacrificial Altar
+desc	
+items	
+endroom
+room	79	28	20	0	231
+name	Side Room
+desc	You are in a narrow room, lit from above. A flight of steps leads up to the north, and a passage metal door leads to the east.
+items	
+exit	NORTH	to	59	Royal Puzzle Entrance
+exit	UP	to	59	Royal Puzzle Entrance
+exit	EAST	cond	0	Room in a Puzzle
+endroom
+room	80	20	60	N	240
+name	Narrow Room
+desc	To the east and west are the Guardians of Zork, in perfect symmetry. From here, it's hard to tell which of the two is a reflection!
+items	
+exit	ENTER	per	0	
+exit	EAST	per	0	
+exit	NORTH	to	39	Hallway
+exit	SOUTH	to	37	Hallway
+endroom
+room	81	28	76	N	240
+name	Narrow Room
+desc	Somewhat to the north
+items	
+exit	ENTER	per	0	
+exit	EAST	per	0	
+exit	NORTH	to	44	Hallway
+exit	SOUTH	to	49	Hallway
+endroom
+room	82	32	76	N	240
+name	Narrow Room
+desc	To the north and south are large hallways.
+items	
+exit	ENTER	per	0	
+exit	EAST	per	0	
+exit	NORTH	to	37	Hallway
+exit	SOUTH	to	30	Hallway
+endroom
+room	83	36	76	N	240
+name	Narrow Room
+desc	To the north is a large hallway.
+items	
+exit	ENTER	per	0	
+exit	EAST	per	0	
+exit	NORTH	to	49	Hallway
+exit	SOUTH	to	24	Beam Room
+endroom
+room	84	40	20	N	240
+name	Inside Mirror
+desc	You are inside a rectangular box of wood whose structure is rather complicated. Four sides and the roof are filled in, and the floor is open. As you face the side opposite the entrance, two short sides of carved and polished wood are to your left and right. The left panel is mahogany, the right pine. The wall you face is red on its left half and black on its right. On the entrance side, the wall is white opposite the red part of the wall it faces, and yellow opposite the black section. The painted walls are at least twice the length of the unpainted ones. The ceiling is painted blue. In the floor is a stone channel about six inches wide and a foot deep. The channel is oriented in a north-south direction. In the exact center of the room the channel widens into a circular depression perhaps two feet wide. Incised in the stone around this area is a compass rose. Running from one short wall to the other at about waist height is a wooden bar, carefully carved and drilled. This bar is pierced in two places. The first hole is in the center of the bar (and thus the center of the room). The second is at the left end of the room (as you face opposite the entrance). Through each hole runs a wooden pole. The pole at the left end of the bar is short, extending about a foot above the bar, and ends in a hand grip. The pole has been lifted out of a hole carved in the stone floor. There is evidently enough friction to keep the pole from dropping back down. has been dropped into a hole carved in the stone floor. is positioned above the stone channel in the floor. has been dropped into the stone channel incised in the floor. is resting on the stone floor. The long pole at the center of the bar extends from the ceiling through the bar to the circular area in the stone channel. This bottom end of the pole has a T-bar a bit less than two feet long attached to it, and on the T-bar is carved an arrow. The arrow and T-bar are pointing . The pine panel has been opened outward.
+items	T-bar|black panel|compass arrow|long pole|mahogany panel|pine panel|red panel|short pole|yellow panel|white panel|wooden bar
+exit	OUT	per	0	
+exit	NORTH	per	0	
+exit	SOUTH	per	0	
+exit	NW	per	0	
+exit	NE	per	0	
+exit	SE	per	0	
+exit	SW	per	0	
+exit	WEST	per	0	
+exit	EAST	per	0	
+endroom
+room	85	4	76	N	240
+name	Prison Cell
+desc	You are in a featureless prison cell. You can see an east-west corridor outside the cell door. Your view also takes in the parapet and a large, fiery pit. through the small window in the closed door the parapet, and, behind that, smoke and flames rising from a fiery pit. The dungeon master is at the parapet, leaning on his staff. His keen gaze is fixed on you and he looks tense, as if waiting for something to happen. Behind you, to the south, is a bronze door which is
+items	
+exit	OUT	cond	50	North Corridor
+exit	NORTH	cond	50	North Corridor
+endroom
+room	86	44	20	N	240
+name	Prison Cell
+desc	You are in a bare prison cell. Its wooden door is securely fastened, and you can see only flames and smoke through its small window.
+items	
+exit	OUT	blocked	0	The door is securely fastened.
+endroom
+room	87	52	68	N	240
+name	Prison Cell
+desc	You are in a bare prison cell. Its wooden door is securely fastened, and you can see only flames and smoke through its small window. On the south wall is a bronze door which seems to be
+items	
+exit	OUT	cond	88	Treasury of Zork
+exit	SOUTH	cond	88	Treasury of Zork
+endroom
+room	88	56	68	N	240
+name	Treasury of Zork
+desc	This is a large room, richly appointed in a style that bespeaks exquisite taste. To judge from its contents, it is the ultimate storehouse of the wealth of the Great Underground Empire.| | There are chests containing precious jewels, mountains of zorkmids, rare paintings, ancient statuary, and beguiling curios.| | On one wall is an annotated map of the Empire, showing the locations of various troves of treasure, and of many superior scenic views.| | On a desk at the far end of the room are stock certificates representing a controlling interest in FrobozzCo International, the multinational conglomerate and parent company of the Frobozz Magic Boat Co., etc.|
+items	
+endroom
+levels	2
+level	0	231	32	ground level (start)
+level	-1	88	2	down 1: dark red
