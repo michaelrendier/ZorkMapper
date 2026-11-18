@@ -126,4 +126,4 @@ Rooms (number, name, level above the start room: + up, - down)
 
 Key: == east/west, || north/south, // \\ diagonals; => <= ^^ vv (or ↗ ↖ ↘ ↙) one-way arrows; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
      Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.
-     Background colour = level: white = start level (surface); lighter colours up, darker colours underground.
+     Background colour = level: white = ground level (the start room); bright rainbow colours up (red, orange, yellow, green, blue, violet), dark rainbow colours going down underground.

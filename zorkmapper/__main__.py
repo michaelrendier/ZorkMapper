@@ -32,6 +32,8 @@ def main(argv=None):
         if a.ascii:
             from . import asciiart
             t = "%s: graph-paper map as text, a square is two characters wide" % game.title()
+            from . import mapfile
+            mf = mapfile.build(rooms, objs, sh, game, t, a.start); mf["left_out"] = sorted(rooms[n].desc or n for n in ex); mapfile.save(a.ascii + ".map.json", mf)
             open(a.ascii + ".txt", "w").write(asciiart.render(rooms, sh, t, a.start, False)); open(a.ascii + ".ans", "w").write(asciiart.render(rooms, sh, t, a.start, True)); print("wrote", a.ascii + ".txt/.ans")
         if a.svg: open(a.svg, "w").write(sheetsvg.render(rooms, sh, "%s: rooms on a graph-paper lattice (3x3 per room)" % game.title())); print("wrote", a.svg)
         return

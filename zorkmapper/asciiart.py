@@ -14,9 +14,7 @@ from .model import Room
 from .lattice import Sheet, VEC
 
 SUP = str.maketrans("0123456789*", "⁰¹²³⁴⁵⁶⁷⁸⁹⁎")
-UP_BG = [231, 229, 195, 159, 123]                       # level 0 white, then light yellow, light cyan ...
-DOWN_BG = [24, 54, 94, 22, 52, 58, 17]                  # level -1 downward: dark blue, purple, brown, green, red, olive, navy
-UNK_BG = 240
+from . import levels as _lv
 
 
 def label(n: int) -> str:
@@ -39,12 +37,10 @@ def levels(rooms: Dict[str, Room], sh: Sheet, start: str) -> Dict[str, int]:
     return z
 
 
-def bg(z):
-    if z is None: return UNK_BG
-    return UP_BG[min(z, len(UP_BG) - 1)] if z >= 0 else DOWN_BG[min(-z - 1, len(DOWN_BG) - 1)]
+bg = _lv.bg
 
 
-def render(rooms: Dict[str, Room], sh: Sheet, title: str, start: str, color: bool = False) -> str:
+def render(rooms: Dict[str, Room], sh: Sheet, title: str, start: str, color: bool = False, canvas_only: bool = False):
     cells = {n: sh.cell(n) for n in sh.pos}; zl = levels(rooms, sh, start)
     x0 = min(c[0] for c in cells.values()) - 3; y0 = min(c[1] for c in cells.values()) - 2
     x1 = max(c[0] for c in cells.values()) + 3; y1 = max(c[1] for c in cells.values()) + 2
@@ -92,29 +88,41 @@ def render(rooms: Dict[str, Room], sh: Sheet, title: str, start: str, color: boo
         if p and free(p): put(p, "?" + d[0])
     for i, n in enumerate(sh.order, 1):
         put(cells[n], label(i), bg(zl.get(n)), force=True)
-    out = [title, ""]
     def horiz(t): return t in ("==", "=>", "<=", "++")
     def vert(t): return t in ("||", "^^", "vv", "++")
-    def paint(t, b):
-        if not color or not b: return t
-        return "\x1b[48;5;%dm\x1b[%sm%s\x1b[0m" % (b, "30" if b in (231, 229, 195, 159, 123) else "97;1", t)
+    lines = []
     for y, row in enumerate(grid):
         line = ""
-        for x, (t, b) in enumerate(row):
-            line += paint(t, b)
+        for x, (t, b_) in enumerate(row):
+            line += t
             if x + 1 < W: line += "==" if (horiz(t) and horiz(row[x + 1][0])) else "  "
-        out.append(line.rstrip())
+        lines.append(line)
         if y + 1 < H:                                                    # the buffer row: join passages that continue, leave rooms clear
             sp = ""
             for x in range(W):
                 sp += "||" if (vert(grid[y][x][0]) and vert(grid[y + 1][x][0])) else "  "
                 if x + 1 < W: sp += "  "
-            out.append(sp.rstrip())
+            lines.append(sp)
+    spans = []
+    for i, n in enumerate(sh.order, 1):
+        cx, cy = at(cells[n]); spans.append({"n": i, "row": 2*cy, "col": 4*cx, "bg": bg(zl.get(n)), "z": zl.get(n)})
+    if canvas_only: return lines, spans, zl
+    def paint(t, code):
+        return "\x1b[48;5;%dm\x1b[%sm%s\x1b[0m" % (code, _lv.fg(code), t)
+    out = [title, ""]
+    by_row = {}
+    for sp_ in spans: by_row.setdefault(sp_["row"], []).append(sp_)
+    for r, line in enumerate(lines):
+        if not color or r not in by_row: out.append(line.rstrip()); continue
+        pieces, pos = [], 0
+        for sp_ in sorted(by_row[r], key=lambda q: q["col"]):
+            pieces.append(line[pos:sp_["col"]]); pieces.append(paint(line[sp_["col"]:sp_["col"] + 2], sp_["bg"])); pos = sp_["col"] + 2
+        pieces.append(line[pos:]); out.append("".join(pieces).rstrip())
     out += ["", "Rooms (number, name, level above the start room: + up, - down)"]
     names = ["%s  %s  [%+d]" % (label(i), (rooms[n].desc or n.title())[:34], zl.get(n, 0)) for i, n in enumerate(sh.order, 1)]
     half = (len(names) + 1)//2
     for i in range(half): out.append("%-48s%s" % (names[i], names[i + half] if i + half < len(names) else ""))
     out += ["", "Key: == east/west, || north/south, // \\\\ diagonals; => <= ^^ vv (or ↗ ↖ ↘ ↙) one-way arrows; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;",
             "     Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.",
-            "     Background colour = level: white = start level (surface); lighter colours up, darker colours underground."]
+            "     Background colour = level: white = ground level (the start room); bright rainbow colours up (red, orange, yellow, green, blue, violet), dark rainbow colours going down underground."]
     return "\n".join(out) + "\n"

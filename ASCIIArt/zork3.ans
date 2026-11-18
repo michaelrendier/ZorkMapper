@@ -52,7 +52,7 @@ Zork3: graph-paper map as text, a square is two characters wide
 
                     ²⁹  //      D\          ||      ^^
 
-                    [48;5;231m[30m22[0m  ==  [48;5;231m[30m12[0m      [48;5;24m[97;1m23[0m  ²⁰  [48;5;231m[30m04[0m  ⁵³  [48;5;240m[97;1m08[0m      [48;5;240m[97;1m77[0m      [48;5;240m[97;1m87[0m
+                    [48;5;231m[30m22[0m  ==  [48;5;231m[30m12[0m      [48;5;88m[97;1m23[0m  ²⁰  [48;5;231m[30m04[0m  ⁵³  [48;5;240m[97;1m08[0m      [48;5;240m[97;1m77[0m      [48;5;240m[97;1m87[0m
 
                 ²⁹  ||  XX  ||  \\      //  ||      ||              vv
 
@@ -60,7 +60,7 @@ Zork3: graph-paper map as text, a square is two characters wide
 
             ²⁰  D/  ||  XX  ||  //  ||      ||      ||  D/      U\  ³⁶
 
-        ²²  [48;5;24m[97;1m29[0m  ==  [48;5;231m[30m28[0m  ==  [48;5;231m[30m18[0m  ²⁸  [48;5;231m[30m17[0m  ¹⁸  [48;5;231m[30m16[0m      [48;5;240m[97;1m25[0m              [48;5;240m[97;1m35[0m
+        ²²  [48;5;88m[97;1m29[0m  ==  [48;5;231m[30m28[0m  ==  [48;5;231m[30m18[0m  ²⁸  [48;5;231m[30m17[0m  ¹⁸  [48;5;231m[30m16[0m      [48;5;240m[97;1m25[0m              [48;5;240m[97;1m35[0m
 
                         ¹⁷      ¹⁷      D/  ^^
 
@@ -126,4 +126,4 @@ Rooms (number, name, level above the start room: + up, - down)
 
 Key: == east/west, || north/south, // \\ diagonals; => <= ^^ vv (or ↗ ↖ ↘ ↙) one-way arrows; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
      Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.
-     Background colour = level: white = start level (surface); lighter colours up, darker colours underground.
+     Background colour = level: white = ground level (the start room); bright rainbow colours up (red, orange, yellow, green, blue, violet), dark rainbow colours going down underground.
