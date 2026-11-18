@@ -28,6 +28,12 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+#ifndef MAPDIR
+#define MAPDIR "ASCIIArt"              /* where the .zmap files are (make install sets the absolute path) */
+#endif
+#ifndef HOME_DIR
+#define HOME_DIR ".."                   /* where `python3 -m zorkmapper` runs from, for the map-a-game command */
+#endif
 #define ALT 1000                    /* Alt-letter codes: ncurses key codes occupy 257..511, so Duh DRAW's 256+letter would collide */
 #define MAXR 400
 #define MAXX 24
@@ -43,7 +49,7 @@ typedef struct { int z, bg, rooms; char label[80]; } Level;
 static wchar_t **canvas; static int crows, ccols;
 static Room rooms[MAXR + 1]; static int nrooms, start_room = 1, cur = 1;
 static Level levels[MAXL]; static int nlev;
-static char title[200], game[100], mapdir[512] = "ASCIIArt", mappath[600], status[400] = "F5 / Alt-O opens a map.";
+static char title[200], game[100], mapdir[512] = MAPDIR, mappath[600], status[400] = "F5 / Alt-O opens a map.";
 static int show_left = 1, show_right = 1, show_bottom = 1, show_help = 0, layer_view = 0;     /* layer_view: only the current elevation layer in colour */
 
 /* ------------------------------------------------------------------ map file */
@@ -290,7 +296,7 @@ static void map_a_game(void)
 {
   char path[500], cmd[1200], *home = getenv("ZORKMAPPER_HOME"), stem[200], *b, *dot; prompt_line("Map a game: Z-machine file or ZIL folder > ", path, sizeof path);
   if (!path[0]) return;
-  snprintf(cmd, sizeof cmd, "cd '%s' && python3 -m zorkmapper --map '%s'", home ? home : "..", path);
+  snprintf(cmd, sizeof cmd, "cd '%s' && python3 -m zorkmapper --map '%s'", home ? home : HOME_DIR, path);
   def_prog_mode(); endwin(); printf("Mapping %s ...\n", path); fflush(stdout); if (system(cmd) != 0) { reset_prog_mode(); refresh(); snprintf(status, sizeof status, "Mapping %s failed.", path); return; }
   reset_prog_mode(); refresh();
   b = strrchr(path, '/'); snprintf(stem, sizeof stem, "%s", b ? b + 1 : path); dot = strrchr(stem, '.'); if (dot && dot != stem) *dot = 0;
