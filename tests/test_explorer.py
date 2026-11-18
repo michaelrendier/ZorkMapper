@@ -43,3 +43,15 @@ def test_keys_move_and_toggle():
     E.handle_key(st, "KEY_HOME"); assert st.cur == 1
     E.handle_key(st, "KEY_F(3)"); assert st.right is False
     assert E.handle_key(st, "q") == "quit" and E.handle_key(st, "KEY_F(5)") == "open" and E.handle_key(st, "M-m") == "map"
+
+
+def test_shifted_arrows_and_level_jump_and_layer_view():
+    d = mapfile.load(MAP); st = E.State(d, MAP)
+    # find a room with an UP exit and a room with a DOWN exit
+    up = next(int(k) for k, r in d["rooms"].items() if any(e["dir"] == "UP" and e["dest"] for e in r["exits"]))
+    st.cur = up; E.handle_key(st, "KEY_SR"); assert st.cur != up
+    st.cur = up; E.handle_key(st, "KEY_SF"); assert st.cur != up
+    st.cur = 1; E.handle_key(st, "KEY_NPAGE"); assert d["rooms"][str(st.cur)]["level"] == -1
+    E.handle_key(st, "KEY_PPAGE"); assert d["rooms"][str(st.cur)]["level"] == 0
+    E.handle_key(st, "l"); assert st.layer is True
+    scr = E.FakeScreen(40, 140); E.draw(scr, st); t = "\n".join(scr.text()); assert "LAYER VIEW" in t and "\u00b7\u00b7" in t

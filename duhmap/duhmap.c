@@ -44,7 +44,7 @@ static wchar_t **canvas; static int crows, ccols;
 static Room rooms[MAXR + 1]; static int nrooms, start_room = 1, cur = 1;
 static Level levels[MAXL]; static int nlev;
 static char title[200], game[100], mapdir[512] = "ASCIIArt", mappath[600], status[400] = "F5 / Alt-O opens a map.";
-static int show_left = 1, show_right = 1, show_bottom = 1, show_help = 0;
+static int show_left = 1, show_right = 1, show_bottom = 1, show_help = 0, layer_view = 0;     /* layer_view: only the current elevation layer in colour */
 
 /* ------------------------------------------------------------------ map file */
 static void free_map(void)
@@ -192,6 +192,7 @@ static void draw_map(Rect m)
     Room *q = &rooms[k]; int y2 = m.y + q->row - oy, x2 = m.x + q->col - ox; wchar_t lab[3]; short pr = pair_for(q->bg);
     if (!q->name[0] || y2 < m.y || y2 >= m.y + m.h || x2 < m.x || x2 >= m.x + m.w - 1) continue;
     lab[0] = canvas[q->row][q->col]; lab[1] = canvas[q->row][q->col + 1]; lab[2] = 0;
+    if (layer_view && (q->has_level != r->has_level || q->level != r->level)) { attron(A_DIM); mvaddnwstr(y2, x2, L"\u00b7\u00b7", 2); attroff(A_DIM); continue; }   /* another layer: a faint placeholder */
     attron(COLOR_PAIR(pr) | (k == cur ? A_REVERSE | A_BOLD : 0)); mvaddnwstr(y2, x2, lab, 2); attroff(COLOR_PAIR(pr) | A_REVERSE | A_BOLD);
     if (k == cur) { put(y2, x2 - 1, ">", COLOR_PAIR(1) | A_BOLD); put(y2, x2 + 2, "<", COLOR_PAIR(1) | A_BOLD); }
   }
@@ -209,7 +210,7 @@ static void draw_all(void)
   init_pair(1, 11, -1);
   if (!nrooms) { put(0, 0, " duhmap ", COLOR_PAIR(pair_for(4)) | A_BOLD); put(2, 2, "No map loaded.  Alt-O: open a map   Alt-M: map a game   Alt-X: quit", 0); }
   else {
-    char head[300]; snprintf(head, sizeof head, " %s  |  room %02d: %s  |  %s ", game, cur, r->name, level_name(r)); put(0, 0, head, A_REVERSE | A_BOLD);
+    char head[300]; snprintf(head, sizeof head, " %s  |  room %02d: %s  |  %s%s ", game, cur, r->name, level_name(r), layer_view ? "  [LAYER VIEW]" : ""); put(0, 0, head, A_REVERSE | A_BOLD);
     draw_map(M);
     if (L.w) {                                                                  /* the elevation legend */
       put(L.y, L.x + 1, "Elevation", COLOR_PAIR(1) | A_BOLD);
@@ -242,7 +243,7 @@ static void draw_all(void)
   if (B.h > 0) {                                                                /* the status box and the function-key strip (as Duh DRAW's last line) */
     put(B.y, 0, " Status ---------------------------------------------------------------------------", A_DIM);
     if (show_help) {
-      const char *h_[] = {"arrows N S W E    Shift-Up UPW  Shift-Down UPE  Shift-Left DW  Shift-Right DE    y u b n = NW NE SW SE", "Tab / Shift-Tab next / previous room   Home start   End last   PgUp / PgDn level up / down",
+      const char *h_[] = {"arrows N S W E    Shift-Up UPW  Shift-Down UPE  Shift-Left DW  Shift-Right DE    y u b n = NW NE SW SE", "Tab / Shift-Tab next / previous room   Home start   End last   PgUp / PgDn level up / down   F7 or l layer view",
         "F2 legend  F3 sidebar  F4 status   ESC menu bar   Alt-O open  Alt-M map a game  Alt-G go to number  Alt-X quit", 0};
       for (i = 0; h_[i] && B.y + 1 + i < B.y + B.h - 1; i++) put(B.y + 1 + i, 1, h_[i], 0);
     } else wrap_put(B.y + 1, 1, B.y + B.h - 1, w - 2, status, 0);
@@ -300,7 +301,7 @@ static void map_a_game(void)
 /* ------------------------------------------------------------------ the ESC menu bar (after TheDraw) */
 static const char *menu_names[] = {"Files", "Go", "View", "Levels", "Help"};
 static const char *menu_items[5][5] = {{"Open map       Alt-O", "Map a game     Alt-M", "Quit           Alt-X", 0, 0}, {"Start          Home", "Next room      Tab", "Previous       S-Tab", "Last room      End", "Go to number   Alt-G"},
-  {"Legend         F2", "Sidebar        F3", "Status         F4", 0, 0}, {"Level up       PgUp", "Level down     PgDn", 0, 0, 0}, {"Keys           F1", 0, 0, 0, 0}};
+  {"Legend         F2", "Sidebar        F3", "Status         F4", 0, 0}, {"Level up       PgUp", "Level down     PgDn", "Layer view     F7", 0, 0}, {"Keys           F1", 0, 0, 0, 0}};
 static int menu_bar(void)                                   /* returns a command code: 'o' 'm' 'x' 'g' or 0 */
 {
   int m = 0, i = 0, open_ = 0, c, h, w, k, n;
@@ -319,7 +320,7 @@ static int menu_bar(void)                                   /* returns a command
       if (m == 0) return i == 0 ? 'o' : i == 1 ? 'm' : 'x';
       if (m == 1) { if (i == 0) cur = start_room; else if (i == 1) cur = cur % nrooms + 1; else if (i == 2) cur = (cur + nrooms - 2) % nrooms + 1; else if (i == 3) cur = nrooms; else return 'g'; return 0; }
       if (m == 2) { if (i == 0) show_left = !show_left; else if (i == 1) show_right = !show_right; else show_bottom = !show_bottom; return 0; }
-      if (m == 3) { move_to(go_level(i == 0 ? 1 : -1), i == 0 ? "up a level" : "down a level"); return 0; }
+      if (m == 3) { if (i == 2) layer_view = !layer_view; else move_to(go_level(i == 0 ? 1 : -1), i == 0 ? "up a level" : "down a level"); return 0; }
       show_help = !show_help; return 0;
     } else if (c == 'f' || c == 'F') { m = 0; open_ = 1; } else if (c == 'g' || c == 'G') { m = 1; open_ = 1; } else if (c == 'v' || c == 'V') { m = 2; open_ = 1; }
     else if (c == 'l' || c == 'L') { m = 3; open_ = 1; } else if (c == 'h' || c == 'H') { m = 4; open_ = 1; }
@@ -377,6 +378,7 @@ int main(int argc, char *argv[])
     case KEY_HOME: cur = start_room; break; case KEY_END: if (nrooms) cur = nrooms; break;
     case KEY_PPAGE: move_to(go_level(1), "up a level"); break; case KEY_NPAGE: move_to(go_level(-1), "down a level"); break;
     case KEY_F(1): case ALT + 'h': show_help = !show_help; break;
+    case KEY_F(7): case 'l': layer_view = !layer_view; snprintf(status, sizeof status, layer_view ? "Layer view: only this elevation layer in colour; PgUp / PgDn change layer." : "Layer view off."); break;
     case KEY_F(2): show_left = !show_left; break; case KEY_F(3): show_right = !show_right; break; case KEY_F(4): show_bottom = !show_bottom; break;
     case KEY_F(10): case ALT + 'x': case 'q': quit = 1; break;
     case KEY_F(5): case ALT + 'o': pick_map(); break;

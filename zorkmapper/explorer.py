@@ -10,8 +10,9 @@ Screen (every size is a PERCENTAGE of the terminal, so a bigger screen adds view
     centre          the map viewport; the current room is always at its centre
     right  (30%)    the room list and the current room: description, items, exits                                  [F3 toggles]
     bottom (22%)    status box and the function-key strip                                                          [F4 toggles]
-Keys:  arrows go N/S/E/W along the map's exits (or to the nearest room that way); y u b n = NW NE SW SE; PgUp / PgDn = UP / DOWN;
-       Tab / Shift-Tab = next / previous room number; Home = start; F5 or Alt-O open a map; F6 or Alt-M map a game; F1 or Alt-H help; q, F10 or Alt-X quit.
+Keys:  arrows go N/S/W/E along the map's exits (or to the nearest room that way); Shift-Up UPW, Shift-Down UPE, Shift-Left DW, Shift-Right DE;
+       y u b n = NW NE SW SE; PgUp / PgDn = a level up / down; F7 or l = layer view; Tab / Shift-Tab = next / previous room; Home = start;
+       F5 or Alt-O open a map; F6 or Alt-M map a game; F1 or Alt-H help; q, F10 or Alt-X quit.
 """
 import curses
 import glob
@@ -24,7 +25,9 @@ from . import levels, mapfile
 PCT = {"left": 16, "right": 30, "bottom": 22}
 MIN = {"left": 20, "right": 30, "bottom": 7}
 DIRS = {"NORTH": (0, -1), "SOUTH": (0, 1), "EAST": (1, 0), "WEST": (-1, 0), "NE": (1, -1), "NW": (-1, -1), "SE": (1, 1), "SW": (-1, 1)}
-ARROWS = {"KEY_UP": "NORTH", "KEY_DOWN": "SOUTH", "KEY_LEFT": "WEST", "KEY_RIGHT": "EAST", "y": "NW", "u": "NE", "b": "SW", "n": "SE", "KEY_PPAGE": "UP", "KEY_NPAGE": "DOWN"}
+ARROWS = {"KEY_UP": "NORTH", "KEY_DOWN": "SOUTH", "KEY_LEFT": "WEST", "KEY_RIGHT": "EAST", "y": "NW", "u": "NE", "b": "SW", "n": "SE"}
+# shifted arrows (every version): up and down are drawn as diagonals; Shift-Up UPW, Shift-Down UPE, Shift-Left DW, Shift-Right DE
+SHIFTED = {"KEY_SR": ("UP", "W"), "KEY_SF": ("UP", "E"), "KEY_SLEFT": ("DOWN", "W"), "KEY_SRIGHT": ("DOWN", "E")}
 MAPS_DIR = os.environ.get("ZORKMAPPER_MAPS") or os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ASCIIArt")
 
 
@@ -59,6 +62,28 @@ def neighbour(data: dict, cur: int, direction: str) -> Optional[int]:
         if along > 0.5 and across <= along*0.6 + 0.3:
             d = along + across*2
             if d < bd: best, bd = k, d
+    return best
+
+
+def vertical(data: dict, cur: int, direction: str, side: str) -> Optional[int]:
+    """UP / DOWN go by the exit; `side` (W or E) prefers the exit whose room lies on that side of this one, else any exit of that kind"""
+    r = data["rooms"][str(cur)]; any_ = None
+    for e in r["exits"]:
+        if e["dir"] != direction or not e["dest"] or e["kind"] not in ("to", "cond"): continue
+        any_ = any_ or e["dest"]; c = data["rooms"][str(e["dest"])]["col"]
+        if (side == "W" and c < r["col"]) or (side == "E" and c > r["col"]): return e["dest"]
+    return any_
+
+
+def level_jump(data: dict, cur: int, dz: int) -> Optional[int]:
+    """the nearest room (on the sheet) one elevation level up (+1) or down (-1)"""
+    r = data["rooms"][str(cur)]
+    if r["level"] is None: return None
+    best, bd = None, 1e9
+    for k, o in data["rooms"].items():
+        if o["level"] == r["level"] + dz:
+            d = ((o["col"] - r["col"])/4.0)**2 + ((o["row"] - r["row"])/2.0)**2
+            if d < bd: best, bd = int(k), d
     return best
 
 
@@ -124,7 +149,7 @@ def style_for_bg(code):
 class State:
     def __init__(self, data: Optional[dict] = None, path: str = ""):
         self.data, self.path = data, path; self.cur = 1; self.left = self.right = self.bottom = True; self.msg = "Open a map with F5, or map a game with F6."
-        self.help = False
+        self.help = False; self.layer = False
 
 
 def draw(screen, st: State):
@@ -133,7 +158,7 @@ def draw(screen, st: State):
     if not d:
         screen.put(0, 0, " ZorkMapper explorer ", (15, 4, "b")); screen.put(2, 2, "No map loaded.  F5 / Alt-O: open a map from ASCIIArt/    F6 / Alt-M: map a game    F10 / q: quit"); draw_bottom(screen, st, lay); return
     room = d["rooms"][str(st.cur)]
-    screen.put(0, 0, (" %s  |  room %02d: %s  |  level %s " % (d["title"].split(":")[0], st.cur, room["name"], levels.label(room["level"]))).ljust(w), (15, 4, "b"))
+    screen.put(0, 0, (" %s  |  room %02d: %s  |  level %s%s " % (d["title"].split(":")[0], st.cur, room["name"], levels.label(room["level"]), "  [LAYER VIEW]" if st.layer else "")).ljust(w), (15, 4, "b"))
     my, mx, mh, mw = lay["map"]
     oy, ox = view_origin(room["row"], room["col"], mh, mw)
     for r in range(mh):
@@ -146,6 +171,7 @@ def draw(screen, st: State):
         if my <= y < my + mh and mx <= x < mx + mw - 1:
             cur = sp["n"] == st.cur
             lab = d["canvas"][sp["row"]][sp["col"]:sp["col"] + 2]
+            if st.layer and sp["z"] != room["level"]: screen.put(y, x, "\u00b7\u00b7", (8, -1, "d")); continue         # another layer: a faint placeholder
             screen.put(y, x, lab, style_for_bg(sp["bg"]) if not cur else (0 if levels.black_text(sp["bg"]) else 15, sp["bg"], "br"))
             if cur:
                 screen.put(y, x - 1, ">", (11, -1, "b")); screen.put(y, x + 2, "<", (11, -1, "b"))
@@ -217,6 +243,15 @@ def handle_key(st: State, key: str) -> Optional[str]:
         n = neighbour(st.data, st.cur, ARROWS[key])
         if n: st.cur = n; st.msg = ""
         else: st.msg = "No way %s from here." % ARROWS[key].lower()
+    elif key in SHIFTED:
+        n = vertical(st.data, st.cur, *SHIFTED[key])
+        if n: st.cur = n; st.msg = ""
+        else: st.msg = "No way %s from here." % SHIFTED[key][0].lower()
+    elif key in ("KEY_PPAGE", "KEY_NPAGE"):
+        n = level_jump(st.data, st.cur, 1 if key == "KEY_PPAGE" else -1)
+        if n: st.cur = n; st.msg = ""
+        else: st.msg = "No room on that level."
+    elif key in ("KEY_F(7)", "l"): st.layer = not st.layer; st.msg = "Layer view: only this elevation layer in colour; PgUp / PgDn change layer." if st.layer else "Layer view off."
     return None
 
 
