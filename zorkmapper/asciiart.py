@@ -55,12 +55,12 @@ def render(rooms: Dict[str, Room], sh: Sheet, title: str, start: str, color: boo
         x, y = at(c)
         if 0 <= x < W and 0 <= y < H and (force or grid[y][x][0] == "  "): grid[y][x] = (s, b)
     def free(c): x, y = at(c); return 0 <= x < W and 0 <= y < H and grid[y][x][0] == "  "
-    glyph = {(1, 0): "──", (-1, 0): "──", (0, 1): "│ ", (0, -1): "│ ", (1, -1): "╱╱", (-1, 1): "╱╱", (1, 1): "╲╲", (-1, -1): "╲╲"}
-    arrows = {(1, 0): "─→", (-1, 0): "←─", (0, -1): "↑ ", (0, 1): "↓ ", (1, -1): "↗╱", (-1, 1): "↙╱", (1, 1): "↘╲", (-1, -1): "↖╲"}
+    glyph = {(1, 0): "==", (-1, 0): "==", (0, 1): "||", (0, -1): "||", (1, -1): "//", (-1, 1): "//", (1, 1): "\\\\", (-1, -1): "\\\\"}
+    arrows = {(1, 0): "=>", (-1, 0): "<=", (0, -1): "^^", (0, 1): "vv", (1, -1): "↗/", (-1, 1): "↙/", (1, 1): "↘\\", (-1, -1): "↖\\"}
     def line_cell(c, v, s):
         x, y = at(c); cur = grid[y][x][0]
         if cur == "  ": grid[y][x] = (s, 0)
-        elif cur != s and not cur.strip() == "": grid[y][x] = ("╳╳" if v[0] and v[1] else "─┼", 0)
+        elif cur != s and not cur.strip() == "": grid[y][x] = ("XX" if v[0] and v[1] else "++", 0)
     for l in sh.links:
         if l.mode != "straight": continue
         a = cells[l.a]; v = l.vec; n = 2*l.steps
@@ -94,13 +94,13 @@ def render(rooms: Dict[str, Room], sh: Sheet, title: str, start: str, color: boo
         put(cells[n], label(i), bg(zl.get(n)), force=True)
     out = [title, ""]
     for row in grid:
-        if not color: out.append("".join(s for s, _ in row).rstrip())
-        else: out.append("".join(("\x1b[48;5;%dm\x1b[%sm%s\x1b[0m" % (b, "30" if b in (231, 229, 195, 159, 123) else "97;1", s)) if b else s for s, b in row).rstrip())
+        if not color: out.append("".join(s + " " for s, _ in row).rstrip())
+        else: out.append("".join((("\x1b[48;5;%dm\x1b[%sm%s\x1b[0m" % (b, "30" if b in (231, 229, 195, 159, 123) else "97;1", s)) if b else s) + " " for s, b in row).rstrip())
     out += ["", "Rooms (number, name, level above the start room: + up, - down)"]
     names = ["%s  %s  [%+d]" % (label(i), (rooms[n].desc or n.title())[:34], zl.get(n, 0)) for i, n in enumerate(sh.order, 1)]
     half = (len(names) + 1)//2
     for i in range(half): out.append("%-48s%s" % (names[i], names[i + half] if i + half < len(names) else ""))
-    out += ["", "Key: ── │ ╱╱ ╲╲ passages; → ← ↑ ↓ ↗ ↖ ↘ ↙ one-way; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;",
+    out += ["", "Key: == east/west, || north/south, // \\\\ diagonals; => <= ^^ vv (or ↗ ↖ ↘ ↙) one-way arrows; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;",
             "     Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.",
             "     Background colour = level: white = start level (surface); lighter colours up, darker colours underground."]
     return "\n".join(out) + "\n"

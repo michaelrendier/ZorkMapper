@@ -1,43 +1,43 @@
 Zork3: graph-paper map as text, a square is two characters wide
 
 
-                                      ⁵⁰
-                                      85  52
-                                          │
-                                        ⁸⁵50⁴⁸
-                                  ⁵⁰  ?N  │
-                                  48──45──47
-                                      │
-                                      42
-                              ³⁹      │
-                              80?E    40
-                              ³⁷    ↗╱│ ╲╲
-                          76      39?W43?W41
-                                ?S↑ ?S⁴⁴?N↓ ?N
-          79⁵⁹    60      73  75⁷⁴38  81⁴⁴44
-                  │       │   ⁷⁶?N↓ ?N⁴⁹?S↑ ?S
-          65⁶¹56──57──58  72──74⁷⁵37  82³⁷46
-              │   │         D╲  ?S↑ ?S³⁰?N↓ ?N
-          78  55⁷⁹59  62──63  71?W34  83⁴⁹49
-        ?N?N?N│     U╱│         ?N↓ ?N²⁴?S↑ ?S
-        ?W84⁵³54⁶⁵61  64  66⁶⁷68  30    ?W51
-        ?S?S?S            │     ?N↓ ?N    ²⁴
-          86  11⁰⁴53⁵⁴01  67⁶⁸07⁰⁶24
-            ╱╱  ╲╲    │     ╱╱  U╲│
-          20  13──05──02──03──06⁰⁷14
-          ²⁹╱╱  D╲    │   ↑
-          22──12  23²⁰04⁵³08  77  87
-        ²⁹│ ╳╳│ ╲╲  ╱╱│   │       ↓
-          21──19──10──09  15  31  88
-      ²⁰D╱│ ╳╳│ ╱╱│   │   │ D╱  U╲³⁶
-    ²²29──28──18²⁸17¹⁸16  25      35
-            ¹⁷  ¹⁷  D╱↑
-                  26  27─→69
-                ⟲   D╱↓   │
-                  32  33  70
-                ⟲   ⟲ │
-                      36
-                      ³⁵
+                                                         ⁵⁰
+                                                         85    52
+                                                               ||
+                                                            ⁸⁵ 50 ⁴⁸
+                                                   ⁵⁰    ?N    ||
+                                                   48 == 45 == 47
+                                                         ||
+                                                         42
+                                             ³⁹          ||
+                                             80 ?E       40
+                                             ³⁷       ↗/ || \\
+                                       76          39 ?W 43 ?W 41
+                                                ?S ^^ ?S ⁴⁴ ?N vv ?N
+               79 ⁵⁹       60          73    75 ⁷⁴ 38    81 ⁴⁴ 44
+                           ||          ||    ⁷⁶ ?N vv ?N ⁴⁹ ?S ^^ ?S
+               65 ⁶¹ 56 == 57 == 58    72 == 74 ⁷⁵ 37    82 ³⁷ 46
+                     ||    ||             D\    ?S ^^ ?S ³⁰ ?N vv ?N
+               78    55 ⁷⁹ 59    62 == 63    71 ?W 34    83 ⁴⁹ 49
+            ?N ?N ?N ||       U/ ||             ?N vv ?N ²⁴ ?S ^^ ?S
+            ?W 84 ⁵³ 54 ⁶⁵ 61    64    66 ⁶⁷ 68    30       ?W 51
+            ?S ?S ?S                   ||       ?N vv ?N       ²⁴
+               86    11 ⁰⁴ 53 ⁵⁴ 01    67 ⁶⁸ 07 ⁰⁶ 24
+                  //    \\       ||       //    U\ ||
+               20    13 == 05 == 02 == 03 == 06 ⁰⁷ 14
+               ²⁹ //    D\       ||    ^^
+               22 == 12    23 ²⁰ 04 ⁵³ 08    77    87
+            ²⁹ || XX || \\    // ||    ||          vv
+               21 == 19 == 10 == 09    15    31    88
+         ²⁰ D/ || XX || // ||    ||    || D/    U\ ³⁶
+      ²² 29 == 28 == 18 ²⁸ 17 ¹⁸ 16    25          35
+                  ¹⁷    ¹⁷    D/ ^^
+                           26    27 => 69
+                        ⟲     D/ vv    ||
+                           32    33    70
+                        ⟲     ⟲  ||
+                                 36
+                                 ³⁵
 
 
 Rooms (number, name, level above the start room: + up, - down)
@@ -86,6 +86,6 @@ Rooms (number, name, level above the start room: + up, - down)
 43  Narrow Room  [+0]                           87  Prison Cell  [+0]
 44  Hallway  [+0]                               88  Treasury of Zork  [+0]
 
-Key: ── │ ╱╱ ╲╲ passages; → ← ↑ ↓ ↗ ↖ ↘ ↙ one-way; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
+Key: == east/west, || north/south, // \\ diagonals; => <= ^^ vv (or ↗ ↖ ↘ ↙) one-way arrows; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
      Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.
      Background colour = level: white = start level (surface); lighter colours up, darker colours underground.

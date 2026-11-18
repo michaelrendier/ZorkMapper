@@ -2,41 +2,41 @@ Zork1: graph-paper map as text, a square is two characters wide
 
 
 
-                      12
-                  ⁰⁹U╱¹⁰
-          91    ⁰⁴07──11──15
-        ╱╱        │   ²²  ¹¹                        ⟲
-      90¹¹09⁰⁷23  02──06──10¹³    28  42          52
-      ²¹U╱│     U╳    ⁰³  ⁰⁸Ma  U╱    │ D╲  ⟲   ╱╱  ╲╲  ⟲
-      14⁰⁷04←─01⁰⁶22──25──26──27  38──40  44──47      58
-    Ma    ⁰⁸╱╱⁹⁰╲╲  D╲  U╲⁶¹      │             ⟲   ╱╱
-          05  21  03⁰⁶24  29  33──35              63
-              │   │   ⁸⁶  │ D╲│                 U╱
-          19──20⁰⁴08←─13¹⁰30⁸⁶31──32          67
-            U╲    ¹⁰U╱²⁴          │         D╱
-              18  16³⁰86    ³⁷36──34──37³⁶71──77──82
-              │ U╱                  D╱    │       │
-              17                  39      76      85
-                                  │
-                                  41  46⁵¹
-                                  │ U╱
-                                  43  57──62
-                                  │   │
-                              51──45──50
-                                ╱╱  D╳│
-                              49  56  48
-                            D╱⁵³  ⁴⁹╱╱  D╲
-                    Ma61──55⁵⁹87⁵⁶53    ⁵⁹54──60──66
-                      ²⁹    D╱    │               │
-                          88    ⁵⁵59⁵⁴      ⁹⁰75─→70
-                        D╱        │ ╲╲          D╲
-                    ⁶⁶89⁷⁵        64  65──69      81²¹
-                                  │         D╲
-                            ⁷³72──68──73⁷²    74
-                                    D╱  D╲⁸⁰  │
-                                  78      79  80
-                                  │         U╱⁷⁹
-                                  83      84
+                                 12
+                           ⁰⁹ U/ ¹⁰
+               91       ⁰⁴ 07 == 11 == 15
+            //             ||    ²²    ¹¹                                     ⟲
+         90 ¹¹ 09 ⁰⁷ 23    02 == 06 == 10 ¹³       28    42                52
+         ²¹ U/ ||       UX       ⁰³    ⁰⁸ Ma    U/       || D\    ⟲     //    \\    ⟲
+         14 ⁰⁷ 04 <= 01 ⁰⁶ 22 == 25 == 26 == 27    38 == 40    44 == 47          58
+      Ma       ⁰⁸ // ⁹⁰ \\    D\    U\ ⁶¹          ||                   ⟲     //
+               05    21    03 ⁰⁶ 24    29    33 == 35                      63
+                     ||    ||    ⁸⁶    || D\ ||                         U/
+               19 == 20 ⁰⁴ 08 <= 13 ¹⁰ 30 ⁸⁶ 31 == 32                67
+                  U\       ¹⁰ U/ ²⁴                ||             D/
+                     18    16 ³⁰ 86       ³⁷ 36 == 34 == 37 ³⁶ 71 == 77 == 82
+                     || U/                            D/       ||          ||
+                     17                            39          76          85
+                                                   ||
+                                                   41    46 ⁵¹
+                                                   || U/
+                                                   43    57 == 62
+                                                   ||    ||
+                                             51 == 45 == 50
+                                                //    DX ||
+                                             49    56    48
+                                          D/ ⁵³    ⁴⁹ //    D\
+                              Ma 61 == 55 ⁵⁹ 87 ⁵⁶ 53       ⁵⁹ 54 == 60 == 66
+                                 ²⁹       D/       ||                      ||
+                                       88       ⁵⁵ 59 ⁵⁴          ⁹⁰ 75 => 70
+                                    D/             || \\                D\
+                              ⁶⁶ 89 ⁷⁵             64    65 == 69          81 ²¹
+                                                   ||             D\
+                                          ⁷³ 72 == 68 == 73 ⁷²       74
+                                                      D/    D\ ⁸⁰    ||
+                                                   78          79    80
+                                                   ||             U/ ⁷⁹
+                                                   83          84
 
 
 
@@ -88,6 +88,6 @@ Rooms (number, name, level above the start room: + up, - down)
 45  Reservoir South  [-2]                       91  Sandy Cave  [+0]
 46  Stream  [-1]                                
 
-Key: ── │ ╱╱ ╲╲ passages; → ← ↑ ↓ ↗ ↖ ↘ ↙ one-way; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
+Key: == east/west, || north/south, // \\ diagonals; => <= ^^ vv (or ↗ ↖ ↘ ↙) one-way arrows; U/D up/down (drawn diagonally); ²³ superscript = a link to that room number that cannot be drawn straight;
      Ma ze / Pu zz le = a maze or puzzle (left out) off in that direction; ⟲ passage back to its own room; ?N = a routine decides that exit.
      Background colour = level: white = start level (surface); lighter colours up, darker colours underground.
