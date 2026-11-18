@@ -28,19 +28,10 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-#ifndef MAPDIR
-#define MAPDIR "ASCIIArt"              /* where the .zmap files are (make install sets the absolute path) */
-#endif
-#ifndef HOME_DIR
-#define HOME_DIR ".."                   /* where `python3 -m zorkmapper` runs from, for the map-a-game command */
-#endif
 #define ALT 1000                    /* Alt-letter codes: ncurses key codes occupy 257..511, so Duh DRAW's 256+letter would collide */
 #define MAXR 400
 #define MAXX 24
 #define MAXL 16
-#define PCT_LEFT 16
-#define PCT_RIGHT 30
-#define PCT_BOTTOM 22
 
 typedef struct { char dir[8], kind[8]; int dest; char text[200]; } Exit;
 typedef struct { int num, row, col, level, has_level, bg; char name[100]; char *desc; char items[600]; Exit ex[MAXX]; int nex; } Room;
@@ -49,7 +40,9 @@ typedef struct { int z, bg, rooms; char label[80]; } Level;
 static wchar_t **canvas; static int crows, ccols;
 static Room rooms[MAXR + 1]; static int nrooms, start_room = 1, cur = 1;
 static Level levels[MAXL]; static int nlev;
-static char title[200], game[100], mapdir[512] = MAPDIR, mappath[600], status[400] = "F5 / Alt-O opens a map.";
+static int PCT_LEFT = 16, PCT_RIGHT = 30, PCT_BOTTOM = 22;                  /* panel sizes, percent of the terminal (config: panel_left / panel_right / panel_bottom) */
+static char mapper_home[512] = "..", conf_root[512];
+static char title[200], game[100], mapdir[512] = "ASCIIArt", mappath[600], status[400] = "F5 / Alt-O opens a map.";
 static int show_left = 1, show_right = 1, show_bottom = 1, show_help = 0, layer_view = 0;     /* layer_view: only the current elevation layer in colour */
 
 /* ------------------------------------------------------------------ map file */
@@ -99,6 +92,31 @@ static int load_map(const char *path)
   }
   free(line); fclose(f); snprintf(mappath, sizeof mappath, "%s", path);
   cur = start_room; return nrooms ? 0 : -3;
+}
+
+/* ------------------------------------------------------------------ ~/.zorkmapper (shared by every version) */
+static void expand(char *dst, size_t n, const char *v)       /* '~/.zorkmapper/x' -> ROOT/x ; '~/x' -> $HOME/x */
+{
+  const char *h = getenv("HOME");
+  if (!strncmp(v, "~/.zorkmapper/", 14)) snprintf(dst, n, "%s/%s", conf_root, v + 14);
+  else if (!strncmp(v, "~/", 2) && h) snprintf(dst, n, "%s/%s", h, v + 2); else snprintf(dst, n, "%s", v);
+}
+static void load_config(void)
+{
+  const char *e = getenv("ZORKMAPPER_DIR"), *h = getenv("HOME"); char path[600], line[600]; FILE *f;
+  if (e && *e) snprintf(conf_root, sizeof conf_root, "%s", e); else snprintf(conf_root, sizeof conf_root, "%s/.zorkmapper", h ? h : ".");
+  snprintf(mapdir, sizeof mapdir, "%s/maps", conf_root);                     /* defaults, used when there is no config file */
+  snprintf(path, sizeof path, "%s/config", conf_root);
+  if (!(f = fopen(path, "r"))) return;
+  while (fgets(line, sizeof line, f)) {
+    char *c = strchr(line, '#'), *eq, *k, *v; if (c) *c = 0; eq = strchr(line, '='); if (!eq) continue; *eq = 0; k = line; v = eq + 1;
+    while (*k == ' ' || *k == '\t') k++; { char *t = k + strlen(k); while (t > k && (t[-1] == ' ' || t[-1] == '\t')) *--t = 0; }
+    while (*v == ' ' || *v == '\t') v++; { char *t = v + strlen(v); while (t > v && (t[-1] == ' ' || t[-1] == '\t' || t[-1] == '\n')) *--t = 0; }
+    if (!strcmp(k, "maps_dir")) expand(mapdir, sizeof mapdir, v);
+    else if (!strcmp(k, "mapper_home")) expand(mapper_home, sizeof mapper_home, v);
+    else if (!strcmp(k, "panel_left")) PCT_LEFT = atoi(v); else if (!strcmp(k, "panel_right")) PCT_RIGHT = atoi(v); else if (!strcmp(k, "panel_bottom")) PCT_BOTTOM = atoi(v);
+  }
+  fclose(f);
 }
 
 /* ------------------------------------------------------------------ colours */
@@ -262,7 +280,7 @@ static int cmpstr(const void *a, const void *b) { return strcmp(*(char **)a, *(c
 static int pick_map(void)                                   /* Duh DRAW's directory dialog, reduced to *.zmap */
 {
   char *names[256]; int n = 0, sel = 0, c, i, h, w; DIR *d = opendir(mapdir); struct dirent *e;
-  if (!d) { snprintf(status, sizeof status, "Cannot open the map folder %s (set ZORKMAP_DIR).", mapdir); return 0; }
+  if (!d) { snprintf(status, sizeof status, "Cannot open the map folder %s (see ~/.zorkmapper/config).", mapdir); return 0; }
   while ((e = readdir(d)) && n < 256) { size_t l = strlen(e->d_name); if (l > 5 && !strcmp(e->d_name + l - 5, ".zmap")) names[n++] = strdup(e->d_name); }
   closedir(d); qsort(names, n, sizeof *names, cmpstr);
   if (!n) { snprintf(status, sizeof status, "No .zmap files in %s.  Map a game with Alt-M.", mapdir); return 0; }
@@ -296,7 +314,7 @@ static void map_a_game(void)
 {
   char path[500], cmd[1200], *home = getenv("ZORKMAPPER_HOME"), stem[200], *b, *dot; prompt_line("Map a game: Z-machine file or ZIL folder > ", path, sizeof path);
   if (!path[0]) return;
-  snprintf(cmd, sizeof cmd, "cd '%s' && python3 -m zorkmapper --map '%s'", home ? home : HOME_DIR, path);
+  snprintf(cmd, sizeof cmd, "cd '%s' && python3 -m zorkmapper --map '%s'", home ? home : mapper_home, path);
   def_prog_mode(); endwin(); printf("Mapping %s ...\n", path); fflush(stdout); if (system(cmd) != 0) { reset_prog_mode(); refresh(); snprintf(status, sizeof status, "Mapping %s failed.", path); return; }
   reset_prog_mode(); refresh();
   b = strrchr(path, '/'); snprintf(stem, sizeof stem, "%s", b ? b + 1 : path); dot = strrchr(stem, '.'); if (dot && dot != stem) *dot = 0;
@@ -358,7 +376,7 @@ static int read_key(void)
 int main(int argc, char *argv[])
 {
   int c, quit = 0; char *env = getenv("ZORKMAP_DIR");
-  setlocale(LC_ALL, ""); if (env) snprintf(mapdir, sizeof mapdir, "%s", env);
+  setlocale(LC_ALL, ""); load_config(); if (env) snprintf(mapdir, sizeof mapdir, "%s", env);                 /* ZORKMAP_DIR still overrides the maps folder */
   if (argc > 2 && !strcmp(argv[1], "--check")) {                 /* a headless self-test: parse a map file and say what is in it */
     int rc = load_map(argv[2]); if (rc) { fprintf(stderr, "cannot read %s (%d)\n", argv[2], rc); return 1; }
     printf("ok rooms=%d levels=%d canvas=%dx%d start=%d title=%s\n", nrooms, nlev, crows, ccols, start_room, title); return 0;

@@ -6,7 +6,7 @@ import os
 import re
 from typing import Tuple
 from .model import parse_game
-from . import lattice, sheetsvg, asciiart, mapfile, zmachine
+from . import lattice, sheetsvg, asciiart, mapfile, zmachine, config
 
 MAZE = re.compile(r"maze|oddly-angled|puzzle", re.I)
 
@@ -30,14 +30,15 @@ def read_source(src: str):
     return rooms, objs, os.path.splitext(os.path.basename(src))[0], start
 
 
-def map_game(src: str, outdir: str, start: str = None) -> str:
+def map_game(src: str, outdir: str = None, start: str = None, images_dir: str = None) -> str:
     rooms, objs, game, start0 = read_source(src); start = start or start0 or next(iter(rooms))
     ex = {n for n, r in rooms.items() if MAZE.search(r.desc or "") or MAZE.search(n)}
     if start in ex: ex.discard(start)
     word = lambda n: "Puzzle" if re.search("puzzle", rooms[n].desc or n, re.I) else "Maze"
     sh = lattice.build(rooms, start, ex, word=word)
-    os.makedirs(outdir, exist_ok=True); base = os.path.join(outdir, game); title = "%s: graph-paper map as text, a square is two characters wide" % game
+    cfg = config.ensure(); outdir = outdir or cfg["maps_dir"]; images_dir = images_dir or (cfg["images_dir"] if outdir == cfg["maps_dir"] else outdir)
+    os.makedirs(outdir, exist_ok=True); os.makedirs(images_dir, exist_ok=True); base = os.path.join(outdir, game); ibase = os.path.join(images_dir, game); title = "%s: graph-paper map as text, a square is two characters wide" % game
     mf = mapfile.build(rooms, objs, sh, game, title, start); mf["left_out"] = sorted(rooms[n].desc or n for n in ex); mapfile.save(base + ".map.json", mf); mapfile.save_zmap(base + ".zmap", mf)
     open(base + ".txt", "w").write(asciiart.render(rooms, sh, title, start, False)); open(base + ".ans", "w").write(asciiart.render(rooms, sh, title, start, True))
-    open(base + ".svg", "w").write(sheetsvg.render(rooms, sh, "%s: rooms on a graph-paper lattice (3x3 per room)" % game))
+    open(ibase + ".svg", "w").write(sheetsvg.render(rooms, sh, "%s: rooms on a graph-paper lattice (3x3 per room)" % game))
     return base + ".map.json"

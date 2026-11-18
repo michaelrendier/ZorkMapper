@@ -20,7 +20,7 @@ import locale
 import os
 import textwrap
 from typing import Dict, List, Optional, Tuple
-from . import levels, mapfile
+from . import levels, mapfile, config
 
 PCT = {"left": 16, "right": 30, "bottom": 22}
 MIN = {"left": 20, "right": 30, "bottom": 7}
@@ -28,7 +28,7 @@ DIRS = {"NORTH": (0, -1), "SOUTH": (0, 1), "EAST": (1, 0), "WEST": (-1, 0), "NE"
 ARROWS = {"KEY_UP": "NORTH", "KEY_DOWN": "SOUTH", "KEY_LEFT": "WEST", "KEY_RIGHT": "EAST", "y": "NW", "u": "NE", "b": "SW", "n": "SE"}
 # shifted arrows (every version): up and down are drawn as diagonals; Shift-Up UPW, Shift-Down UPE, Shift-Left DW, Shift-Right DE
 SHIFTED = {"KEY_SR": ("UP", "W"), "KEY_SF": ("UP", "E"), "KEY_SLEFT": ("DOWN", "W"), "KEY_SRIGHT": ("DOWN", "E")}
-MAPS_DIR = os.environ.get("ZORKMAPPER_MAPS") or os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "ASCIIArt")
+MAPS_DIR = os.environ.get("ZORKMAPPER_MAPS") or config.ensure()["maps_dir"]
 
 
 # ------------------------------------------------------------------ pure parts (tested without a terminal)
@@ -100,8 +100,8 @@ def wrap(text: str, width: int) -> List[str]:
     return textwrap.wrap(text, max(8, width)) if text else []
 
 
-def list_maps(dirpath: str = MAPS_DIR) -> List[str]:
-    return sorted(glob.glob(os.path.join(dirpath, "*.map.json")))
+def list_maps(dirpath: str = None) -> List[str]:
+    return sorted(glob.glob(os.path.join(dirpath or MAPS_DIR, "*.map.json")))
 
 
 # ------------------------------------------------------------------ screens: one real (curses) and one fake (tests)
@@ -317,7 +317,7 @@ def run(scr, path: Optional[str] = None):
             if src:
                 try:
                     from . import mapper
-                    out = mapper.map_game(src, MAPS_DIR); load_into(st, out); st.msg = "Mapped %s -> %s" % (src, out)
+                    out = mapper.map_game(src); load_into(st, out); st.msg = "Mapped %s -> %s" % (src, out)
                 except Exception as e:
                     st.msg = "Could not map %s: %s" % (src, e)
 
