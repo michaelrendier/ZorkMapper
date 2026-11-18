@@ -11,7 +11,7 @@
 *
 *  Reads NAME.zmap files written by ZorkMapper (python3 -m zorkmapper ... --ascii ASCIIArt/NAME).
 *  Keys:  arrows = N S W E     Shift-Up UPW   Shift-Down UPE   Shift-Left DW   Shift-Right DE
-*         y u b n = NW NE SW SE  Tab / Shift-Tab next / previous room  Home start  End last room
+*         y u b n = NW NE SW SE  Tab next room, p previous  Shift-Tab shift mode  Home start  End last room
 *         PgUp / PgDn = level up / down   F2 legend  F3 sidebar  F4 status  ESC menu bar
 *         Alt-O open  Alt-M map a game  Alt-G go to number  Alt-H help  Alt-X quit
 *  Screen sizes are percentages of the terminal; the map keeps its scale (two columns per square).
@@ -364,14 +364,14 @@ static const char *room_desc(Room *r)
 
 /* the keyboard mockup in the legend: PgUp Up PgDn / Left Down Right.  A terminal never reports the Shift key itself, only that a shifted arrow arrived, so the
    shifted mapping is shown for a moment after a Shift-arrow and the plain mapping returns after a pause or the next plain key. */
-static long shift_until_ms, press_until_ms; static int pressed_btn = -1;
+static long shift_until_ms, press_until_ms; static int pressed_btn = -1, shift_latch = 0;     /* shift_latch: Shift-Tab switches the mapping, like a lock */
 static long now_ms(void) { struct timespec t; clock_gettime(CLOCK_MONOTONIC, &t); return t.tv_sec * 1000L + t.tv_nsec / 1000000L; }
 static void note_key(int btn, int shifted) { pressed_btn = btn; press_until_ms = now_ms() + 450; shift_until_ms = shifted ? now_ms() + 1600 : 0; }
 static void draw_keys(int y, int x, int rows)       /* rows: 4 (with the action line) or 3 */
 {
   static const char *cap[6] = {"PgUp", " Up ", "PgDn", "Left", "Down", "Rght"};
   static const char *plain[6] = {"LV+", "N", "LV-", "W", "S", "E"}, *shifted[6] = {"LV+", "UPW", "LV-", "DW", "UPE", "DE"};
-  int shift = now_ms() < shift_until_ms, b, bx, by, hot = now_ms() < press_until_ms ? pressed_btn : -1;
+  int phys = now_ms() < shift_until_ms, shift = shift_latch ? !phys : phys, b, bx, by, hot = now_ms() < press_until_ms ? pressed_btn : -1;
   /* shifted: Up key = UPW, Down key = UPE (the two UP diagonals); Left = DW, Right = DE (the two DOWN diagonals) */
   static const char *sh2[6] = {"LV+", "UPW", "LV-", "DW", "UPE", "DE"}; (void)shifted;
   for (b = 0; b < 6; b++) {
@@ -401,7 +401,7 @@ static void draw_all(void)
         putf(L.y + 1 + i, L.x + 7, COLOR_PAIR(P_TEXT), "%+d %.*s %d", levels[i].z, L.w - 14 > 0 ? L.w - 14 : 0, levels[i].z ? strchr(levels[i].label, ':') ? strchr(levels[i].label, ':') + 2 : levels[i].label : "ground", levels[i].rooms);
       }
       { int rows = L.h - (nlev + 6) >= 10 ? 4 : 3, need = 2 * rows + 1;                 /* the keyboard mockup, near the bottom of the legend, when there is room */
-        if (L.w >= 23 && L.h - (nlev + 6) >= need) { draw_keys(L.y + L.h - 1 - 2 * rows, L.x + 1, rows); put(L.y + L.h - 2 - 2 * rows, L.x + 2, now_ms() < shift_until_ms ? "SHIFT held: up and down" : "keys (Shift = up/down)", COLOR_PAIR(now_ms() < shift_until_ms ? P_YEL : P_DIM) | A_BOLD); } }
+        if (L.w >= 23 && L.h - (nlev + 6) >= need) { draw_keys(L.y + L.h - 1 - 2 * rows, L.x + 1, rows); put(L.y + L.h - 2 - 2 * rows, L.x + 2, shift_latch ? "SHIFT MODE (S-Tab: off)" : (now_ms() < shift_until_ms ? "SHIFT held: up and down" : "keys (S-Tab: shift mode)"), COLOR_PAIR(shift_latch || now_ms() < shift_until_ms ? P_YEL : P_DIM) | A_BOLD); } }
       if (nlev + 4 < L.h - 1) { put(L.y + nlev + 2, L.x + 2, "white = ground", COLOR_PAIR(P_DIM)); put(L.y + nlev + 3, L.x + 2, "up: bright rainbow", COLOR_PAIR(P_DIM)); put(L.y + nlev + 4, L.x + 2, "down: dark rainbow", COLOR_PAIR(P_DIM)); }
     }
     if (R.w) {                                                                  /* the room list and the current room, in two boxes */
@@ -431,7 +431,7 @@ static void draw_all(void)
   if (S.h > 0) {                                                                /* the status box, boxed, and the function-key strip on the last line */
     draw_box(S.y, S.x, S.h, S.w, "Status", P_BORDER, P_TEXT);
     if (show_help) {
-      const char *h_[] = {"arrows N S W E   Shift-Up UPW  Shift-Down UPE  Shift-Left DW  Shift-Right DE   y u b n = NW NE SW SE", "Tab / Shift-Tab next / previous room   Home start   End last   PgUp / PgDn level up / down   F7 or l layer view   + - = zoom",
+      const char *h_[] = {"arrows N S W E   Shift-Up UPW  Shift-Down UPE  Shift-Left DW  Shift-Right DE   y u b n = NW NE SW SE", "Tab next room, p previous   Shift-Tab SHIFT MODE (arrows swap to UPW UPE DW DE)   Home start   End last   PgUp / PgDn level up / down   F7 layer view   + - = zoom",
         "F2 legend  F3 sidebar  F4 status   ESC menu bar   Alt-O open  Alt-M map a game  Alt-G go to number  Alt-X quit", "t teleport (asks TELEPORT? Y/n)   * other version of a room marked * in the list   ~ marks a teleporter", 0};
       for (i = 0; h_[i] && i < S.h - 2; i++) put(S.y + 1 + i, S.x + 2, h_[i], COLOR_PAIR(P_TEXT));
     } else wrap_put(S.y + 1, S.x + 2, S.y + S.h - 1, S.w - 4, status, COLOR_PAIR(P_TEXT));
@@ -520,7 +520,7 @@ static void map_a_game(void)
 
 /* ------------------------------------------------------------------ the ESC menu bar (after TheDraw): black on light grey, the selection white on blue */
 static const char *menu_names[] = {"Files", "Go", "View", "Levels", "Help"};
-static const char *menu_items[5][7] = {{"Open map       Alt-O", "Map a game     Alt-M", "Quit           Alt-X", 0, 0, 0, 0}, {"Start          Home", "Next room      Tab", "Previous       S-Tab", "Last room      End", "Go to number   Alt-G", "Teleport       t", 0},
+static const char *menu_items[5][7] = {{"Open map       Alt-O", "Map a game     Alt-M", "Quit           Alt-X", 0, 0, 0, 0}, {"Start          Home", "Next room      Tab", "Previous       p", "Last room      End", "Go to number   Alt-G", "Teleport       t", "Shift mode     S-Tab"},
   {"Legend         F2", "Sidebar        F3", "Status         F4", "Zoom auto      =", "Other version  *", 0, 0}, {"Level up       PgUp", "Level down     PgDn", "Layer view     F7", 0, 0, 0, 0}, {"Keys           F1", 0, 0, 0, 0, 0, 0}};
 static int menu_bar(void)                                   /* returns a command code: 'o' 'm' 'x' 'g' or 0 */
 {
@@ -539,7 +539,7 @@ static int menu_bar(void)                                   /* returns a command
     else if (c == '\n' || c == KEY_ENTER) {
       if (!open_) { open_ = 1; continue; }
       if (m == 0) return i == 0 ? 'o' : i == 1 ? 'm' : 'x';
-      if (m == 1) { if (i == 0) cur = start_room; else if (i == 1) cur = cur % nrooms + 1; else if (i == 2) cur = (cur + nrooms - 2) % nrooms + 1; else if (i == 3) cur = nrooms; else if (i == 4) return 'g'; else return 't'; return 0; }
+      if (m == 1) { if (i == 0) cur = start_room; else if (i == 1) cur = cur % nrooms + 1; else if (i == 2) cur = (cur + nrooms - 2) % nrooms + 1; else if (i == 3) cur = nrooms; else if (i == 4) return 'g'; else if (i == 5) return 't'; else shift_latch = !shift_latch; return 0; }
       if (m == 2) { if (i == 0) show_left = !show_left; else if (i == 1) show_right = !show_right; else if (i == 2) show_bottom = !show_bottom; else if (i == 3) zoom_manual = 0; else if (rooms[cur].alt_after) ver[cur] = !ver[cur]; return 0; }
       if (m == 3) { if (i == 2) layer_view = !layer_view; else move_to(go_level(i == 0 ? 1 : -1), i == 0 ? "up a level" : "down a level"); return 0; }
       show_help = !show_help; return 0;
@@ -572,6 +572,14 @@ static int read_key(void)
 
 static int read_key_wait(void) { int c = read_key(); return c; }
 
+static void arrow(int which, int phys)      /* which: 0 up 1 down 2 left 3 right; phys: a Shift-arrow arrived.  Shift mode (Shift-Tab) swaps the two, like a lock */
+{
+  static const int btn[4] = {1, 4, 3, 5}; int sh = shift_latch ^ phys;
+  note_key(btn[which], phys);
+  if (!sh) move_to(which == 0 ? go_geo(0, -1, 0) : which == 1 ? go_geo(0, 1, 0) : which == 2 ? go_geo(-1, 0, 0) : go_geo(1, 0, 0), which == 0 ? "north" : which == 1 ? "south" : which == 2 ? "west" : "east");
+  else move_to(which == 0 ? go_geo(-1, -1, 'U') : which == 1 ? go_geo(1, -1, 'U') : which == 2 ? go_geo(-1, 1, 'D') : go_geo(1, 1, 'D'), which == 0 ? "up (west)" : which == 1 ? "up (east)" : which == 2 ? "down (west)" : "down (east)");
+}
+
 static void follow_resize(void)                                 /* maximize, un-maximize, a different screen: take the real size from the tty and re-lay-out everything */
 {
   struct winsize ws;
@@ -594,17 +602,18 @@ int main(int argc, char *argv[])
     if (c == ERR || c == KEY_RESIZE) continue;                   /* a timeout (so a resize is noticed within half a second) or the resize itself: just redraw */
     if (getenv("DUHMAP_TRACE")) { FILE *t = fopen(getenv("DUHMAP_TRACE"), "a"); if (t) { fprintf(t, "key %d at room %d\n", c, cur); fclose(t); } }   /* test hook: what key arrived, and where we were */
     switch (c) {
-    case KEY_UP: note_key(1, 0); move_to(go_geo(0, -1, 0), "north"); break;
-    case KEY_DOWN: note_key(4, 0); move_to(go_geo(0, 1, 0), "south"); break;
-    case KEY_LEFT: note_key(3, 0); move_to(go_geo(-1, 0, 0), "west"); break;
-    case KEY_RIGHT: note_key(5, 0); move_to(go_geo(1, 0, 0), "east"); break;
-    case KEY_SR: note_key(1, 1); move_to(go_geo(-1, -1, 'U'), "up (west)"); break;        /* Shift-Up    UPW */
-    case KEY_SF: note_key(4, 1); move_to(go_geo(1, -1, 'U'), "up (east)"); break;        /* Shift-Down  UPE */
-    case KEY_SLEFT: note_key(3, 1); move_to(go_geo(-1, 1, 'D'), "down (west)"); break; /* Shift-Left  DW  */
-    case KEY_SRIGHT: note_key(5, 1); move_to(go_geo(1, 1, 'D'), "down (east)"); break; /* Shift-Right DE  */
+    case KEY_UP: arrow(0, 0); break;
+    case KEY_DOWN: arrow(1, 0); break;
+    case KEY_LEFT: arrow(2, 0); break;
+    case KEY_RIGHT: arrow(3, 0); break;
+    case KEY_SR: arrow(0, 1); break;
+    case KEY_SF: arrow(1, 1); break;
+    case KEY_SLEFT: arrow(2, 1); break;
+    case KEY_SRIGHT: arrow(3, 1); break;
     case 'y': move_to(go_geo(-1, -1, 0), "northwest"); break; case 'u': move_to(go_geo(1, -1, 0), "northeast"); break;
     case 'b': move_to(go_geo(-1, 1, 0), "southwest"); break; case 'n': move_to(go_geo(1, 1, 0), "southeast"); break;
-    case '\t': if (nrooms) cur = cur % nrooms + 1; break; case KEY_BTAB: if (nrooms) cur = (cur + nrooms - 2) % nrooms + 1; break;
+    case '\t': if (nrooms) cur = cur % nrooms + 1; break; case KEY_BTAB: shift_latch = !shift_latch; snprintf(status, sizeof status, shift_latch ? "SHIFT MODE on: the arrows move UPW UPE (up, down keys) and DW DE (left, right keys); Shift-Tab again to leave it." : "Shift mode off: the arrows move N S W E."); break;
+    case 'p': if (nrooms) cur = (cur + nrooms - 2) % nrooms + 1; break;
     case KEY_HOME: cur = start_room; break; case KEY_END: if (nrooms) cur = nrooms; break;
     case KEY_PPAGE: note_key(0, 0); move_to(go_level(1), "up a level"); break; case KEY_NPAGE: move_to(go_level(-1), "down a level"); break;
     case '+': zoom_manual = (zoom_manual ? zoom_manual : zk) + 1; if (zoom_manual > 5) zoom_manual = 5; break;
