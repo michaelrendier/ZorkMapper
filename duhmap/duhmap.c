@@ -221,6 +221,19 @@ static int arrow_allows(wchar_t a, wchar_t b, int dx, int dy)     /* a one-way a
   if (a == 0x2196) return dx == -1 && dy == -1;    if (a == 0x2198) return dx == 1 && dy == 1;
   return 1;
 }
+/* UP and DOWN follow the game's own exit table, not the picture: the sheet is not planar, so a vertical link can be drawn leaning the "wrong" way or under a crossing,
+   but the game always knows its UP and DOWN exits.  `side` ('W' or 'E') prefers the exit whose room lies on that side; otherwise any exit of that kind. */
+static int go_vert_exit(const char *d, char side)
+{
+  Room *r = &rooms[cur]; int i, any = 0;
+  for (i = 0; i < r->nex; i++) {
+    Exit *e = &r->ex[i]; if (strcmp(e->dir, d) || e->dest <= 0 || (strcmp(e->kind, "to") && strcmp(e->kind, "cond"))) continue;
+    if (!any) any = e->dest;
+    if ((side == 'W' && rooms[e->dest].col < r->col) || (side == 'E' && rooms[e->dest].col > r->col)) return e->dest;
+  }
+  return any;
+}
+
 static int go_geo(int dx, int dy, char vertical)     /* vertical: 0 for a compass key, 'U' or 'D' for the shifted keys; returns a room, 0 (invalid) or -2 (a maze) */
 {
   Room *r = &rooms[cur]; int cx = r->col / 4, cy = r->row / 2, j, dest = 0, marker = 0, i, first_marker = 0;
@@ -599,7 +612,7 @@ static void arrow(int which, int phys)      /* which: 0 up 1 down 2 left 3 right
   static const int btn[4] = {1, 4, 3, 5}; int sh = shift_latch ^ phys;
   note_key(btn[which], phys);
   if (!sh) move_to(which == 0 ? go_geo(0, -1, 0) : which == 1 ? go_geo(0, 1, 0) : which == 2 ? go_geo(-1, 0, 0) : go_geo(1, 0, 0), which == 0 ? "north" : which == 1 ? "south" : which == 2 ? "west" : "east");
-  else move_to(which == 0 ? go_geo(-1, -1, 'U') : which == 1 ? go_geo(1, -1, 'U') : which == 2 ? go_geo(-1, 1, 'D') : go_geo(1, 1, 'D'), which == 0 ? "up (west)" : which == 1 ? "up (east)" : which == 2 ? "down (west)" : "down (east)");
+  else move_to(which == 0 ? go_vert_exit("UP", 'W') : which == 1 ? go_vert_exit("UP", 'E') : which == 2 ? go_vert_exit("DOWN", 'W') : go_vert_exit("DOWN", 'E'), which == 0 ? "up (west)" : which == 1 ? "up (east)" : which == 2 ? "down (west)" : "down (east)");
 }
 
 static void follow_resize(void)                                 /* maximize, un-maximize, a different screen: take the real size from the tty and re-lay-out everything */
@@ -615,6 +628,20 @@ int main(int argc, char *argv[])
   if (argc > 2 && !strcmp(argv[1], "--check")) {                 /* a headless self-test: parse a map file and say what is in it */
     int rc = load_map(argv[2]); if (rc) { fprintf(stderr, "cannot read %s (%d)\n", argv[2], rc); return 1; }
     printf("ok rooms=%d levels=%d canvas=%dx%d start=%d title=%s\n", nrooms, nlev, crows, ccols, start_room, title); return 0;
+  }
+  if (argc > 2 && !strcmp(argv[1], "--navtest")) {                /* headless: can the keys reach the game's exits?  vertical by the exit table, compass by the drawn lines */
+    int rc = load_map(argv[2]), k, i, vok = 0, vbad = 0, cok = 0, cbad = 0;
+    static const char *cn[8] = {"NORTH", "SOUTH", "EAST", "WEST", "NE", "NW", "SE", "SW"}; static const int cdx[8] = {0, 0, 1, -1, 1, -1, 1, -1}, cdy[8] = {-1, 1, 0, 0, -1, -1, 1, 1};
+    if (rc) { fprintf(stderr, "cannot read %s\n", argv[2]); return 1; }
+    for (k = 1; k <= nrooms; k++) for (i = 0; i < rooms[k].nex; i++) {
+      Exit *e = &rooms[k].ex[i]; int up = !strcmp(e->dir, "UP"), dn = !strcmp(e->dir, "DOWN"), j, got = 0;
+      if (e->dest <= 0 || (strcmp(e->kind, "to") && strcmp(e->kind, "cond"))) continue;
+      cur = k;
+      if (up || dn) { if (go_vert_exit(e->dir, 'W') == e->dest || go_vert_exit(e->dir, 'E') == e->dest) vok++; else { vbad++; printf("VERTICAL UNREACHABLE: %02d %s --%s--> %02d\n", k, rooms[k].name, e->dir, e->dest); } continue; }
+      for (j = 0; j < 8; j++) if (!strcmp(e->dir, cn[j])) got = (go_geo(cdx[j], cdy[j], 0) == e->dest);
+      if (got) cok++; else cbad++;
+    }
+    printf("vertical exits reachable (shifted keys): %d of %d | compass exits reachable along the drawn lines: %d of %d\n", vok, vok + vbad, cok, cok + cbad); return 0;
   }
   initscr(); noecho(); cbreak(); keypad(stdscr, TRUE); curs_set(0); set_escdelay(25); start_color(); use_default_colors(); init_colors(); halfdelay(5);
   if (argc > 1 && load_map(argv[1])) snprintf(status, sizeof status, "Could not read %s", argv[1]);
