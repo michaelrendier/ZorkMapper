@@ -15,5 +15,11 @@ Regenerate: `./fetch_sources.sh; python3 -m zorkmapper sources/zork1 --sheet --s
 ## Flat view (the earlier 3-D flattening)
 Each level is offset half a cell right and up (up is diagonal up, down is diagonal down); in 3-D the same grid is one cube per room.
 
+## The console explorer (rough draft of the viewer)
+`python3 -m zorkmapper.explorer [ASCIIArt/zork1.map.json]` (UTF-8, 256 colours, about 100 x 30 or larger). Opens a picker over `ASCIIArt/*.map.json`. The current room is always at the centre of the map viewport; panel sizes are percentages of the screen (map scale stays two characters per square; a bigger terminal adds viewport). Left: elevation legend (white = ground / start level, bright rainbow going up, dark rainbow going down). Right: room list and the current room's description, items and exits. Bottom: status box and a TheDraw-style function-key strip. Arrows go N/S/E/W along the exits, `y u b n` the diagonals, PgUp/PgDn up/down, Tab/Shift-Tab next/previous room, F2/F3/F4 collapse the panels, F5 open, **F6 map a game**, F10 quit.
+
+## Mapping a game
+`python3 -m zorkmapper --map PATH` (or F6 in the explorer): PATH is a Z-machine story file (`.dat`, `.z3`, `.z5`; versions 1-5) or a folder of ZIL source. It writes `NAME.map.json`, `NAME.txt`, `NAME.ans` and `NAME.svg` into `ASCIIArt/`. The story-file reader (`zorkmapper/zmachine.py`) finds directions from the game's dictionary and exits from the object property tables; on Zork I it reproduces all 110 rooms with names and exits identical to the ZIL source (a test). Not read from a story file: long descriptions and the destinations of routine-decided exits (those are in routines).
+
 ## Next
-The PyQt6 viewer: `QGraphicsScene` for the flat sheet, an OpenGL view for the cubes, a collapsible right panel and bottom status box, a left adventure-toolkit palette for drawing maps by hand. See the project notes.
+The order (author): console (rough draft, now) -> `QGraphicsScene` rendering the SVG directly -> PyQt6 -> OpenGL 3-D explorer. The PyQt6 viewer: `QGraphicsScene` for the flat sheet, an OpenGL view for the cubes, a collapsible right panel and bottom status box, a left adventure-toolkit palette for drawing maps by hand. See the project notes.
