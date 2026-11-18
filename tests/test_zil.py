@@ -82,8 +82,9 @@ def test_excluded_rooms_become_stubs_not_squares():
 
 
 def test_up_and_down_use_diagonals_and_carry_u_d():
-    rooms, _ = parse_game(MINI); sh = lattice.build(rooms, "A"); up = [l for l in sh.links if l.direction == "UP"]
-    assert up and up[0].vertical == "U" and (abs(up[0].vec[0]) == 1 and abs(up[0].vec[1]) == 1 or up[0].mode == "connector")
+    rooms, _ = parse_game(MINI); sh = lattice.build(rooms, "A"); ud = [l for l in sh.links if l.direction in ("UP", "DOWN")]
+    assert ud and all(l.vertical in ("U", "D") for l in ud)
+    assert all(abs(l.vec[0]) == 1 and abs(l.vec[1]) == 1 for l in ud if l.mode == "straight")
 
 
 def test_sheet_svg_and_descriptions():
