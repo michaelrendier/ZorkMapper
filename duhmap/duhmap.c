@@ -356,6 +356,22 @@ static void wrap_put(int y0, int x0, int ymax, int w, const char *s, int attr)
   }
 }
 
+static int exit_pick = 0, exit_sel = 0;                                        /* the exit picker: choose one of the sidebar's exits and take it */
+static int exit_ok(Exit *e) { return e->dest > 0 && (!strcmp(e->kind, "to") || !strcmp(e->kind, "cond")); }
+static int nth_exit(Room *r, int n)                                           /* the n-th (0-based) exit that leads somewhere, as an index into r->ex, or -1 */
+{
+  int i, k = 0; for (i = 0; i < r->nex; i++) if (exit_ok(&r->ex[i])) { if (k == n) return i; k++; }
+  return -1;
+}
+static int count_exits(Room *r) { int i, k = 0; for (i = 0; i < r->nex; i++) if (exit_ok(&r->ex[i])) k++; return k; }
+static void take_exit(int n)
+{
+  Room *r = &rooms[cur]; int i = nth_exit(r, n);
+  exit_pick = 0;
+  if (i < 0) { show_banner("NO SUCH EXIT"); return; }
+  snprintf(status, sizeof status, "Took %s to %02d %s (the game's own exit).", r->ex[i].dir, r->ex[i].dest, rooms[r->ex[i].dest].name); cur = r->ex[i].dest; exit_sel = 0;
+}
+
 static const char *room_desc(Room *r)
 {
   if (r->alt_after) return ver[r->num] ? r->alt_after : r->alt_before;
@@ -422,9 +438,15 @@ static void draw_all(void)
         dy += (int)(strlen(room_desc(r)) / (R.w - 4 > 4 ? R.w - 4 : 4)) + 2;
         if (r->items[0] && dy < R.y + lh + dh - 1) putf(dy++, R.x + 2, COLOR_PAIR(P_CYAN), "Items: %.*s", R.w - 11 > 0 ? R.w - 11 : 0, r->items);
         for (i = 0; i < r->ntele && dy < R.y + lh + dh - 1; i++) putf(dy++, R.x + 2, COLOR_PAIR(P_CYAN) | A_BOLD, "~ t: %.*s -> %02d %.*s", 30, r->tele[i].via, r->tele[i].dest, 24, r->tele[i].name);
-        for (i = 0; i < r->nex && dy < R.y + lh + dh - 1; i++)
-          if (r->ex[i].dest > 0) putf(dy++, R.x + 2, COLOR_PAIR(P_GRN), "%-5.5s -> %02d %.*s", r->ex[i].dir, r->ex[i].dest, R.w - 17 > 0 ? R.w - 17 : 0, rooms[r->ex[i].dest].name);
-          else putf(dy++, R.x + 2, COLOR_PAIR(P_DIM), "%-5.5s %s", r->ex[i].dir, !strcmp(r->ex[i].kind, "per") ? "(routine)" : "x");
+        { int k = 0;                                                            /* the exits, numbered: press the digit, or e to pick with Up / Down and Enter */
+          if (dy < R.y + lh + dh - 1) putf(dy++, R.x + 2, COLOR_PAIR(P_YEL) | A_BOLD, exit_pick ? "Exits: Up/Down, Enter takes it, Esc" : "Exits (1-9 takes one, e picks):");
+          for (i = 0; i < r->nex && dy < R.y + lh + dh - 1; i++) {
+            Exit *e = &r->ex[i]; int ok = exit_ok(e), sel = exit_pick && ok && k == exit_sel; char pre[8];
+            if (ok) snprintf(pre, sizeof pre, "%d", k < 9 ? k + 1 : 0); else snprintf(pre, sizeof pre, " ");
+            if (ok) { putf(dy++, R.x + 2, sel ? COLOR_PAIR(P_MENUSEL) | A_BOLD : COLOR_PAIR(P_GRN), "%s %-5.5s -> %02d %.*s%s", pre, e->dir, e->dest, R.w - 20 > 0 ? R.w - 20 : 0, rooms[e->dest].name, !strcmp(e->kind, "cond") ? " (if)" : ""); k++; }
+            else putf(dy++, R.x + 2, COLOR_PAIR(P_DIM), "  %-5.5s %s", e->dir, !strcmp(e->kind, "per") ? "(a routine decides)" : "blocked");
+          }
+        }
       }
     }
   }
@@ -432,12 +454,12 @@ static void draw_all(void)
     draw_box(S.y, S.x, S.h, S.w, "Status", P_BORDER, P_TEXT);
     if (show_help) {
       const char *h_[] = {"arrows N S W E   Shift-Up UPW  Shift-Down UPE  Shift-Left DW  Shift-Right DE   y u b n = NW NE SW SE", "Tab next room, p previous   Shift-Tab SHIFT MODE (arrows swap to UPW UPE DW DE)   Home start   End last   PgUp / PgDn level up / down   F7 layer view   + - = zoom",
-        "F2 legend  F3 sidebar  F4 status   ESC menu bar   Alt-O open  Alt-M map a game  Alt-G go to number  Alt-X quit", "t teleport (asks TELEPORT? Y/n)   * other version of a room marked * in the list   ~ marks a teleporter", 0};
+        "F2 legend  F3 sidebar  F4 status   ESC menu bar   Alt-O open  Alt-M map a game  Alt-G go to number  Alt-X quit", "t teleport (asks TELEPORT? Y/n)   * other version of a room   ~ teleporter   1-9 or e: take one of the room's own exits (sidebar list)", 0};
       for (i = 0; h_[i] && i < S.h - 2; i++) put(S.y + 1 + i, S.x + 2, h_[i], COLOR_PAIR(P_TEXT));
     } else wrap_put(S.y + 1, S.x + 2, S.y + S.h - 1, S.w - 4, status, COLOR_PAIR(P_TEXT));
   }
   fill(h - 1, 0, 1, w, P_STRIP);
-  put(h - 1, 0, " F1 Help  F2 Legend  F3 Sidebar  F4 Status  F7 Layers  +/- Zoom  Alt-O Open  Alt-M Map a game  Home Start  Alt-X Quit ", COLOR_PAIR(P_STRIP));
+  put(h - 1, 0, " F1 Help  F2 Legend  F3 Sidebar  F4 Status  F7 Layers  e Exits  +/- Zoom  Alt-O Open  Alt-M Map a game  Alt-X Quit ", COLOR_PAIR(P_STRIP));
 }
 
 static void show_banner(const char *msg)
@@ -520,15 +542,15 @@ static void map_a_game(void)
 
 /* ------------------------------------------------------------------ the ESC menu bar (after TheDraw): black on light grey, the selection white on blue */
 static const char *menu_names[] = {"Files", "Go", "View", "Levels", "Help"};
-static const char *menu_items[5][7] = {{"Open map       Alt-O", "Map a game     Alt-M", "Quit           Alt-X", 0, 0, 0, 0}, {"Start          Home", "Next room      Tab", "Previous       p", "Last room      End", "Go to number   Alt-G", "Teleport       t", "Shift mode     S-Tab"},
-  {"Legend         F2", "Sidebar        F3", "Status         F4", "Zoom auto      =", "Other version  *", 0, 0}, {"Level up       PgUp", "Level down     PgDn", "Layer view     F7", 0, 0, 0, 0}, {"Keys           F1", 0, 0, 0, 0, 0, 0}};
+static const char *menu_items[5][8] = {{"Open map       Alt-O", "Map a game     Alt-M", "Quit           Alt-X", 0, 0, 0, 0, 0}, {"Start          Home", "Next room      Tab", "Previous       p", "Last room      End", "Go to number   Alt-G", "Teleport       t", "Shift mode     S-Tab", "Pick an exit   e"},
+  {"Legend         F2", "Sidebar        F3", "Status         F4", "Zoom auto      =", "Other version  *", 0, 0, 0}, {"Level up       PgUp", "Level down     PgDn", "Layer view     F7", 0, 0, 0, 0, 0}, {"Keys           F1", 0, 0, 0, 0, 0, 0, 0}};
 static int menu_bar(void)                                   /* returns a command code: 'o' 'm' 'x' 'g' or 0 */
 {
   int m = 0, i = 0, open_ = 0, c, k, n, cnt;
   for (;;) {
     draw_all(); fill(0, 0, 1, COLS, P_MENU); put(0, 0, " ", COLOR_PAIR(P_MENU));
     for (k = 0, n = 1; k < 5; k++) { putf(0, n, k == m ? COLOR_PAIR(P_MENUSEL) | A_BOLD : COLOR_PAIR(P_MENU), " %s ", menu_names[k]); n += (int)strlen(menu_names[k]) + 3; }
-    cnt = 0; while (cnt < 7 && menu_items[m][cnt]) cnt++;
+    cnt = 0; while (cnt < 8 && menu_items[m][cnt]) cnt++;
     if (open_) { int x0 = 1; for (k = 0; k < m; k++) x0 += (int)strlen(menu_names[k]) + 3; draw_box(1, x0, cnt + 2, 24, NULL, P_BLACKBOX, P_MENU);
       for (k = 0; k < cnt; k++) putf(2 + k, x0 + 1, k == i ? COLOR_PAIR(P_MENUSEL) | A_BOLD : COLOR_PAIR(P_MENU), " %-21s", menu_items[m][k]); }
     refresh(); c = getch();
@@ -539,7 +561,7 @@ static int menu_bar(void)                                   /* returns a command
     else if (c == '\n' || c == KEY_ENTER) {
       if (!open_) { open_ = 1; continue; }
       if (m == 0) return i == 0 ? 'o' : i == 1 ? 'm' : 'x';
-      if (m == 1) { if (i == 0) cur = start_room; else if (i == 1) cur = cur % nrooms + 1; else if (i == 2) cur = (cur + nrooms - 2) % nrooms + 1; else if (i == 3) cur = nrooms; else if (i == 4) return 'g'; else if (i == 5) return 't'; else shift_latch = !shift_latch; return 0; }
+      if (m == 1) { if (i == 0) cur = start_room; else if (i == 1) cur = cur % nrooms + 1; else if (i == 2) cur = (cur + nrooms - 2) % nrooms + 1; else if (i == 3) cur = nrooms; else if (i == 4) return 'g'; else if (i == 5) return 't'; else if (i == 6) shift_latch = !shift_latch; else { exit_pick = 1; exit_sel = 0; } return 0; }
       if (m == 2) { if (i == 0) show_left = !show_left; else if (i == 1) show_right = !show_right; else if (i == 2) show_bottom = !show_bottom; else if (i == 3) zoom_manual = 0; else if (rooms[cur].alt_after) ver[cur] = !ver[cur]; return 0; }
       if (m == 3) { if (i == 2) layer_view = !layer_view; else move_to(go_level(i == 0 ? 1 : -1), i == 0 ? "up a level" : "down a level"); return 0; }
       show_help = !show_help; return 0;
@@ -601,7 +623,15 @@ int main(int argc, char *argv[])
     follow_resize(); draw_all(); refresh(); c = read_key_wait();
     if (c == ERR || c == KEY_RESIZE) continue;                   /* a timeout (so a resize is noticed within half a second) or the resize itself: just redraw */
     if (getenv("DUHMAP_TRACE")) { FILE *t = fopen(getenv("DUHMAP_TRACE"), "a"); if (t) { fprintf(t, "key %d at room %d\n", c, cur); fclose(t); } }   /* test hook: what key arrived, and where we were */
+    if (exit_pick && nrooms) {                                                  /* the exit picker has the arrows until Enter or Esc */
+      int n = count_exits(&rooms[cur]);
+      if (c == KEY_UP && n) { exit_sel = (exit_sel + n - 1) % n; continue; } if (c == KEY_DOWN && n) { exit_sel = (exit_sel + 1) % n; continue; }
+      if (c == '\n' || c == KEY_ENTER) { take_exit(exit_sel); continue; }
+      if (c == 27 || c == 'e') { exit_pick = 0; snprintf(status, sizeof status, "Exit picker closed."); continue; }
+    }
     switch (c) {
+    case 'e': if (nrooms) { exit_pick = !exit_pick; exit_sel = 0; if (exit_pick && !count_exits(&rooms[cur])) { exit_pick = 0; show_banner("NO EXITS HERE"); } } break;
+    case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9': if (nrooms) take_exit(c - '1'); break;
     case KEY_UP: arrow(0, 0); break;
     case KEY_DOWN: arrow(1, 0); break;
     case KEY_LEFT: arrow(2, 0); break;
